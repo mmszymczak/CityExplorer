@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div>
+    <acme-navbar></acme-navbar>
+  </div>
+
+  <div class="jumbotron text-center">
+  <h4>Clik on his head to login to FB </h4>
+    <p class="lead">
+      <img src="assets/images/yeoman.png" alt="I'm Yeoman" ng-click="main.checkLoginState()"><br>
+    </p>
+    <fb:login-button scope="public_profile,email" 
+                    onlogin="main.checkLoginState()">
+    </fb:login-button>
+    <div id="status">
+    </div>
+  </div>
+
+</div>
