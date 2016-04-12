@@ -1,0 +1,27 @@
+<div class="container">
+
+    <div>
+        <acme-navbar></acme-navbar>
+    </div>
+
+    <div class="jumbotron text-center">
+        <h2 class="header-login">Please create your session:</h2>
+        <form name="formLog" ng-submit="loginCtrl.submitForm()" novalidate>
+            <label for="name">Username:</label>
+            <input type="text" name="username" id="username"
+                   ng-model="loginCtrl.name"
+                   autofocus required />
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password"
+                   ng-model="loginCtrl.password"
+                   required />
+            <button type="submit">Submit</button>
+        </form>
+
+        <h2 ng-bind="loginCtrl.resultInfo" class="show-access"></h2>
+        <div class="btn btn-success categories-button" ng-show="loginCtrl.openAccess">
+            <a href="#/category">Checkout categories around you!</a>
+        </div>
+    </div>
+</div>
+
