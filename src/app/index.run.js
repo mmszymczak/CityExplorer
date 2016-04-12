@@ -1,14 +1,15 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('project')
-    .run(runBlock);
+    angular
+        .module('project')
+        .run(runBlock);
 
-  /** @ngInject */
-  function runBlock($log) {
+    runBlock.$inject = ['$log', 'FaceService'];
 
-    $log.debug('runBlock end');
-  }
+    function runBlock($log, FaceService) {
+        FaceService.initFB();
+        $log.debug('runBlock end');
+    }
 
 })();

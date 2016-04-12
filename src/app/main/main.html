@@ -5,18 +5,17 @@
     </div>
 
     <div class="jumbotron text-center">
-        <h4>Clik on his head to login to FB </h4>
+        <h4>Clik on his head or log in</h4>
         <p class="lead">
-            <img src="assets/images/yeoman.png" alt="I'm Yeoman" ng-click="main.checkLoginState()"><br>
+            <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
         </p>
-        <fb:login-button scope="public_profile, user_likes, email"
-                         onlogin="checkLoginState()">
+        <fb:login-button data-size="xlarge" scope="public_profile, email" onlogin="checkLoginState()">
         </fb:login-button>
 
         <div id="status"></div>
 
         <div class="login">
-            <a href="#/login">Login without Facebook</a>
+            <a href="#/login">Log in without Facebook</a>
         </div>
     </div>
 
