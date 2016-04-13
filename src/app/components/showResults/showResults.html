@@ -1,0 +1,30 @@
+<div class="container">
+    <div>
+        <acme-navbar></acme-navbar>
+    </div>
+    <div class="jumbotron text-center">
+        <div class="row">
+            <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in resCtrl.listByCat | orderBy:'rank' | limitTo:resCtrl.numberPerPage:(resCtrl.currentPage-1)*resCtrl.numberPerPage">
+                <div class="thumbnail">
+                    <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
+                    <div class="caption">
+                        <h3>{{ awesomeThing.category }}</h3>
+                        <p>{{ awesomeThing.description }}</p>
+                        <p><a ng-href="{{awesomeThing.url}}" >{{ awesomeThing.url }}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-wrapper">
+        <uib-pagination
+            total-items="resCtrl.totalItems"
+            ng-model="resCtrl.currentPage"
+            max-size="resCtrl.maxSize"
+            class="pagination-sm"
+            boundary-links="true"
+            force-ellipses="true">
+        </uib-pagination>
+    </div>
+</div>

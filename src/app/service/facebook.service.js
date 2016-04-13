@@ -19,13 +19,12 @@
         // service functions to return
 
         function getPlaces(callback) {
-            console.log(service.geoPosition, Geolocation.position);
-            var query = '/search?q=&type=place&center='
-                    +Geolocation.position.latitude
-                    +','
-                    +Geolocation.position.longitude
-                    +'&distance=1000';
-            FB.api(query, callback);
+            FB.api(
+                '/search',
+                'GET',
+                {"q":"","type":"place","center":"53.4291333,14.555872699999998","distance":"1000","fields":"category"},
+                callback
+            );
         }
 
         function testAPI() {

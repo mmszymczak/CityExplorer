@@ -13,9 +13,14 @@
             controllerAs: 'main'
         })
         .when('/category', {
-            templateUrl: 'app/components/showResults/main.html',
+            templateUrl: 'app/categories/categories.html',
+            controller: 'CategoryController',
+            controllerAs: 'catCtrl'
+        })
+        .when('/category/:item?', {
+            templateUrl: 'app/components/showResults/showResults.html',
             controller: 'ResultsController',
-            controllerAs: 'result'
+            controllerAs: 'resCtrl'
         })
         .when('/login', {
             templateUrl: 'app/components/loginWithoutFB/login.html',
