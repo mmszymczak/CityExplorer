@@ -5,9 +5,9 @@
         .module('project')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$window', '$timeout', 'webDevTec', 'FaceService'];
+    MainController.$inject = ['$window', '$timeout', 'webDevTec', 'FaceService', 'Geolocation'];
 
-    function MainController($window, $timeout, webDevTec, FaceService) {
+    function MainController($window, $timeout, webDevTec, FaceService, Geolocation) {
         var vm = this;
 
         vm.list = [];
@@ -15,7 +15,7 @@
         vm.classAnimation = '';
         $window.checkLoginState = checkLoginState;
         vm.getPlaces = getPlaces;
-        vm.getListOfPlaces = getListOfPlaces;
+        vm.getLoc = getLoc;
 
         activate();
 
@@ -26,19 +26,20 @@
         function activate() {
             $timeout(function() {
                 vm.classAnimation = 'rubberBand';
-                getPlaces();
             }, 4000);
         }
 
         function getPlaces() {
-            FaceService.getPlaces();
-
+            FaceService.getPlaces(function(response){
+                response.data.forEach(function(data){
+                    vm.list.push(data);
+                });
+            });
+            webDevTec.takeMyArr(vm.list);
         }
 
-        function getListOfPlaces() {
-            vm.list = FaceService.getListOfPlaces();
-
-            webDevTec.takeMyArr(vm.list);
+        function getLoc() {
+            console.log(Geolocation.position);
         }
 
     }

@@ -5,32 +5,27 @@
         .module('project')
         .service('FaceService', FaceService);
 
-    FaceService.$inject = ['$window', '$timeout'];
+    FaceService.$inject = ['$window', '$timeout', 'Geolocation'];
 
-    function FaceService($window, $timeout) {
+    function FaceService($window, $timeout, Geolocation) {
         var service = {
             initFB: initFB,
             checkLoginState: checkLoginState,
-            testAPI: testAPI,
-            getPlaces: getPlaces,
-            getListOfPlaces: getListOfPlaces
+            getPlaces: getPlaces
         };
 
         return service;
 
-        var list = [];
-
         // service functions to return
 
-        function getListOfPlaces() {
-            return list;
-        }
-
-        function getPlaces() {
-            FB.api('/search?q=&type=place&center=53.4290696,14.5567868&distance=1000', function(response) {
-                list = response.data;
-                return response.data;
-            });
+        function getPlaces(callback) {
+            console.log(service.geoPosition, Geolocation.position);
+            var query = '/search?q=&type=place&center='
+                    +Geolocation.position.latitude
+                    +','
+                    +Geolocation.position.longitude
+                    +'&distance=1000';
+            FB.api(query, callback);
         }
 
         function testAPI() {
