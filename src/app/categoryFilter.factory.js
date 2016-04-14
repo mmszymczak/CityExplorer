@@ -2,31 +2,22 @@
     'use strict';
 
     angular
-        .module("project")
-        .factory("categoryFilter", categoryFilter);
+        .module('project')
+        .factory('categoryFilter', categoryFilter);
 
-    categoryFilter.$inject = ['$routeParams'];
+    categoryFilter.$inject = ['$routeParams', 'FaceService'];
 
-    function categoryFilter($routeParams){
+    function categoryFilter($routeParams, FaceService){
         return {
             actualRoute: function() {
-                return $routeParams.filter;
+                return $routeParams.item;
             },
-            get: function() {console.log($routeParams.filter);
-                switch($routeParams.filter){
-                    case 'Art':
-                        console.log('art');
-                        break;
-                    case 'Bar':
-                        console.log('bar');
-                        break;
-                    case 'Cafe':
-                        console.log('cafe');
-                        break;
-                }
+            get: function(method, callback) {
+                FaceService[method](callback);
             }
+
         }
 
-    };
+    }
 
 })();

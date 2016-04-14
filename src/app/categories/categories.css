@@ -1,0 +1,11 @@
+.title p::first-letter {
+    text-transform: uppercase;
+}
+
+.title a {
+    padding: 67px;
+}
+
+.title p {
+    font-size: 40px;
+}

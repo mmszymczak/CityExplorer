@@ -12,6 +12,11 @@
             controller: 'MainController',
             controllerAs: 'main'
         })
+        .when('/login', {
+            templateUrl: 'app/components/loginWithoutFB/login.html',
+            controller: 'LoginController',
+            controllerAs: 'loginCtrl'
+        })
         .when('/category', {
             templateUrl: 'app/categories/categories.html',
             controller: 'CategoryController',
@@ -19,13 +24,13 @@
         })
         .when('/category/:item?', {
             templateUrl: 'app/components/showResults/showResults.html',
-            controller: 'ResultsController',
+            controller: 'ShowResultsController',
             controllerAs: 'resCtrl'
         })
-        .when('/login', {
-            templateUrl: 'app/components/loginWithoutFB/login.html',
-            controller: 'LoginController',
-            controllerAs: 'loginCtrl'
+        .when('/category/:item?/:element?', {
+            templateUrl: 'app/elementInfo/elementInfo.html',
+            controller: 'ElementInfoController',
+            controllerAs: 'elemCtrl'
         })
         .otherwise({
             redirectTo: '/'

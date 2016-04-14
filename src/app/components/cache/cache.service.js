@@ -3,19 +3,27 @@
 
     angular
         .module('project')
-        .service('webDevTec', webDevTec);
+        .service('cacheService', cacheService);
 
 
-    function webDevTec() {
+    function cacheService() {
 
         var vm = this;
-        vm.list = [];
+        vm.list = {
+            museum: [],
+            bar: [],
+            cafe: [],
+            club: [],
+            hotel: [],
+            restaurant: []
+        };
 
         vm.getTec = getTec;
-        vm.takeMyArr = takeMyArr;
+        vm.saveCache = saveCache;
 
-        function takeMyArr(list){
-          vm.list = list;
+        function saveCache(category, list){
+          vm.list[category] = list;
+          console.log('cache: ', vm.list);
         }
 
 

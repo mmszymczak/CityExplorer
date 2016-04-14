@@ -1,0 +1,39 @@
+<div class="container">
+    <div>
+        <acme-navbar></acme-navbar>
+    </div>
+
+    <div class="jumbotron text-center">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div>
+                    <img class="pull-right">
+                    <div class="caption">
+                        <h3>Name: {{elemCtrl.elemInfo.name}}</h3>
+                        <h4>Category: {{elemCtrl.elemInfo.category}}</h4>
+                        <p>About: {{elemCtrl.elemInfo.about}}</p>
+                        <p>{{elemCtrl.elemInfo.engagement.social_sentence}}</p>
+                        <p>Link to FB page: <a href="{{elemCtrl.elemInfo.link}}">{{elemCtrl.elemInfo.link}}</a></p>
+                        <p>Phone number: {{elemCtrl.elemInfo.phone}}</p>
+                        <p>{{elemCtrl.elemInfo.price_range}}</p>
+                        <p>Website: {{elemCtrl.elemInfo.website}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div id="map"></div>
+                <script>
+                    function initMap() {
+                    var mapDiv = document.getElementById('map');
+                    var map = new google.maps.Map(mapDiv, {
+                      center: {lat: 44.540, lng: -78.546},
+                      zoom: 8
+                    });
+                    }
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+            </div>
+        </div>
+    </div>
+
+</div>

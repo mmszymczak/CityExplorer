@@ -5,17 +5,13 @@
         .module('project')
         .controller('CategoryController', CategoryController);
 
-    CategoryController.$inject = ['categoryFilter'];
+    CategoryController.$inject = [];
 
-    function CategoryController(categoryFilter) {
+    function CategoryController() {
         var vm = this;
 
-        vm.categories = ['Art', 'Bar', 'Cafe', 'Club', 'Hotel', 'Restaurant'];
-        vm.getCategory = getCategory;
+        vm.categories = ['museum', 'bar', 'cafe', 'club', 'hotel', 'restaurant'];
 
-        function getCategory() {
-            categoryFilter.get();
-        }
     }
 
 

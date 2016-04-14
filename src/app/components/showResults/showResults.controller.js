@@ -3,54 +3,53 @@
 
   angular
     .module('project')
-    .controller('ResultsController', ResultsController);
+    .controller('ShowResultsController', ShowResultsController);
 
   /** @ngInject */
-  function ResultsController($timeout, webDevTec, FaceService) {
+  function ShowResultsController($timeout, cacheService, FaceService, $routeParams, categoryFilter) {
     var vm = this;
 
-    vm.listByCat = [];
-
+    vm.listByCategory = {};
     vm.classAnimation = '';
-    vm.getPlaces = getPlaces;
-
 
     activate();
 
-
-    /// paginaTioą
-    vm.setPage = function (pageNo) {
-        vm.currentPage = pageNo;
-    };
-
-    vm.numberPerPage = 5;
-    vm.maxSize = 20;
-    vm.totalItems = 25;
+    vm.numberPerPage = 6;
+    vm.maxSize = 5;
+    vm.totalItems = vm.listByCategory[$routeParams.item].length;
     vm.currentPage = 1;
-    /////
-
-
-
-    function getPlaces() {
-        FaceService.getPlaces(function(response){
-            response.data.forEach(function(data){
-                vm.list.push(data);
-            });
-        });
-        webDevTec.takeMyArr(vm.list);
-    }
 
     function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
+
+        getCacheService();
+        routeTypeRequest();
+
+        $timeout(function() {
+            vm.classAnimation = 'rubberBand';
+        }, 4000);
     }
 
-    function getWebDevTec() {
-      vm.listByCat = webDevTec.getTec();
+    function routeTypeRequest() {
 
-      angular.forEach(vm.listByCat, function(awesomeThing) {
+        var actualCategory = $routeParams.item;
+        var capitalLetter = actualCategory.charAt(0).toUpperCase() + actualCategory.slice(1);
+        var method = 'get'+capitalLetter+'s';
+
+        vm.route = actualCategory;
+        if(vm.listByCategory[actualCategory].length === 0){
+            categoryFilter.get(method, function(response){
+                vm.listByCategory[actualCategory] = vm.listByCategory[actualCategory].concat(response.data);
+                cacheService.saveCache(actualCategory, vm.listByCategory[actualCategory]);
+                vm.totalItems = vm.listByCategory[actualCategory].length;
+            });
+        }
+
+    }
+
+    function getCacheService() {
+      vm.listByCategory = cacheService.getTec();
+
+      angular.forEach(vm.listByCategory, function(awesomeThing) {
         awesomeThing.rank = Math.random();
       });
     }

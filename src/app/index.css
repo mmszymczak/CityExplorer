@@ -10,5 +10,8 @@
 }
 
 .thumbnail img.pull-right {
-  width: 50px;
+  width: 70px;
+}
+.pull-right {
+    float: none !important;
 }

@@ -6,7 +6,9 @@
         <div class="row">
             <div class="category-wrapper">
                 <div class="col-sm-6 col-md-4" ng-repeat="item in catCtrl.categories">
-                    <div><h3><a href="#/category/{{item}}" ng-click="catCtrl.getCategory()">{{item}}</a></h3></div>
+                    <div><h3 class="title">
+                        <a href="#/category/{{item}}" class="thumbnail"><p>{{item}}</p></a>
+                    </h3></div>
                 </div>
             </div>
         </div>

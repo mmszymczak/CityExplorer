@@ -11,18 +11,118 @@
         var service = {
             initFB: initFB,
             checkLoginState: checkLoginState,
-            getPlaces: getPlaces
+            getMuseums: getMuseums,
+            getBars: getBars,
+            getCafes: getCafes,
+            getClubs: getClubs,
+            getHotels: getHotels,
+            getRestaurants: getRestaurants,
+            getDetails: getDetails
         };
 
         return service;
 
+
         // service functions to return
 
-        function getPlaces(callback) {
+        function getDetails(id, callback) {
+
+            FB.api(
+                '/'+id,
+                'GET',
+                {"fields":["name","price_range","engagement",
+                "restaurant_specialties","restaurant_services",
+                "website","payment_options","phone","about",
+                "category", "description", "food_styles",
+                "general_info","location","link"]},
+                callback
+            );
+        }
+
+        function getMuseums(callback) {
             FB.api(
                 '/search',
                 'GET',
-                {"q":"","type":"place","center":"53.4291333,14.555872699999998","distance":"1000","fields":"category"},
+                {"q":"muzeum",
+                "type":"place",
+                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
+                "distance":"500",
+                "fields":["hours","category","name", "location", "picture.type(large)"]},
+                callback
+            );
+            FB.api(
+                '/search',
+                'GET',
+                {"q":"art gallery",
+                "type":"place",
+                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
+                "distance":"500",
+                "fields":["hours","category","name","location","picture.type(large)"]},
+                callback
+            );
+        }
+
+        function getBars(callback) {
+            FB.api(
+                '/search',
+                'GET',
+                {"q":"bar",
+                "type":"place",
+                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
+                "distance":"500",
+                "fields":["hours","category","name", "location", "picture.type(large)"]},
+                callback
+            );
+        }
+
+        function getCafes(callback) {
+            FB.api(
+                '/search',
+                'GET',
+                {"q":"cafe",
+                "type":"place",
+                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
+                "distance":"500",
+                "fields":["hours","category","name", "location", "picture.type(large)"]},
+                callback
+            );
+        }
+
+        function getClubs(callback){
+            FB.api(
+                '/search',
+                'GET',
+                {"q":"club",
+                "type":"place",
+                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
+                "distance":"500",
+                "fields":["hours","category","name", "location", "picture.type(large)"]},
+                callback
+            );
+        }
+
+        function getHotels(callback){
+            FB.api(
+                '/search',
+                'GET',
+                {"q":"hotel",
+                "type":"place",
+                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
+                "distance":"500",
+                "fields":["hours","category","name", "location", "picture.type(large)"]},
+                callback
+            );
+        }
+
+        function getRestaurants(callback){
+            FB.api(
+                '/search',
+                'GET',
+                {"q":"restaurant",
+                "type":"place",
+                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
+                "distance":"500",
+                "fields":["hours","category","name", "location", "picture.type(large)"]},
                 callback
             );
         }
