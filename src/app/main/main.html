@@ -11,11 +11,15 @@
         </p>
         <fb:login-button data-size="xlarge" scope="public_profile, email" onlogin="checkLoginState()">
         </fb:login-button>
-
+<!--         <input type="button" value="Login" onclick="FB.login();">
+        <input type="button" value="Logout" onclick="FB.logout();"> -->
         <div id="status"></div>
 
         <div class="login">
             <a href="#/login">Log in without Facebook</a>
+        </div>
+        <div class="btn btn-success categories-button" ng-hide="main.connected">
+            <a href="#/category">Checkout categories around you!</a>
         </div>
     </div>
 

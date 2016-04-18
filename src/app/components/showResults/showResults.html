@@ -2,7 +2,7 @@
     <div>
         <acme-navbar></acme-navbar>
     </div>
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center {{resCtrl.actualCategory}}">
         <div class="row">
             <div class="col-sm-6 col-md-4"
             ng-repeat="item in resCtrl.listByCategory[resCtrl.route] | orderBy:'rank' | limitTo:resCtrl.numberPerPage:(resCtrl.currentPage-1)*resCtrl.numberPerPage">
@@ -10,8 +10,8 @@
                    href="#/category/{{resCtrl.route}}/{{item.id}}">
                     <img class="pull-right" ng-src="{{item.picture.data.url}}">
                     <div class="caption">
-                        <h3>{{ item.name }}</h3>
-                        <p>{{ item.location.street }}</p>
+                        <h3 class="header-title">{{ item.name }}</h3>
+                        <p class="address">{{ item.location.street }}</p>
                     </div>
                 </a>
             </div>
@@ -28,6 +28,6 @@
             boundary-links="true"
             force-ellipses="true">
         </uib-pagination>
-        <pre>{{resCtrl.totalItems | json }}</pre>
+        <pre class="preprepre">Elements: {{resCtrl.totalItems | json }}</pre>
     </div>
 </div>

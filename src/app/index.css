@@ -15,3 +15,21 @@
 .pull-right {
     float: none !important;
 }
+.museum {
+    background-color: #FFE8E8;
+}
+.bar {
+    background-color: #FFC49D;
+}
+.cafe {
+    background-color: #F4C9F3;
+}
+.club {
+    background-color: #C5F8F2;
+}
+.hotel {
+    background-color: #DDF4CA;
+}
+.restaurant {
+    background-color: #C9CBF4;
+}

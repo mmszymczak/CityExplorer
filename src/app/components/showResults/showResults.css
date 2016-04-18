@@ -1,5 +1,19 @@
 .btn-wrapper {
     margin: 0 auto;
+}
+
+.header-tite {
 
 }
 
+.preprepre {
+    width: 150px;
+}
+
+.thumbnail .address {
+    font-size: 16px !important;
+}
+
+.thumbnail {
+    text-decoration: none !important;
+}

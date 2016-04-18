@@ -34,11 +34,14 @@
 
         function actualPosition() {
             var position = {};
+            var deferred = $q.defer();
             getCurrentPosition().then(function(geoposition){
                 position.latitude = geoposition.coords.latitude;
                 position.longitude = geoposition.coords.longitude;
                 currentLocation['position'] = position;
+                deferred.resolve(position);
             });
+            return deferred.promise;
         }
 
     }

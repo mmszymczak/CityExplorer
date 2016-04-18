@@ -5,11 +5,9 @@
         .module('project')
         .run(runBlock);
 
-    runBlock.$inject = ['$log', 'FaceService', 'Geolocation'];
+    runBlock.$inject = ['$log'];
 
-    function runBlock($log, FaceService, Geolocation) {
-        FaceService.initFB();
-        Geolocation.actualPosition();
+    function runBlock($log) {
         $log.debug('runBlock end');
     }
 

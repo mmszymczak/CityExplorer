@@ -5,9 +5,9 @@
         .module('project')
         .service('FaceService', FaceService);
 
-    FaceService.$inject = ['$window', '$timeout', 'Geolocation'];
+    FaceService.$inject = ['$window', '$timeout', 'Geolocation', '$q', 'userService'];
 
-    function FaceService($window, $timeout, Geolocation) {
+    function FaceService($window, $timeout, Geolocation, $q, userService) {
         var service = {
             initFB: initFB,
             checkLoginState: checkLoginState,
@@ -25,8 +25,8 @@
 
         // service functions to return
 
-        function getDetails(id, callback) {
-
+        function getDetails(id) {
+            var deferred = $q.defer();
             FB.api(
                 '/'+id,
                 'GET',
@@ -34,110 +34,174 @@
                 "restaurant_specialties","restaurant_services",
                 "website","payment_options","phone","about",
                 "category", "description", "food_styles",
-                "general_info","location","link"]},
-                callback
+                "general_info","location","link","picture.type(large)"]},
+                function(response) {
+                    if (!response || response.error) {
+                        deferred.reject('Error occured');
+                    } else {
+                        deferred.resolve(response);
+                    }
+                }
             );
+            return deferred.promise;
         }
 
-        function getMuseums(callback) {
-            FB.api(
-                '/search',
-                'GET',
-                {"q":"muzeum",
-                "type":"place",
-                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
-                "distance":"500",
-                "fields":["hours","category","name", "location", "picture.type(large)"]},
-                callback
-            );
-            FB.api(
-                '/search',
-                'GET',
-                {"q":"art gallery",
-                "type":"place",
-                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
-                "distance":"500",
-                "fields":["hours","category","name","location","picture.type(large)"]},
-                callback
-            );
+        function getMuseums() {
+            var deferred = $q.defer();
+            Geolocation.actualPosition()
+            .then(function(position){
+                FB.api(
+                    '/search',
+                    'GET',
+                    {"q":"muzeum",
+                    "type":"place",
+                    "center": position.latitude+","+position.longitude ,
+                    "distance":"1000",
+                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    function(response) {
+                        if (!response || response.error) {
+                            deferred.reject('Error occured');
+                        } else {
+                            deferred.resolve(response);
+                        }
+                    }
+                );
+            });
+            return deferred.promise;
         }
 
-        function getBars(callback) {
-            FB.api(
-                '/search',
-                'GET',
-                {"q":"bar",
-                "type":"place",
-                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
-                "distance":"500",
-                "fields":["hours","category","name", "location", "picture.type(large)"]},
-                callback
-            );
+        function getBars() {
+            var deferred = $q.defer();
+            Geolocation.actualPosition()
+            .then(function(position){
+                FB.api(
+                    '/search',
+                    'GET',
+                    {"q":"bar",
+                    "type":"place",
+                    "center": position.latitude+","+position.longitude ,
+                    "distance":"1000",
+                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    function(response) {
+                        if (!response || response.error) {
+                            deferred.reject('Error occured');
+                        } else {
+                            deferred.resolve(response);
+                        }
+                    }
+                );
+            });
+            return deferred.promise;
         }
 
-        function getCafes(callback) {
-            FB.api(
-                '/search',
-                'GET',
-                {"q":"cafe",
-                "type":"place",
-                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
-                "distance":"500",
-                "fields":["hours","category","name", "location", "picture.type(large)"]},
-                callback
-            );
+        function getCafes() {
+            var deferred = $q.defer();
+            Geolocation.actualPosition()
+            .then(function(position){
+                FB.api(
+                    '/search',
+                    'GET',
+                    {"q":"cafe",
+                    "type":"place",
+                    "center": position.latitude+","+position.longitude ,
+                    "distance":"1000",
+                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    function(response) {
+                        if (!response || response.error) {
+                            deferred.reject('Error occured');
+                        } else {
+                            deferred.resolve(response);
+                        }
+                    }
+                );
+            });
+            return deferred.promise;
         }
 
-        function getClubs(callback){
-            FB.api(
-                '/search',
-                'GET',
-                {"q":"club",
-                "type":"place",
-                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
-                "distance":"500",
-                "fields":["hours","category","name", "location", "picture.type(large)"]},
-                callback
-            );
+        function getClubs(){
+            var deferred = $q.defer();
+            Geolocation.actualPosition()
+            .then(function(position){
+                FB.api(
+                    '/search',
+                    'GET',
+                    {"q":"club",
+                    "type":"place",
+                    "center": position.latitude+","+position.longitude ,
+                    "distance":"1000",
+                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    function(response) {
+                        if (!response || response.error) {
+                            deferred.reject('Error occured');
+                        } else {
+                            deferred.resolve(response);
+                        }
+                    }
+                );
+            });
+            return deferred.promise;
         }
 
-        function getHotels(callback){
-            FB.api(
-                '/search',
-                'GET',
-                {"q":"hotel",
-                "type":"place",
-                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
-                "distance":"500",
-                "fields":["hours","category","name", "location", "picture.type(large)"]},
-                callback
-            );
+        function getHotels(){
+            var deferred = $q.defer();
+            Geolocation.actualPosition()
+            .then(function(position){
+                FB.api(
+                    '/search',
+                    'GET',
+                    {"q":"hotel",
+                    "type":"place",
+                    "center": position.latitude+","+position.longitude ,
+                    "distance":"1000",
+                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    function(response) {
+                        if (!response || response.error) {
+                            deferred.reject('Error occured');
+                        } else {
+                            deferred.resolve(response);
+                        }
+                    }
+                );
+            });
+            return deferred.promise;
         }
 
-        function getRestaurants(callback){
-            FB.api(
-                '/search',
-                'GET',
-                {"q":"restaurant",
-                "type":"place",
-                "center": Geolocation.position.latitude+","+Geolocation.position.longitude ,
-                "distance":"500",
-                "fields":["hours","category","name", "location", "picture.type(large)"]},
-                callback
-            );
+        function getRestaurants(){
+            var deferred = $q.defer();
+            Geolocation.actualPosition()
+            .then(function(position){
+                FB.api(
+                    '/search',
+                    'GET',
+                    {"q":"restaurant",
+                    "type":"place",
+                    "center": position.latitude+","+position.longitude ,
+                    "distance":"1000",
+                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    function(response) {
+                        if (!response || response.error) {
+                            deferred.reject('Error occured');
+                        } else {
+                            deferred.resolve(response);
+                        }
+                    }
+                );
+            });
+            return deferred.promise;
         }
 
         function testAPI() {
             FB.api('/me/', function(response) {
                 console.log('Successful login for: ' + response.name);
-                document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
+                // document.getElementById('status').innerHTML =
+                // 'Thanks for logging in, ' + response.name + '!';
             });
         }
 
         function statusChangeCallback(response) {
             if (response.status === 'connected') {
                 testAPI();
+                userService.connected = true;
             } else if (response.status === 'not_authorized') {
                 document.getElementById('status').innerHTML = 'Please log ' +
                 'into this app.';
@@ -155,6 +219,7 @@
 
         //  init facebook API
         function initFB() {
+            var deferred = $q.defer();
             $window.fbAsyncInit = function() {
                 FB.init({
                     appId: '1174712949207842',
@@ -166,6 +231,7 @@
                 //  log in automatic if you have opened fb connection
                 FB.getLoginStatus(function(response) {
                     statusChangeCallback(response);
+                    deferred.resolve(response.status);
                 });
             };
 
@@ -177,6 +243,8 @@
                 js.src = "//connect.facebook.net/en_US/sdk.js";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
+
+            return deferred.promise;
         }
     }
 

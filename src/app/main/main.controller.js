@@ -14,7 +14,7 @@
 
         vm.classAnimation = '';
         $window.checkLoginState = checkLoginState;
-
+        vm.connected = FaceService.connected;
 
         activate();
 
@@ -23,9 +23,13 @@
         }
 
         function activate() {
+            if(typeof FB !== undefined){
+                FaceService.initFB();
+            }
+
             $timeout(function() {
                 vm.classAnimation = 'rubberBand';
-            }, 4000);
+            }, 3000);
         }
 
     }

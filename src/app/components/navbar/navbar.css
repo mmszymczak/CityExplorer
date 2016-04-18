@@ -1,3 +1,21 @@
 .acme-navbar-text {
   color: white;
 }
+.navbar-nav {
+    float: right !important;
+}
+.navbar-inverse {
+    background-color: #fff;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: black;
+}
+.navbar-inverse .navbar-brand {
+    color: #C66262;
+}
+.navbar-inverse .navbar-brand:hover {
+    color: black !important;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #5A4F72;
+}

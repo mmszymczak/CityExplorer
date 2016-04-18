@@ -1,20 +1,19 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('project')
-    .directive('acmeNavbar', acmeNavbar);
+    angular
+        .module('project')
+        .directive('acmeNavbar', acmeNavbar);
 
-  /** @ngInject */
-  function acmeNavbar() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'app/components/navbar/navbar.html',
-      bindToController: true
-    };
+    acmeNavbar.$inject = [];
 
-    return directive;
-
+    function acmeNavbar() {
+        var directive = {
+            restrict: 'E',
+            templateUrl: 'app/components/navbar/navbar.html',
+            bindToController: true
+        };
+        return directive;
   }
 
 })();

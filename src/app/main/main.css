@@ -10,3 +10,9 @@
     font-size: 18px;
     font-weight: bold;
 }
+.lead:active img{
+   transform: rotate(360deg);
+   transition: all 1.5s ;
+   -webkit-transform: rotate(360deg);
+   -ms-transform: rotate(360deg);
+}

@@ -5,24 +5,41 @@
         .module('project')
         .controller('ElementInfoController', ElementInfoController);
 
-    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FaceService'];
+    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FaceService', 'userService'];
 
-    function ElementInfoController(cacheService, $routeParams, FaceService) {
+    function ElementInfoController(cacheService, $routeParams, FaceService, userService) {
         var vm = this;
 
         vm.elemInfo = [];
+        vm.actualCategory = $routeParams.item;
+        vm.position = {};
 
-        FaceService.getDetails($routeParams.element, function(response){
-            console.log(response)
-            vm.elemInfo = response;
-        });
+        activate();
 
-        function initMap() {
-            var mapDiv = document.getElementById('map');
-            var map = new google.maps.Map(mapDiv, {
-              center: {lat: 44.540, lng: -78.546},
-              zoom: 8
-            });
+        function activate() {
+            if(typeof FB !== undefined){
+                FaceService.initFB()
+                    .then(function(response){
+                        if(response === 'connected'){
+                            detailsRequest();
+                        }else{
+                            FB.login();
+                        }
+                    });
+            }
+            if(userService.connected) detailsRequest();
+        }
+
+        function detailsRequest() {
+            FaceService.getDetails($routeParams.element)
+                .then(function(response){
+                    vm.elemInfo = response;
+                    return response;
+                })
+                .then(function(data){
+                    vm.position.lng = data.location.longitude;
+                    vm.position.lat = data.location.latitude;
+                });
         }
 
     }
