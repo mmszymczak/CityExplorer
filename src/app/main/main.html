@@ -9,10 +9,9 @@
         <p class="lead">
             <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
         </p>
-        <fb:login-button data-size="xlarge" scope="public_profile, email" onlogin="checkLoginState()">
-        </fb:login-button>
-<!--         <input type="button" value="Login" onclick="FB.login();">
-        <input type="button" value="Logout" onclick="FB.logout();"> -->
+
+        <input type="button" value="Login" ng-click="main.loginFB()">
+        <input type="button" value="Logout" ng-click="main.logoutFB()">
         <div id="status"></div>
 
         <div class="login">

@@ -10,7 +10,8 @@
     function FaceService($window, $timeout, Geolocation, $q, userService) {
         var service = {
             initFB: initFB,
-            checkLoginState: checkLoginState,
+            loginFB: loginFB,
+            logoutFB: logoutFB,
             getMuseums: getMuseums,
             getBars: getBars,
             getCafes: getCafes,
@@ -202,18 +203,26 @@
             if (response.status === 'connected') {
                 testAPI();
                 userService.connected = true;
-            } else if (response.status === 'not_authorized') {
-                document.getElementById('status').innerHTML = 'Please log ' +
-                'into this app.';
-            } else {
-                document.getElementById('status').innerHTML = 'Please log ' +
-                'into Facebook.';
             }
         }
 
-        function checkLoginState() {
-            FB.getLoginStatus(function(response) {
-              statusChangeCallback(response);
+        function loginFB(){
+            FB.login(function(response){
+                if (response.status === 'connected') {
+                userService.connected = true;
+                console.log('successfully logged in!');
+                } else if (response.status === 'not_authorized') {
+                console.log('login response: not_authorized please try again');
+                } else {
+                console.log('login response: unknown, log in please');
+                }
+            });
+        }
+
+        function logoutFB() {
+            FB.logout(function(response) {
+                userService.connected = false;
+                console.log('Person is now logged out');
             });
         }
 

@@ -5,9 +5,9 @@
         .module('project')
         .controller('ShowResultsController', ShowResultsController);
 
-    ShowResultsController.$inject = ['$timeout', 'cacheService', 'FaceService', '$routeParams', 'userService'];
+    ShowResultsController.$inject = ['$window', 'cacheService', 'FaceService', '$routeParams', 'userService'];
 
-    function ShowResultsController($timeout, cacheService, FaceService, $routeParams, userService) {
+    function ShowResultsController($window, cacheService, FaceService, $routeParams, userService) {
         var vm = this;
 
         vm.listByCategory = {};
@@ -22,17 +22,19 @@
 
         function activate() {
             getCacheService();
-            if(typeof FB !== undefined){
+            if(typeof FB === 'undefined'){
                 FaceService.initFB()
-                .then(function(response){
+                .then(function(response){console.log(response);
                     if(response === 'connected'){
                         routeTypeRequest();
                     }else{
-                        FB.login();
+                        FaceService.loginFB();
                     }
                 });
-            }
-            if(userService.connected) routeTypeRequest();
+            }else if(!userService.connected) {
+                FaceService.loginFB();
+                $window.location.href = '#/';
+            }else { routeTypeRequest(); }
         }
 
         function routeTypeRequest() {

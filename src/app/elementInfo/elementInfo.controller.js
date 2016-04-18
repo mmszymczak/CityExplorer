@@ -17,17 +17,19 @@
         activate();
 
         function activate() {
-            if(typeof FB !== undefined){
+            if(typeof FB === 'undefined'){
                 FaceService.initFB()
                     .then(function(response){
                         if(response === 'connected'){
                             detailsRequest();
                         }else{
-                            FB.login();
+                            FaceService.loginFB();
                         }
                     });
-            }
-            if(userService.connected) detailsRequest();
+            }else if(!userService.connected) {
+                FaceService.loginFB();
+                $window.location.href = '#/';
+            }else { detailsRequest(); }
         }
 
         function detailsRequest() {
