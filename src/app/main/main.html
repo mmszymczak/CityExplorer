@@ -1,26 +1,22 @@
-<div class="container">
-
-    <div>
-        <acme-navbar></acme-navbar>
+<div class="jumbotron text-center">
+    <div id="loginStatus" ng-if="main.user.connected">
+        <p>{{main.fbService.loginResponse}}</p>
     </div>
+    <section class="login-form-wrap">
+        <h1 ng-hide="main.user.connected">Sign in with facebook account</h1>
+        <h1 ng-show="main.user.connected">Leave your account</h1>
+        <form class="login-form">
+            <input type="submit" value="Login"
+                   ng-click="main.loginFB()"
+                   ng-hide="main.user.connected">
+            <input type="submit" value="Logout"
+                   ng-click="main.logoutFB()"
+                   ng-show="main.user.connected">
+        </form>
+    </section>
 
-    <div class="jumbotron text-center">
-        <h4>Clik on his head or log in</h4>
-        <p class="lead">
-            <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
-        </p>
-
-        <input type="button" value="Login" ng-click="main.loginFB()">
-        <input type="button" value="Logout" ng-click="main.logoutFB()">
-        <div id="status"></div>
-
-        <div class="login">
-            <a href="#/login">Log in without Facebook</a>
-        </div>
-        <div class="btn btn-success categories-button" ng-hide="main.connected">
-            <a href="#/category">Checkout categories around you!</a>
-        </div>
+    <div class="btn btn-success categories-button" ng-if="main.user.connected">
+        <a href="#/category">Checkout categories around you!</a>
     </div>
-
-
 </div>
+

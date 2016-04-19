@@ -3,13 +3,46 @@
 }
 
 .title a {
-    padding: 67px;
+    color: rgba(60, 53, 147, 0.86);
 }
 
 .title p {
     font-size: 40px;
+    font-weight: 600;
+    background: rgba(225, 228, 216, 0.63);
+    width: 100%;
+    margin-top: 65px;
 }
 .title a{
     text-decoration: none;
 }
-
+.category-wrapper {
+    margin-top: 145px;
+}
+.category-wrapper .title-wrapper .museum {
+    background-image: url('../../assets/images/museum.jpg');
+    background-size: cover;
+}
+.category-wrapper .title-wrapper .bar {
+    background-image: url('../../assets/images/bar.jpg');
+    background-size: cover;
+}
+.category-wrapper .title-wrapper .cafe {
+    background-image: url('../../assets/images/cafe.jpg');
+    background-size: cover;
+}
+.category-wrapper .title-wrapper .club {
+    background-image: url('../../assets/images/club.jpg');
+    background-size: cover;
+}
+.category-wrapper .title-wrapper .hotel {
+    background-image: url('../../assets/images/hotel.jpg');
+    background-size: cover;
+}
+.category-wrapper .title-wrapper .restaurant {
+    background-image: url('../../assets/images/restaurant.jpg');
+    background-size: cover;
+}
+.category-item-wrapper {
+    background: black;
+}

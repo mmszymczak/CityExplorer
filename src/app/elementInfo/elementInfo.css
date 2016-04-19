@@ -4,8 +4,17 @@
         height: 200px;
     }
 }
-
 #map {
     width: 500px;
     height: 400px;
+}
+.info-wrapper {
+        background: #E2E2E2;
+        margin-top: 50px;
+}
+.info-block {
+    padding: 25px;
+}
+.map-block {
+    padding: 25px;
 }

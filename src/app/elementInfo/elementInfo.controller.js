@@ -17,6 +17,10 @@
         activate();
 
         function activate() {
+            checkFBState();
+        }
+
+        function checkFBState() {
             if(typeof FB === 'undefined'){
                 FaceService.initFB()
                     .then(function(response){
@@ -26,7 +30,7 @@
                             FaceService.loginFB();
                         }
                     });
-            }else if(!userService.connected) {
+            }else if(!userService.user.connected) {
                 FaceService.loginFB();
                 $window.location.href = '#/';
             }else { detailsRequest(); }

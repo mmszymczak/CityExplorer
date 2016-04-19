@@ -5,9 +5,9 @@
         .module('project')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$timeout', 'FaceService'];
+    MainController.$inject = ['$timeout', 'FaceService', 'userService'];
 
-    function MainController($timeout, FaceService) {
+    function MainController($timeout, FaceService, userService) {
         var vm = this;
 
         vm.list = [];
@@ -15,8 +15,8 @@
         vm.classAnimation = '';
         vm.loginFB = loginFB;
         vm.logoutFB = logoutFB;
-        vm.connected = FaceService.connected;
-
+        vm.user = userService.user;
+        vm.fbService = FaceService;
         activate();
 
         function loginFB() {

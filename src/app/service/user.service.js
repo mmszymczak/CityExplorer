@@ -9,11 +9,14 @@
 
     function userService() {
         var user = {
-            connected: false
+            connected: false,
+            picture: '',
+            first_name: '',
+            last_name: '',
+            full_name: '',
+            profile_link: ''
         };
-        return user;
-
-
+        return {user: user};
     }
 
 })();

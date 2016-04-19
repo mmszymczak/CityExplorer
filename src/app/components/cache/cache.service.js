@@ -26,7 +26,6 @@
           console.log('cache: ', vm.list);
         }
 
-
         function getTec() {
           return vm.list;
         }

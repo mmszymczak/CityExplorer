@@ -1,30 +1,25 @@
-<div class="container">
-    <div>
-        <acme-navbar></acme-navbar>
-    </div>
-    <div class="jumbotron {{elemCtrl.actualCategory}}">
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <div>
-                    <img class="pull-right"
-                        ng-src="{{elemCtrl.elemInfo.picture.data.url}}">
-                    <div class="caption">
-                        <h3>{{elemCtrl.elemInfo.name}}</h3>
-                        <h4>{{elemCtrl.elemInfo.category}}</h4>
-                        <p>{{elemCtrl.elemInfo.about}}</p>
-                        <p>{{elemCtrl.elemInfo.engagement.social_sentence}}</p>
+<div class="jumbotron {{elemCtrl.actualCategory}}">
+    <div class="row info-wrapper">
+        <div class="col-sm-12 col-md-6 info-block">
+            <div>
+                <img class="pull-right"
+                    ng-src="{{elemCtrl.elemInfo.picture.data.url}}">
+                <div class="caption">
+                    <h3>{{elemCtrl.elemInfo.name}}</h3>
+                    <h4>{{elemCtrl.elemInfo.category}}</h4>
+                    <p>{{elemCtrl.elemInfo.about}}</p>
+                    <p>{{elemCtrl.elemInfo.engagement.social_sentence}}</p>
 
-                        <p>Phone number: {{elemCtrl.elemInfo.phone}}</p>
-                        <p>{{elemCtrl.elemInfo.price_range}}</p>
-                        <a ng-href="{{elemCtrl.elemInfo.link}}">Facebook page</a><br>
-                        <a ng-href="{{elemCtrl.elemInfo.website}}">Website</a>
-                    </div>
+                    <p>Phone number: {{elemCtrl.elemInfo.phone}}</p>
+                    <p>{{elemCtrl.elemInfo.price_range}}</p>
+                    <a ng-href="{{elemCtrl.elemInfo.link}}">Facebook page</a><br>
+                    <a ng-href="{{elemCtrl.elemInfo.website}}">Website</a>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-6">
-                <google-map position="elemCtrl.position" name="{{elemCtrl.elemInfo.name}}"></google-map>
-            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 map-block">
+            <google-map position="elemCtrl.position" name="{{elemCtrl.elemInfo.name}}"></google-map>
         </div>
     </div>
-
 </div>
+

@@ -3,15 +3,25 @@
 
     angular
         .module('project')
-        .directive('acmeNavbar', acmeNavbar);
+        .directive('navBar', navBar);
 
-    acmeNavbar.$inject = [];
+    navBar.$inject = ['userService', 'FaceService'];
 
-    function acmeNavbar() {
+    function navBar(userService, FaceService) {
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/navbar/navbar.html',
-            bindToController: true
+            bindToController: true,
+            controller: function(){
+                var vm = this;
+                vm.user = userService.user;
+                vm.logoutFB = logoutFB;
+
+                function logoutFB() {
+                    FaceService.logoutFB();
+                }
+            },
+            controllerAs: 'navCtrl'
         };
         return directive;
   }

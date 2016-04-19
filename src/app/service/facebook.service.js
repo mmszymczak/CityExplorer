@@ -18,14 +18,14 @@
             getClubs: getClubs,
             getHotels: getHotels,
             getRestaurants: getRestaurants,
-            getDetails: getDetails
+            getDetails: getDetails,
+            loginResponse: ''
         };
 
         return service;
 
 
         // service functions to return
-
         function getDetails(id) {
             var deferred = $q.defer();
             FB.api(
@@ -192,37 +192,53 @@
         }
 
         function testAPI() {
-            FB.api('/me/', function(response) {
-                console.log('Successful login for: ' + response.name);
-                // document.getElementById('status').innerHTML =
-                // 'Thanks for logging in, ' + response.name + '!';
+            var deferred = $q.defer();
+            FB.api(
+                '/me',
+                'GET',
+                {"fields":["name","picture","first_name","last_name","hometown","location","link"]},
+                function(response) {
+                deferred.resolve(response);
+            });
+            deferred.promise.then(function(response){
+                var loginResponse = 'Thanks for logging in, ' + response.name + '!';
+                service.loginResponse = loginResponse;
+                userService.user.first_name = response.first_name;
+                userService.user.last_name = response.last_name;
+                userService.user.full_name = response.name;
+                userService.user.profile_link = response.link;
+                userService.user.picture = response.picture.data.url;
             });
         }
 
         function statusChangeCallback(response) {
             if (response.status === 'connected') {
                 testAPI();
-                userService.connected = true;
+                $timeout(function(){
+                    userService.user.connected = true;
+                },0);
             }
         }
 
         function loginFB(){
             FB.login(function(response){
                 if (response.status === 'connected') {
-                userService.connected = true;
-                console.log('successfully logged in!');
+                    statusChangeCallback();
+                console.log('Successfully logged in!');
                 } else if (response.status === 'not_authorized') {
-                console.log('login response: not_authorized please try again');
+                console.log('Login response: not_authorized please try again');
                 } else {
-                console.log('login response: unknown, log in please');
+                console.log('Login response: unknown, log in please');
                 }
             });
         }
 
         function logoutFB() {
             FB.logout(function(response) {
-                userService.connected = false;
-                console.log('Person is now logged out');
+                $timeout(function(){
+                    userService.user.connected = false;
+                    console.log('Person is now logged out');
+                },0);
             });
         }
 

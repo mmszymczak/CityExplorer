@@ -2,18 +2,16 @@
     margin: 0 auto;
 }
 
-.header-tite {
-
-}
-
 .preprepre {
     width: 150px;
 }
 
 .thumbnail .address {
     font-size: 16px !important;
+    font-weight: 400;
 }
 
 .thumbnail {
     text-decoration: none !important;
+    background: rgba(241, 241, 241, 0.89);
 }

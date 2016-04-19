@@ -6,6 +6,7 @@
 }
 .navbar-inverse {
     background-color: #fff;
+    margin: 0;
 }
 .navbar-inverse .navbar-nav > li > a:hover {
     color: black;
@@ -18,4 +19,18 @@
 }
 .navbar-inverse .navbar-nav > li > a {
     color: #5A4F72;
+}
+.user-interface {
+    background: gray;
+}
+.container-fluid {
+    padding-right: 0px;
+}
+.user-button {
+    padding: 0;
+    border: 0;
+}
+.user-dropdown {
+    left: auto;
+    right: 0%;
 }

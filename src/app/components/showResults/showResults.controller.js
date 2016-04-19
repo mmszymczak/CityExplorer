@@ -15,13 +15,17 @@
 
         activate();
 
-        vm.numberPerPage = 6;
+        vm.numberPerPage = 9;
         vm.maxSize = 5;
         vm.totalItems = vm.listByCategory[$routeParams.item].length;
         vm.currentPage = 1;
 
         function activate() {
             getCacheService();
+            checkFBState();
+        }
+
+        function checkFBState() {
             if(typeof FB === 'undefined'){
                 FaceService.initFB()
                 .then(function(response){console.log(response);
@@ -31,7 +35,7 @@
                         FaceService.loginFB();
                     }
                 });
-            }else if(!userService.connected) {
+            }else if(!userService.user.connected) {
                 FaceService.loginFB();
                 $window.location.href = '#/';
             }else { routeTypeRequest(); }
