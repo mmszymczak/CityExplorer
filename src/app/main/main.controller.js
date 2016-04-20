@@ -17,6 +17,7 @@
         vm.logoutFB = logoutFB;
         vm.user = userService.user;
         vm.fbService = FaceService;
+
         activate();
 
         function loginFB() {
@@ -28,9 +29,7 @@
         }
 
         function activate() {
-            if(typeof FB !== undefined){
-                FaceService.initFB();
-            }
+            FaceService.checkLoginState();
 
             $timeout(function() {
                 vm.classAnimation = 'rubberBand';

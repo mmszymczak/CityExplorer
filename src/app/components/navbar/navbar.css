@@ -20,8 +20,8 @@
 .navbar-inverse .navbar-nav > li > a {
     color: #5A4F72;
 }
-.user-interface {
-    background: gray;
+.user-interface span{
+    position: initial;
 }
 .container-fluid {
     padding-right: 0px;
@@ -33,4 +33,5 @@
 .user-dropdown {
     left: auto;
     right: 0%;
+    min-width: 150px;
 }

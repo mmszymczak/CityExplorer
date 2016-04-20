@@ -5,9 +5,9 @@
         .module('project')
         .directive('googleMap', googleMap);
 
-    googleMap.$inject = [];
+    googleMap.$inject = ['googleMapService'];
 
-    function googleMap() {
+    function googleMap(googleMapService) {
         var directive = {
             restrict: 'E',
             templateUrl: 'app/googleMap/googleMap.html',

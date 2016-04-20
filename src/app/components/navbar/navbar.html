@@ -17,21 +17,18 @@
             <li class="hotel"><a href="#/category/hotel" >Hotel</a></li>
             <li class="restaurant"><a href="#/category/restaurant" >Restaurant</a></li>
             <li class="user-interface dropdown">
-                <button class="user-button dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img ng-src="{{navCtrl.user.picture}}">
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu user-dropdown" role="menu" aria-labelledby="dropdownMenu">
-                    <li><a tabindex="-1" class="dropdown-header">Account info</a></li>
-                    <li class="divider"></li>
-                    <li><a tabindex="-1" href="#/" ng-click="navCtrl.logoutFB();">Log out</a></li>
-                </ul>
+                <span uib-dropdown on-toggle="toggled(open)">
+                    <a href id="user-button simple-dropdown" uib-dropdown-toggle>
+                        <img ng-src="{{navCtrl.user.picture}}">
+                    </a>
+                    <ul class="dropdown-menu user-dropdown" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                        <li><a tabindex="-1" class="dropdown-header">Account info</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="#/" ng-click="navCtrl.logoutFB();">Log out</a></li>
+                    </ul>
+                </span>
             </li>
-
         </ul>
     </div>
-
-
-
   </div>
 </nav>

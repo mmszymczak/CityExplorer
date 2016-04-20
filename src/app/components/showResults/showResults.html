@@ -12,18 +12,19 @@
             </a>
         </div>
     </div>
+    <div class="btn-wrapper">
+        <uib-pagination
+            total-items="resCtrl.totalItems"
+            items-per-page="resCtrl.numberPerPage"
+            ng-model="resCtrl.currentPage"
+            max-size="resCtrl.maxSize"
+            class="pagination-sm"
+            boundary-links="true"
+            force-ellipses="true">
+        </uib-pagination>
+        <pre class="preprepre">Elements: {{resCtrl.totalItems | json }}</pre>
+    </div>
 </div>
 
-<div class="btn-wrapper">
-    <uib-pagination
-        total-items="resCtrl.totalItems"
-        items-per-page="resCtrl.numberPerPage"
-        ng-model="resCtrl.currentPage"
-        max-size="resCtrl.maxSize"
-        class="pagination-sm"
-        boundary-links="true"
-        force-ellipses="true">
-    </uib-pagination>
-    <pre class="preprepre">Elements: {{resCtrl.totalItems | json }}</pre>
-</div>
+
 

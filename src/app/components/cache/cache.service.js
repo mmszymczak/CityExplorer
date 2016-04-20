@@ -8,8 +8,8 @@
 
     function cacheService() {
 
-        var vm = this;
-        vm.list = {
+        var self = this;
+        self.list = {
             museum: [],
             bar: [],
             cafe: [],
@@ -18,16 +18,16 @@
             restaurant: []
         };
 
-        vm.getTec = getTec;
-        vm.saveCache = saveCache;
+        self.getTec = getTec;
+        self.saveCache = saveCache;
 
         function saveCache(category, list){
-          vm.list[category] = list;
-          console.log('cache: ', vm.list);
+          self.list[category] = list;
+          console.log('cache: ', self.list);
         }
 
         function getTec() {
-          return vm.list;
+          return self.list;
         }
 
     }

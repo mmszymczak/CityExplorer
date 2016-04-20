@@ -5,13 +5,14 @@
         .module('project')
         .controller('CategoryController', CategoryController);
 
-    CategoryController.$inject = [];
+    CategoryController.$inject = ['FaceService'];
 
-    function CategoryController() {
+    function CategoryController(FaceService) {
         var vm = this;
 
         vm.categories = ['museum', 'bar', 'cafe', 'club', 'hotel', 'restaurant'];
 
+        FaceService.checkLoginState();
     }
 
 

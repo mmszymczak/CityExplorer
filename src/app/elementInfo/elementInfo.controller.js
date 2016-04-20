@@ -5,35 +5,34 @@
         .module('project')
         .controller('ElementInfoController', ElementInfoController);
 
-    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FaceService', 'userService'];
+    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FaceService', 'userService', 'googleMapService', '$window'];
 
-    function ElementInfoController(cacheService, $routeParams, FaceService, userService) {
+    function ElementInfoController(cacheService, $routeParams, FaceService, userService, googleMapService, $window) {
         var vm = this;
 
         vm.elemInfo = [];
         vm.actualCategory = $routeParams.item;
         vm.position = {};
+        vm.googleMapApiReady = false;
 
         activate();
 
         function activate() {
             checkFBState();
+            initGoogleMapApi();
+        }
+
+        function initGoogleMapApi() {
+            googleMapService.onReady().then(function(){
+                vm.googleMapApiReady = true;
+            });
         }
 
         function checkFBState() {
-            if(typeof FB === 'undefined'){
-                FaceService.initFB()
-                    .then(function(response){
-                        if(response === 'connected'){
-                            detailsRequest();
-                        }else{
-                            FaceService.loginFB();
-                        }
-                    });
-            }else if(!userService.user.connected) {
-                FaceService.loginFB();
-                $window.location.href = '#/';
-            }else { detailsRequest(); }
+            FaceService.checkLoginState()
+            .then(function(){
+                detailsRequest();
+            });
         }
 
         function detailsRequest() {
