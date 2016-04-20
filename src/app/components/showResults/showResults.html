@@ -1,9 +1,9 @@
-<div class="jumbotron text-center {{resCtrl.actualCategory}}">
+<div class="jumbotron text-center {{resultVm.actualCategory}}">
     <div class="row">
         <div class="col-sm-6 col-md-4"
-        ng-repeat="item in resCtrl.listByCategory[resCtrl.route] | orderBy:'rank' | limitTo:resCtrl.numberPerPage:(resCtrl.currentPage-1)*resCtrl.numberPerPage">
+        ng-repeat="item in resultVm.listByCategory[resultVm.route] | orderBy:'rank' | limitTo:resultVm.numberPerPage:(resultVm.currentPage-1)*resultVm.numberPerPage">
             <a class="thumbnail"
-               href="#/category/{{resCtrl.route}}/{{item.id}}">
+               href="#/category/{{resultVm.route}}/{{item.id}}">
                 <img class="pull-right" ng-src="{{item.picture.data.url}}">
                 <div class="caption">
                     <h3 class="header-title">{{ item.name }}</h3>
@@ -14,17 +14,14 @@
     </div>
     <div class="btn-wrapper">
         <uib-pagination
-            total-items="resCtrl.totalItems"
-            items-per-page="resCtrl.numberPerPage"
-            ng-model="resCtrl.currentPage"
-            max-size="resCtrl.maxSize"
+            total-items="resultVm.totalItems"
+            items-per-page="resultVm.numberPerPage"
+            ng-model="resultVm.currentPage"
+            max-size="resultVm.maxSize"
             class="pagination-sm"
             boundary-links="true"
             force-ellipses="true">
         </uib-pagination>
-        <pre class="preprepre">Elements: {{resCtrl.totalItems | json }}</pre>
+        <pre class="preprepre">Elements: {{resultVm.totalItems | json }}</pre>
     </div>
 </div>
-
-
-

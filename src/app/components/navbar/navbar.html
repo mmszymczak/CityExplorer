@@ -7,7 +7,7 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6"
-         ng-if="navCtrl.user.connected">
+         ng-if="navBarVm.user.connected">
         <ul class="nav navbar-nav" role="menu">
             <li class="category"><a href="#/category" >Category</a></li>
             <li class="museum"><a href="#/category/museum" >Museum</a></li>
@@ -19,12 +19,12 @@
             <li class="user-interface dropdown">
                 <span uib-dropdown on-toggle="toggled(open)">
                     <a href id="user-button simple-dropdown" uib-dropdown-toggle>
-                        <img ng-src="{{navCtrl.user.picture}}">
+                        <img ng-src="{{navBarVm.user.picture}}">
                     </a>
                     <ul class="dropdown-menu user-dropdown" uib-dropdown-menu aria-labelledby="simple-dropdown">
                         <li><a tabindex="-1" class="dropdown-header">Account info</a></li>
                         <li class="divider"></li>
-                        <li><a tabindex="-1" href="#/" ng-click="navCtrl.logoutFB();">Log out</a></li>
+                        <li><a tabindex="-1" href="#/" ng-click="navBarVm.logoutFB();">Log out</a></li>
                     </ul>
                 </span>
             </li>

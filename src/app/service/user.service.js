@@ -8,6 +8,7 @@
     userService.$inject = [];
 
     function userService() {
+        //  when user logged in whole informations load here
         var user = {
             connected: false,
             picture: '',

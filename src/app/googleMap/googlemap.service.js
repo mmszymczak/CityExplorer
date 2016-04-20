@@ -6,7 +6,7 @@
         .module('project')
         .service('googleMapService', googleMapService);
 
-    googleMapService.$inject = ['$q','$window'];
+    googleMapService.$inject = ['$q', '$window'];
 
     function googleMapService($q, $window) {
         var apiReady = $q.defer();

@@ -5,7 +5,6 @@
         .module('project')
         .service('cacheService', cacheService);
 
-
     function cacheService() {
 
         var self = this;

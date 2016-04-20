@@ -5,20 +5,20 @@
         .module('project')
         .controller('ShowResultsController', ShowResultsController);
 
-    ShowResultsController.$inject = ['$timeout', 'cacheService', 'FaceService', '$routeParams', 'userService'];
+    ShowResultsController.$inject = ['$timeout', 'cacheService', 'FacebookService', '$routeParams'];
 
-    function ShowResultsController($timeout, cacheService, FaceService, $routeParams, userService) {
-        var vm = this;
+    function ShowResultsController($timeout, cacheService, FacebookService, $routeParams) {
+        var resultVm = this;
 
-        vm.listByCategory = {};
-        vm.actualCategory = $routeParams.item;
+        resultVm.listByCategory = {};
+        resultVm.actualCategory = $routeParams.item;
 
         activate();
 
-        vm.numberPerPage = 9;
-        vm.maxSize = 5;
-        vm.totalItems = vm.listByCategory[$routeParams.item].length;
-        vm.currentPage = 1;
+        resultVm.numberPerPage = 9;
+        resultVm.maxSize = 5;
+        resultVm.totalItems = resultVm.listByCategory[$routeParams.item].length;
+        resultVm.currentPage = 1;
 
         function activate() {
             getCacheService();
@@ -26,31 +26,31 @@
         }
 
         function checkFBState() {
-            FaceService.checkLoginState()
-            .then(function(){
-                routeTypeRequest();
-            });
+            FacebookService.checkLoginState()
+                .then(function(){
+                    routeTypeRequest();
+                });
         }
 
         function routeTypeRequest() {
-            var capitalLetter = vm.actualCategory.charAt(0).toUpperCase() + vm.actualCategory.slice(1);
+            var capitalLetter = resultVm.actualCategory.charAt(0).toUpperCase() + resultVm.actualCategory.slice(1);
             var method = 'get'+capitalLetter+'s';
 
-            vm.route = vm.actualCategory;
-            if(vm.listByCategory[vm.actualCategory].length === 0){
-                FaceService[method]()
+            resultVm.route = resultVm.actualCategory;
+            if(resultVm.listByCategory[resultVm.actualCategory].length === 0){
+                FacebookService[method]()
                     .then( function(response){
-                        vm.listByCategory[vm.actualCategory] = vm.listByCategory[vm.actualCategory].concat(response.data);
-                        cacheService.saveCache(vm.actualCategory, vm.listByCategory[vm.actualCategory]);
-                        vm.totalItems = vm.listByCategory[vm.actualCategory].length;
+                        resultVm.listByCategory[resultVm.actualCategory] = resultVm.listByCategory[resultVm.actualCategory].concat(response.data);
+                        cacheService.saveCache(resultVm.actualCategory, resultVm.listByCategory[resultVm.actualCategory]);
+                        resultVm.totalItems = resultVm.listByCategory[resultVm.actualCategory].length;
                     });
             }
         }
 
         function getCacheService() {
-          vm.listByCategory = cacheService.getTec();
+          resultVm.listByCategory = cacheService.getTec();
 
-          angular.forEach(vm.listByCategory, function(awesomeThing) {
+          angular.forEach(resultVm.listByCategory, function(awesomeThing) {
             awesomeThing.rank = Math.random();
           });
         }

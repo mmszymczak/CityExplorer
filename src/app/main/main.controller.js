@@ -5,35 +5,30 @@
         .module('project')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$timeout', 'FaceService', 'userService'];
+    MainController.$inject = ['$timeout', 'FacebookService', 'userService'];
 
-    function MainController($timeout, FaceService, userService) {
-        var vm = this;
+    function MainController($timeout, FacebookService, userService) {
+        var mainVm = this;
 
-        vm.list = [];
+        mainVm.list = [];
 
-        vm.classAnimation = '';
-        vm.loginFB = loginFB;
-        vm.logoutFB = logoutFB;
-        vm.user = userService.user;
-        vm.fbService = FaceService;
+        mainVm.loginFB = loginFB;
+        mainVm.logoutFB = logoutFB;
+        mainVm.user = userService.user;
+        mainVm.fbService = FacebookService;
 
         activate();
 
         function loginFB() {
-            FaceService.loginFB();
+            FacebookService.login();
         }
 
         function logoutFB() {
-            FaceService.logoutFB();
+            FacebookService.logout();
         }
 
         function activate() {
-            FaceService.checkLoginState();
-
-            $timeout(function() {
-                vm.classAnimation = 'rubberBand';
-            }, 3000);
+            FacebookService.checkLoginState();
         }
 
     }

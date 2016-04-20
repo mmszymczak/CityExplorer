@@ -10,27 +10,22 @@
         .when('/', {
             templateUrl: 'app/main/main.html',
             controller: 'MainController',
-            controllerAs: 'main'
-        })
-        .when('/login', {
-            templateUrl: 'app/components/loginWithoutFB/login.html',
-            controller: 'LoginController',
-            controllerAs: 'loginCtrl'
+            controllerAs: 'mainVm'
         })
         .when('/category', {
-            templateUrl: 'app/categories/categories.html',
+            templateUrl: 'app/category/category.html',
             controller: 'CategoryController',
-            controllerAs: 'catCtrl'
+            controllerAs: 'categoryVm'
         })
         .when('/category/:item?', {
             templateUrl: 'app/components/showResults/showResults.html',
             controller: 'ShowResultsController',
-            controllerAs: 'resCtrl'
+            controllerAs: 'resultVm'
         })
         .when('/category/:item?/:element?', {
             templateUrl: 'app/elementInfo/elementInfo.html',
             controller: 'ElementInfoController',
-            controllerAs: 'elemCtrl'
+            controllerAs: 'infoVm'
         })
         .otherwise({
             redirectTo: '/'

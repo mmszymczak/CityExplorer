@@ -3,15 +3,15 @@
 
     angular
         .module('project')
-        .service('FaceService', FaceService);
+        .service('FacebookService', FacebookService);
 
-    FaceService.$inject = ['$window', '$location', '$timeout', 'Geolocation', '$q', 'userService'];
+    FacebookService.$inject = ['$window', '$location', '$timeout', 'Geolocation', '$q', 'userService'];
 
-    function FaceService($window, $location, $timeout, Geolocation, $q, userService) {
+    function FacebookService($window, $location, $timeout, Geolocation, $q, userService) {
         var service = {
             checkLoginState: checkLoginState,
-            loginFB: loginFB,
-            logoutFB: logoutFB,
+            login: login,
+            logout: logout,
             getMuseums: getMuseums,
             getBars: getBars,
             getCafes: getCafes,
@@ -191,15 +191,20 @@
             return deferred.promise;
         }
 
-        function testAPI() {
+        function getUserData() {
             var deferred = $q.defer();
             FB.api(
                 '/me',
                 'GET',
                 {"fields":["name","picture","first_name","last_name","hometown","location","link"]},
                 function(response) {
-                deferred.resolve(response);
-            });
+                    if (!response || response.error) {
+                        deferred.reject('Error occured');
+                    } else {
+                        deferred.resolve(response);
+                    }
+                }
+            );
             deferred.promise.then(function(response){
                 var loginResponse = 'Thanks for logging in, ' + response.name + '!';
                 service.loginResponse = loginResponse;
@@ -225,7 +230,7 @@
         function statusChangeCallback(response) {
             var deferred = $q.defer();
             if (response.status === 'connected') {
-                testAPI();
+                getUserData();
                 $timeout(function(){
                     userService.user.connected = true;
                 },0);
@@ -236,7 +241,7 @@
             return deferred.promise;
         }
 
-        function loginFB(){
+        function login(){
             FB.login(function(response){
                 if (response.status === 'connected') {
                     statusChangeCallback(response);
@@ -244,7 +249,7 @@
             });
         }
 
-        function logoutFB() {
+        function logout() {
             FB.logout(function(response) {
                 $timeout(function(){
                     userService.user.connected = false;

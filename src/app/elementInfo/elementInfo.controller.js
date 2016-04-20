@@ -5,15 +5,15 @@
         .module('project')
         .controller('ElementInfoController', ElementInfoController);
 
-    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FaceService', 'userService', 'googleMapService', '$window'];
+    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FacebookService', 'userService', 'googleMapService', '$window'];
 
-    function ElementInfoController(cacheService, $routeParams, FaceService, userService, googleMapService, $window) {
-        var vm = this;
+    function ElementInfoController(cacheService, $routeParams, FacebookService, userService, googleMapService, $window) {
+        var infoVm = this;
 
-        vm.elemInfo = [];
-        vm.actualCategory = $routeParams.item;
-        vm.position = {};
-        vm.googleMapApiReady = false;
+        infoVm.elemInfo = [];
+        infoVm.actualCategory = $routeParams.item;
+        infoVm.position = {};
+        infoVm.googleMapApiReady = false;
 
         activate();
 
@@ -24,26 +24,26 @@
 
         function initGoogleMapApi() {
             googleMapService.onReady().then(function(){
-                vm.googleMapApiReady = true;
+                infoVm.googleMapApiReady = true;
             });
         }
 
         function checkFBState() {
-            FaceService.checkLoginState()
-            .then(function(){
-                detailsRequest();
-            });
+            FacebookService.checkLoginState()
+                .then(function(){
+                    detailsRequest();
+                });
         }
 
         function detailsRequest() {
-            FaceService.getDetails($routeParams.element)
+            FacebookService.getDetails($routeParams.element)
                 .then(function(response){
-                    vm.elemInfo = response;
+                    infoVm.elemInfo = response;
                     return response;
                 })
                 .then(function(data){
-                    vm.position.lng = data.location.longitude;
-                    vm.position.lat = data.location.latitude;
+                    infoVm.position.lng = data.location.longitude;
+                    infoVm.position.lat = data.location.latitude;
                 });
         }
 
