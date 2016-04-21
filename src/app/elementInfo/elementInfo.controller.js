@@ -5,9 +5,9 @@
         .module('project')
         .controller('ElementInfoController', ElementInfoController);
 
-    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FacebookService', 'userService', 'googleMapService', '$window'];
+    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FacebookService', 'userService', 'googleMapService'];
 
-    function ElementInfoController(cacheService, $routeParams, FacebookService, userService, googleMapService, $window) {
+    function ElementInfoController(cacheService, $routeParams, FacebookService, userService, googleMapService) {
         var infoVm = this;
 
         infoVm.elemInfo = [];

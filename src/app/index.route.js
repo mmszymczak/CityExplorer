@@ -18,7 +18,7 @@
             controllerAs: 'categoryVm'
         })
         .when('/category/:item?', {
-            templateUrl: 'app/components/showResults/showResults.html',
+            templateUrl: 'app/showResults/showResults.html',
             controller: 'ShowResultsController',
             controllerAs: 'resultVm'
         })

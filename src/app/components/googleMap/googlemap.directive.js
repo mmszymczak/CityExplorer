@@ -3,14 +3,14 @@
 
     angular
         .module('project')
-        .directive('googleMap', googleMap);
+        .directive('ceGoogleMap', ceGoogleMap);
 
-    googleMap.$inject = ['googleMapService'];
+    ceGoogleMap.$inject = [];
 
-    function googleMap(googleMapService) {
+    function ceGoogleMap() {
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/googleMap/googleMap.html',
+            templateUrl: 'app/components/googleMap/googleMap.html',
             scope: {
                 position: '=',
                 name: '@'
@@ -20,16 +20,16 @@
                 scope.$watch('position', initMap, true);
 
                 function initMap(position) {
-                    var mapDiv = document.getElementById('map');
-                    var map = new google.maps.Map(mapDiv, {
+                    var mapDiv = document.getElementById('map'),
+                        map = new google.maps.Map(mapDiv, {
                         center: new google.maps.LatLng(position.lat,position.lng),
                         zoom: 18
-                    });
-                    var marker = new google.maps.Marker({
+                        }),
+                        marker = new google.maps.Marker({
                         position: new google.maps.LatLng(position.lat,position.lng),
                         map: map,
                         title: scope.name
-                    });
+                        });
                 }
             }
         };

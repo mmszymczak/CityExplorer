@@ -3,12 +3,12 @@
 
     angular
         .module('project')
-        .directive('viewWrapper', viewWrapper);
+        .directive('ceNgViewContainer', ceNgViewContainer);
 
-    function viewWrapper() {
+    function ceNgViewContainer() {
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/ngviewContainer/ngviewContainer.html'
+            templateUrl: 'app/components/ngviewContainer/ngviewContainer.html'
         };
         return directive;
     }

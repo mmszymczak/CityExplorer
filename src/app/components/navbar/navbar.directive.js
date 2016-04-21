@@ -3,9 +3,9 @@
 
     angular
         .module('project')
-        .directive('navBar', navBar);
+        .directive('ceNavBar', ceNavBar);
 
-    function navBar() {
+    function ceNavBar() {
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/navbar/navbar.html',

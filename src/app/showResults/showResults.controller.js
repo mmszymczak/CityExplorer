@@ -5,24 +5,39 @@
         .module('project')
         .controller('ShowResultsController', ShowResultsController);
 
-    ShowResultsController.$inject = ['$timeout', 'cacheService', 'FacebookService', '$routeParams'];
+    ShowResultsController.$inject = ['$q', 'categories', '$window', 'cacheService', 'FacebookService', '$routeParams'];
 
-    function ShowResultsController($timeout, cacheService, FacebookService, $routeParams) {
+    function ShowResultsController($q, categories, $window, cacheService, FacebookService, $routeParams) {
         var resultVm = this;
 
         resultVm.listByCategory = {};
-        resultVm.actualCategory = $routeParams.item;
+        resultVm.actualCategory = '';
 
         activate();
 
         resultVm.numberPerPage = 9;
         resultVm.maxSize = 5;
-        resultVm.totalItems = resultVm.listByCategory[$routeParams.item].length;
+        resultVm.totalItems = null;
         resultVm.currentPage = 1;
 
         function activate() {
-            getCacheService();
-            checkFBState();
+            checkActualCategory($routeParams.item)
+                .then(function(route){
+                    resultVm.actualCategory = route;
+                    getCacheService();
+                    resultVm.totalItems = resultVm.listByCategory[route].length;
+                    checkFBState();
+                });
+        }
+
+        function checkActualCategory(route){
+            var deferred = $q.defer();
+            if (categories.indexOf(route) > -1) {
+                deferred.resolve(route);
+            } else {
+                $window.location.href = '#/category';
+            }
+            return deferred.promise;
         }
 
         function checkFBState() {

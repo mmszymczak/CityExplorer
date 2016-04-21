@@ -5,17 +5,16 @@
         .module('project')
         .service('cacheService', cacheService);
 
-    function cacheService() {
+    cacheService.$inject = ['categories'];
+
+    function cacheService(categories) {
 
         var self = this;
-        self.list = {
-            museum: [],
-            bar: [],
-            cafe: [],
-            club: [],
-            hotel: [],
-            restaurant: []
-        };
+        self.list = {};
+
+        categories.forEach(function(item){
+            self.list[item] = [];
+        });
 
         self.getTec = getTec;
         self.saveCache = saveCache;

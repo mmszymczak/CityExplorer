@@ -3,15 +3,10 @@
         <p>{{mainVm.fbService.loginResponse}}</p>
     </div>
     <section class="login-form-wrap">
-        <h1 ng-hide="mainVm.user.connected">Sign in with facebook account</h1>
-        <h1 ng-show="mainVm.user.connected">Leave your account</h1>
+        <h1>{{mainVm.header}}</h1>
         <form class="login-form">
-            <input type="submit" value="Login"
-                   ng-click="mainVm.loginFB()"
-                   ng-hide="mainVm.user.connected">
-            <input type="submit" value="Logout"
-                   ng-click="mainVm.logoutFB()"
-                   ng-show="mainVm.user.connected">
+            <input type="submit" ng-value="mainVm.value"
+                   ng-click="mainVm.logInOutFB()">
         </form>
     </section>
 

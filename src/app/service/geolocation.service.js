@@ -3,11 +3,11 @@
 
     angular
         .module('project')
-        .factory('Geolocation', Geolocation);
+        .factory('GeolocationService', GeolocationService);
 
-    Geolocation.$inject = ['$q', '$window'];
+    GeolocationService.$inject = ['$q', '$window'];
 
-    function Geolocation($q, $window) {
+    function GeolocationService($q, $window) {
         var currentLocation = {
             getCurrentPosition: getCurrentPosition,
             actualPosition: actualPosition

@@ -5,9 +5,9 @@
         .module('project')
         .service('FacebookService', FacebookService);
 
-    FacebookService.$inject = ['$window', '$location', '$timeout', 'Geolocation', '$q', 'userService'];
+    FacebookService.$inject = ['$window', '$location', '$timeout', 'GeolocationService', '$q', 'userService'];
 
-    function FacebookService($window, $location, $timeout, Geolocation, $q, userService) {
+    function FacebookService($window, $location, $timeout, GeolocationService, $q, userService) {
         var service = {
             checkLoginState: checkLoginState,
             login: login,
@@ -49,7 +49,7 @@
 
         function getMuseums() {
             var deferred = $q.defer();
-            Geolocation.actualPosition()
+            GeolocationService.actualPosition()
             .then(function(position){
                 FB.api(
                     '/search',
@@ -73,7 +73,7 @@
 
         function getBars() {
             var deferred = $q.defer();
-            Geolocation.actualPosition()
+            GeolocationService.actualPosition()
             .then(function(position){
                 FB.api(
                     '/search',
@@ -97,7 +97,7 @@
 
         function getCafes() {
             var deferred = $q.defer();
-            Geolocation.actualPosition()
+            GeolocationService.actualPosition()
             .then(function(position){
                 FB.api(
                     '/search',
@@ -121,7 +121,7 @@
 
         function getClubs(){
             var deferred = $q.defer();
-            Geolocation.actualPosition()
+            GeolocationService.actualPosition()
             .then(function(position){
                 FB.api(
                     '/search',
@@ -145,7 +145,7 @@
 
         function getHotels(){
             var deferred = $q.defer();
-            Geolocation.actualPosition()
+            GeolocationService.actualPosition()
             .then(function(position){
                 FB.api(
                     '/search',
@@ -169,7 +169,7 @@
 
         function getRestaurants(){
             var deferred = $q.defer();
-            Geolocation.actualPosition()
+            GeolocationService.actualPosition()
             .then(function(position){
                 FB.api(
                     '/search',
@@ -206,8 +206,7 @@
                 }
             );
             deferred.promise.then(function(response){
-                var loginResponse = 'Thanks for logging in, ' + response.name + '!';
-                service.loginResponse = loginResponse;
+                service.loginResponse = 'Thanks for logging in, ' + response.name + '!';
                 userService.user.first_name = response.first_name;
                 userService.user.last_name = response.last_name;
                 userService.user.full_name = response.name;
@@ -250,7 +249,7 @@
         }
 
         function logout() {
-            FB.logout(function(response) {
+            FB.logout(function() {
                 $timeout(function(){
                     userService.user.connected = false;
                     $window.location.href = '#/';

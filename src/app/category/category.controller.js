@@ -5,12 +5,12 @@
         .module('project')
         .controller('CategoryController', CategoryController);
 
-    CategoryController.$inject = ['FacebookService'];
+    CategoryController.$inject = ['FacebookService', 'categories'];
 
-    function CategoryController(FacebookService) {
+    function CategoryController(FacebookService, categories) {
         var categoryVm = this;
 
-        categoryVm.categories = ['museum', 'bar', 'cafe', 'club', 'hotel', 'restaurant'];
+        categoryVm.categories = categories;
 
         FacebookService.checkLoginState();
     }

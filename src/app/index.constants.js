@@ -5,6 +5,14 @@
   angular
     .module('project')
     .constant('malarkey', malarkey)
-    .constant('moment', moment);
+    .constant('moment', moment)
+    .constant('categories', [
+        'museum',
+        'bar',
+        'cafe',
+        'club',
+        'hotel',
+        'restaurant'
+    ]);
 
 })();
