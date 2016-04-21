@@ -20,11 +20,22 @@ div#loginStatus p {
     font-weight: 400;
     margin: 0 auto;
 }
-
+.filter {
+    background: rgba(97, 137, 138, 0.48);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding-right: 60px;
+    padding-left: 60px;
+    padding-top: 45px;
+}
 .container .jumbotron, .container-fluid .jumbotron {
     background-image: url('../../assets/images/main.jpg');
     border-radius: 0;
     height: 91vh;
+    position: relative;
 }
 
 * {

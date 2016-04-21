@@ -1,25 +1,27 @@
-<div class="jumbotron {{infoVm.actualCategory}}">
-    <div class="row info-wrapper">
-        <div class="col-sm-12 col-md-6 info-block">
-            <div>
-                <img class="pull-right"
-                    ng-src="{{infoVm.elemInfo.picture.data.url}}">
-                <div class="caption">
-                    <h3>{{infoVm.elemInfo.name}}</h3>
-                    <h4>{{infoVm.elemInfo.category}}</h4>
-                    <p>{{infoVm.elemInfo.about}}</p>
-                    <p>{{infoVm.elemInfo.engagement.social_sentence}}</p>
+<div class="jumbotron">
+    <div class="filter {{infoVm.actualCategory}}">
+        <div class="row info-wrapper">
+            <div class="col-sm-12 col-md-6 info-block">
+                <div>
+                    <img class="pull-right"
+                        ng-src="{{infoVm.elemInfo.picture.data.url}}">
+                    <div class="caption">
+                        <h3>{{infoVm.elemInfo.name}}</h3>
+                        <h4>{{infoVm.elemInfo.category}}</h4>
+                        <p>{{infoVm.elemInfo.about}}</p>
+                        <p>{{infoVm.elemInfo.engagement.social_sentence}}</p>
 
-                    <p>Phone number: {{infoVm.elemInfo.phone}}</p>
-                    <p>{{infoVm.elemInfo.price_range}}</p>
-                    <a ng-href="{{infoVm.elemInfo.link}}">Facebook page</a><br>
-                    <a ng-href="{{infoVm.elemInfo.website}}">Website</a>
+                        <p>Phone number: {{infoVm.elemInfo.phone}}</p>
+                        <p>{{infoVm.elemInfo.price_range}}</p>
+                        <a ng-href="{{infoVm.elemInfo.link}}">Facebook page</a><br>
+                        <a ng-href="{{infoVm.elemInfo.website}}">Website</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-md-6 map-block"
-             ng-if="infoVm.googleMapApiReady">
-            <ce-google-map position="infoVm.position" name="{{infoVm.elemInfo.name}}"></ce-google-map>
+            <div class="col-sm-12 col-md-6 map-block"
+                 ng-if="infoVm.googleMapApiReady">
+                <ce-google-map position="infoVm.position" name="{{infoVm.elemInfo.name}}"></ce-google-map>
+            </div>
         </div>
     </div>
 </div>

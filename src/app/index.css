@@ -6,7 +6,8 @@
 }
 
 .thumbnail {
-  height: 200px;
+  height: 220px;
+  overflow: hidden;
 }
 
 .thumbnail img.pull-right {
@@ -16,20 +17,30 @@
     float: none !important;
 }
 .museum {
-    background-color: #FFE8E8;
+    background: rgba(244, 67, 54, 0.51) !important;
 }
 .bar {
-    background-color: #FFC49D;
+    background: rgba(156, 39, 176, 0.52) !important;
 }
 .cafe {
-    background-color: #F4C9F3;
+    background: rgba(63, 81, 181, 0.51) !important;
 }
 .club {
-    background-color: #C5F8F2;
+    background: rgba(76, 175, 80, 0.51) !important;
 }
 .hotel {
-    background-color: #DDF4CA;
+    background: rgba(255, 235, 59, 0.51) !important;
 }
 .restaurant {
-    background-color: #C9CBF4;
+    background: rgba(255, 87, 34, 0.53) !important;
+}
+
+#mydiv {
+    position: absolute;
+    z-index: 9999;
+    top: 300px;
+    left: 375px;
+}
+.container {
+    position: relative;
 }

@@ -19,6 +19,7 @@
 }
 .navbar-inverse .navbar-nav > li > a {
     color: #5A4F72;
+    font-size: 17px;
 }
 .user-interface span{
     position: initial;
