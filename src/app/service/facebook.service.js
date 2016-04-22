@@ -3,7 +3,7 @@
 
     angular
         .module('project')
-        .service('FacebookService', FacebookService);
+        .factory('FacebookService', FacebookService);
 
     FacebookService.$inject = ['$window', '$location', '$timeout', 'GeolocationService', '$q', 'userService'];
 
@@ -19,11 +19,11 @@
             getHotels: getHotels,
             getRestaurants: getRestaurants,
             getDetails: getDetails,
+            getComments: getComments,
             loginResponse: ''
         };
 
         return service;
-
 
         // service functions to return
         function getDetails(id) {
@@ -36,6 +36,23 @@
                 "website","payment_options","phone","about",
                 "category", "description", "food_styles",
                 "general_info","location","link","picture.type(large)"]},
+                function(response) {
+                    if (!response || response.error) {
+                        deferred.reject('Error occured');
+                    } else {
+                        deferred.resolve(response);
+                    }
+                }
+            );
+            return deferred.promise;
+        }
+
+        function getComments(id) {
+            var deferred = $q.defer();
+            FB.api(
+                '/'+id+'/posts',
+                'GET',
+                {"limit":"5"},
                 function(response) {
                     if (!response || response.error) {
                         deferred.reject('Error occured');
@@ -229,7 +246,9 @@
         function statusChangeCallback(response) {
             var deferred = $q.defer();
             if (response.status === 'connected') {
-                getUserData();
+                if(!userService.user.first_name){
+                    getUserData();
+                }   // DOIT: poprawic
                 $timeout(function(){
                     userService.user.connected = true;
                 },0);

@@ -1,11 +1,22 @@
 .categories-button {
     width: 360px;
     padding: 25px;
+    margin: 30px;
 }
 
 .categories-button a {
     font-size: 21px;
     color: #fff;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 500px;
+}
+
+#current {
+    background-color: #FFF;
+    padding: 25px;
 }
 
 div#loginStatus {
@@ -31,10 +42,27 @@ div#loginStatus p {
     padding-left: 60px;
     padding-top: 45px;
 }
+
+.main-filter {
+    background: rgba(183, 183, 183, 0.49);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding-right: 60px;
+    padding-left: 60px;
+    padding-top: 45px;
+}
+
+.container .jumbotron {
+    margin-bottom: 0;
+}
+
 .container .jumbotron, .container-fluid .jumbotron {
     background-image: url('../../assets/images/main.jpg');
     border-radius: 0;
-    height: 91vh;
+    height: 100vh;
     position: relative;
 }
 
@@ -45,11 +73,11 @@ div#loginStatus p {
 }
 
 html {
-  background: #E2E2E2;
+  background: #E9EAED;
 }
 
 body {
-  background: #E2E2E2;
+  background: #E9EAED;
   margin: 0;
   padding: 0;
   font-family: 'Lato', sans-serif;
@@ -73,6 +101,15 @@ body {
   margin: 240px auto 60px auto;
   padding: 40px 30px 0 30px;
   text-align: center;
+}
+
+.thumbnail img.pull-right {
+    width: 100px;
+    height: 100px;
+}
+
+.header-title {
+    margin-top: 5px;
 }
 
 .login-form-wrap > h1 {
@@ -121,4 +158,26 @@ body {
   padding-top: 9px;
   padding-bottom: 7px;
   background: #C9C9C9;
+}
+.footer {
+    width: 100%;
+    background: #4665A2;
+    color: white;
+}
+.footer p {
+    padding: 20px;
+    float: left;
+    margin: 0;
+}
+
+.footer ul {
+    float: right;
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+}
+
+.footer ul li {
+    display: inline;
+    margin: 0 10px;
 }

@@ -1,5 +1,6 @@
 <div class="jumbotron">
     <div class="filter {{infoVm.actualCategory}}">
+    <div class="item-header"><h1>{{infoVm.elemInfo.name}}</h1></div>
         <div class="row info-wrapper">
             <div class="col-sm-12 col-md-6 info-block">
                 <div>
@@ -13,16 +14,32 @@
 
                         <p>Phone number: {{infoVm.elemInfo.phone}}</p>
                         <p>{{infoVm.elemInfo.price_range}}</p>
-                        <a ng-href="{{infoVm.elemInfo.link}}">Facebook page</a><br>
-                        <a ng-href="{{infoVm.elemInfo.website}}">Website</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-12 col-md-6 map-block"
                  ng-if="infoVm.googleMapApiReady">
                 <ce-google-map position="infoVm.position" name="{{infoVm.elemInfo.name}}"></ce-google-map>
+                <div class="links">
+                    <a ng-href="{{infoVm.elemInfo.link}}">Facebook page</a><br>
+                    <a ng-href="{{infoVm.elemInfo.website}}">Website</a>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12">
+            <p class="show-comments" ng-click="infoVm.loadComments()">
+                <span class="caret"></span>
+                show last posts
+                <span class="caret"></span>
+            </p>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <div ng-repeat="post in infoVm.elemInfo.posts.data"
+                ng-if="infoVm.loadPosts">
+                <p>{{post.message}}</p>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 

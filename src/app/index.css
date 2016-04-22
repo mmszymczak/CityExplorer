@@ -6,12 +6,15 @@
 }
 
 .thumbnail {
-  height: 220px;
-  overflow: hidden;
+    height: 220px;
+    overflow: hidden;
+    -webkit-box-shadow: 2px 6px 52px 8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 6px 52px 8px rgba(0,0,0,0.75);
+    box-shadow: 2px 6px 52px 8px rgba(0,0,0,0.75);
 }
 
 .thumbnail img.pull-right {
-  width: 70px;
+    width: 70px;
 }
 .pull-right {
     float: none !important;

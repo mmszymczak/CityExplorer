@@ -14,12 +14,27 @@
         infoVm.actualCategory = $routeParams.item;
         infoVm.position = {};
         infoVm.googleMapApiReady = false;
+        infoVm.loadPosts = false;
+        infoVm.loadComments = loadComments;
 
         activate();
 
         function activate() {
             checkFBState();
             initGoogleMapApi();
+        }
+
+        function loadComments(){
+            if(!infoVm.loadPosts){
+                FacebookService.getComments($routeParams.element)
+                    .then(function(response){
+                        infoVm.elemInfo['posts'] = response;
+                        console.log(infoVm.elemInfo.posts);
+                        infoVm.loadPosts = true;
+                    });
+                }else{
+                    infoVm.loadPosts = false;
+                }
         }
 
         function initGoogleMapApi() {

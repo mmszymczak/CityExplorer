@@ -1,17 +1,33 @@
 <div class="jumbotron text-center">
-    <div id="loginStatus" ng-if="mainVm.user.connected">
-        <p>{{mainVm.fbService.loginResponse}}</p>
-    </div>
-    <section class="login-form-wrap">
-        <h1>{{mainVm.header}}</h1>
-        <form class="login-form">
-            <input type="submit" ng-value="mainVm.value"
-                   ng-click="mainVm.logInOutFB()">
-        </form>
-    </section>
+    <div class="main-filter">
+        <div id="loginStatus" ng-if="mainVm.user.connected">
+            <p>{{mainVm.fbService.loginResponse}}</p>
+        </div>
+<!--         <div class="main-logo">
+            <img src="../../assets/images/logo.png">
+        </div> -->
+        <div>
+            <h2>Click green button if you want to see places around your actual position.</h2>
+            <h2>If you're curious, drag marker and drop wherever you want!<br>
+            then click green butto.</h2>
+        </div>
 
-    <div class="btn btn-success categories-button" ng-if="mainVm.user.connected">
-        <a href="#/category">Checkout categories around you!</a>
+        <section class="login-form-wrap" ng-if="!mainVm.state">
+            <h1>{{mainVm.header}}</h1>
+            <form class="login-form">
+                <input type="submit" ng-value="mainVm.value"
+                       ng-click="mainVm.logInFB()">
+            </form>
+        </section>
+
+
+        <div class="col-md-12 col-sm-12" ng-if="mainVm.googleMapApiReady">
+            <ce-google-map-position></ce-google-map-position>
+        </div>
+
+        <div class="btn btn-success categories-button" ng-if="mainVm.state">
+            <a href="#/category">Checkout categories around you!</a>
+        </div>
     </div>
 </div>
 

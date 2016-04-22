@@ -1,7 +1,7 @@
 <div class="jumbotron text-center">
     <div class="filter {{resultVm.actualCategory}}">
         <div class="row">
-            <div class="col-sm-6 col-md-4"
+            <div class="col-sm-6 col-md-4 slide"
             ng-repeat="item in resultVm.listByCategory[resultVm.route] | orderBy:'rank' | limitTo:resultVm.numberPerPage:(resultVm.currentPage-1)*resultVm.numberPerPage">
                 <a class="thumbnail"
                    href="#/category/{{resultVm.route}}/{{item.id}}">

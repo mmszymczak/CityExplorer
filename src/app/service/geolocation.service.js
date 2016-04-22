@@ -10,10 +10,21 @@
     function GeolocationService($q, $window) {
         var currentLocation = {
             getCurrentPosition: getCurrentPosition,
-            actualPosition: actualPosition
+            actualPosition: actualPosition,
+            markerPosition: markerPosition,
+            positionFlag: false
         };
 
         return currentLocation;
+
+        function markerPosition(lat, lng) {
+            console.log(lat,lng);
+            var position = {};
+            position.latitude = lat;
+            position.longitude = lng;
+            currentLocation['position'] = position;
+            currentLocation.positionFlag = true;
+        }
 
         function getCurrentPosition() {
             var deferred = $q.defer();
@@ -35,12 +46,16 @@
         function actualPosition() {
             var position = {};
             var deferred = $q.defer();
-            getCurrentPosition().then(function(geoposition){
-                position.latitude = geoposition.coords.latitude;
-                position.longitude = geoposition.coords.longitude;
-                currentLocation['position'] = position;
-                deferred.resolve(position);
-            });
+            if(!currentLocation.positionFlag){
+                getCurrentPosition().then(function(geoposition){
+                    position.latitude = geoposition.coords.latitude;
+                    position.longitude = geoposition.coords.longitude;
+                    currentLocation['position'] = position;
+                    deferred.resolve(position);
+                });
+            }else{
+                deferred.resolve(currentLocation.position);
+            }
             return deferred.promise;
         }
 
