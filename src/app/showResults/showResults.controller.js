@@ -12,7 +12,9 @@
 
         resultVm.listByCategory = {};
         resultVm.actualCategory = '';
-
+        resultVm.loadMoreData = loadMoreData;
+        resultVm.pagingNext = '';
+        resultVm.myPagingFunction = myPagingFunction;
         activate();
 
         resultVm.numberPerPage = 9;
@@ -28,6 +30,10 @@
                     resultVm.totalItems = resultVm.listByCategory[route].length;
                     checkFBState();
                 });
+        }
+
+        function myPagingFunction() {
+            console.log('dupa');
         }
 
         function checkActualCategory(route){
@@ -55,11 +61,23 @@
             if(resultVm.listByCategory[resultVm.actualCategory].length === 0){
                 FacebookService[method]()
                     .then( function(response){
-                        resultVm.listByCategory[resultVm.actualCategory] = resultVm.listByCategory[resultVm.actualCategory].concat(response.data);
-                        cacheService.saveCache(resultVm.actualCategory, resultVm.listByCategory[resultVm.actualCategory]);
-                        resultVm.totalItems = resultVm.listByCategory[resultVm.actualCategory].length;
+                        loadCheckSave(response);
                     });
             }
+        }
+
+        function loadMoreData() {
+            FacebookService.getMoreData(resultVm.pagingNext)
+                .then(function(response){
+                    loadCheckSave(response);
+                });
+        }
+
+        function loadCheckSave(response){
+            resultVm.listByCategory[resultVm.actualCategory] = resultVm.listByCategory[resultVm.actualCategory].concat(response.data);
+            cacheService.saveCache(resultVm.actualCategory, resultVm.listByCategory[resultVm.actualCategory]);
+            resultVm.totalItems = resultVm.listByCategory[resultVm.actualCategory].length;
+            resultVm.pagingNext = response.paging.next;
         }
 
         function getCacheService() {

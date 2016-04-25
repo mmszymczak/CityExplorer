@@ -11,13 +11,17 @@
 
         var self = this;
         self.list = {};
-
-        categories.forEach(function(item){
-            self.list[item] = [];
-        });
-
         self.getTec = getTec;
         self.saveCache = saveCache;
+        self.clearCache = clearCache;
+
+        buildingScaffolding();
+
+        function buildingScaffolding(){
+            categories.forEach(function(item){
+                self.list[item] = [];
+            });
+        }
 
         function saveCache(category, list){
           self.list[category] = list;
@@ -26,6 +30,10 @@
 
         function getTec() {
           return self.list;
+        }
+
+        function clearCache() {
+            buildingScaffolding();
         }
 
     }

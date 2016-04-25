@@ -1,4 +1,4 @@
-.acme-navbar-text {
+.ce-navbar-text {
   color: white;
 }
 .navbar-nav {
@@ -17,9 +17,15 @@
 .navbar-inverse .navbar-brand:hover {
     color: black !important;
 }
+.navbar-inverse .navbar-brand:visited {
+    color: black !important;
+}
 .navbar-inverse .navbar-nav > li > a {
     color: #5A4F72;
     font-size: 17px;
+}
+.navbar-inverse .navbar-nav > li > a:visited {
+    color: #5A4F72;
 }
 .user-interface span{
     position: initial;

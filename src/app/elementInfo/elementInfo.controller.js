@@ -29,7 +29,6 @@
                 FacebookService.getComments($routeParams.element)
                     .then(function(response){
                         infoVm.elemInfo['posts'] = response;
-                        console.log(infoVm.elemInfo.posts);
                         infoVm.loadPosts = true;
                     });
                 }else{

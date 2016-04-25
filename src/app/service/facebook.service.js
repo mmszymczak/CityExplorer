@@ -20,12 +20,28 @@
             getRestaurants: getRestaurants,
             getDetails: getDetails,
             getComments: getComments,
+            getMoreData: getMoreData,
             loginResponse: ''
         };
 
         return service;
 
         // service functions to return
+        function getMoreData(request) {
+            console.log(request);
+            var deferred = $q.defer();
+            FB.api(request,
+                function(response) {
+                    if (!response || response.error) {
+                        deferred.reject('Error occured');
+                    } else {
+                        deferred.resolve(response);
+                    }
+                }
+            );
+            return deferred.promise;
+        }
+
         function getDetails(id) {
             var deferred = $q.defer();
             FB.api(
@@ -259,7 +275,7 @@
             return deferred.promise;
         }
 
-        function login(){
+        function login(){console.log('here');
             FB.login(function(response){
                 if (response.status === 'connected') {
                     statusChangeCallback(response);

@@ -14,6 +14,30 @@
     height: 500px;
 }
 
+.main-info{
+    color: white;
+    padding: 0 15px;
+    width: 100%;
+}
+
+.there-is-more {
+   text-align: center;
+   position: fixed;
+   bottom: 0;
+   width:100%;
+   background:rgb(200,200,200);
+   background:rgba(200,200,200,0.8);
+   color: green;
+   font-weight: bold;
+   padding: 5px;
+}
+
+
+.main-info h3 {
+    background: rgba(164, 139, 93, 0.72);
+    padding: 3px 0;
+}
+
 #current {
     background-color: #FFF;
     padding: 25px;
@@ -33,14 +57,8 @@ div#loginStatus p {
 }
 .filter {
     background: rgba(97, 137, 138, 0.48);
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding-right: 60px;
-    padding-left: 60px;
-    padding-top: 45px;
+    min-height: 100vh;
+    padding: 45px 60px 45px 60px;
 }
 
 .main-filter {
@@ -62,8 +80,13 @@ div#loginStatus p {
 .container .jumbotron, .container-fluid .jumbotron {
     background-image: url('../../assets/images/main.jpg');
     border-radius: 0;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
+    padding: 0;
+}
+
+* {
+    outline: none;
 }
 
 * {
@@ -181,3 +204,4 @@ body {
     display: inline;
     margin: 0 10px;
 }
+

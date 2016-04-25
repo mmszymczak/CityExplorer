@@ -1,8 +1,8 @@
-<div class="jumbotron text-center">
+<div class="jumbotron text-center body"  more-pagination>
     <div class="filter {{resultVm.actualCategory}}">
         <div class="row">
             <div class="col-sm-6 col-md-4 slide"
-            ng-repeat="item in resultVm.listByCategory[resultVm.route] | orderBy:'rank' | limitTo:resultVm.numberPerPage:(resultVm.currentPage-1)*resultVm.numberPerPage">
+            ng-repeat="item in resultVm.listByCategory[resultVm.route] | orderBy:'rank'">
                 <a class="thumbnail"
                    href="#/category/{{resultVm.route}}/{{item.id}}">
                     <img class="pull-right" ng-src="{{item.picture.data.url}}">
@@ -14,15 +14,8 @@
             </div>
         </div>
         <div class="btn-wrapper">
-            <uib-pagination
-                total-items="resultVm.totalItems"
-                items-per-page="resultVm.numberPerPage"
-                ng-model="resultVm.currentPage"
-                max-size="resultVm.maxSize"
-                class="pagination-sm"
-                boundary-links="true"
-                force-ellipses="true">
-            </uib-pagination>
+        <button class="btn btn-info"
+                ng-click="resultVm.loadMoreData()">Load more data</button>
             <pre class="preprepre">Elements: {{resultVm.totalItems | json }}</pre>
         </div>
     </div>
