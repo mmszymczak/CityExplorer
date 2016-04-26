@@ -12,6 +12,8 @@
             checkLoginState: checkLoginState,
             login: login,
             logout: logout,
+            setRange: setRange,
+            rangeDistance: 500,
             getMuseums: getMuseums,
             getBars: getBars,
             getCafes: getCafes,
@@ -27,8 +29,11 @@
         return service;
 
         // service functions to return
+        function setRange(range) {
+            service.rangeDistance = range;
+        }
+
         function getMoreData(request) {
-            console.log(request);
             var deferred = $q.defer();
             FB.api(request,
                 function(response) {
@@ -90,7 +95,7 @@
                     {"q":"muzeum",
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
-                    "distance":"1000",
+                    "distance": service.rangeDistance,
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
@@ -114,7 +119,7 @@
                     {"q":"bar",
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
-                    "distance":"1000",
+                    "distance": service.rangeDistance,
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
@@ -138,7 +143,7 @@
                     {"q":"cafe",
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
-                    "distance":"1000",
+                    "distance": service.rangeDistance,
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
@@ -162,7 +167,7 @@
                     {"q":"club",
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
-                    "distance":"1000",
+                    "distance": service.rangeDistance,
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
@@ -186,7 +191,7 @@
                     {"q":"hotel",
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
-                    "distance":"1000",
+                    "distance": service.rangeDistance,
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
@@ -210,7 +215,7 @@
                     {"q":"restaurant",
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
-                    "distance":"1000",
+                    "distance": service.rangeDistance,
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {

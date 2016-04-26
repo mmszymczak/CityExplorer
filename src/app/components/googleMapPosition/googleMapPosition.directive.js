@@ -14,11 +14,11 @@
 
             link: function(scope){
 
-                scope.actualCity = geoplugin_city();
-                scope.actualCountry = geoplugin_countryName();
-
                 GeolocationService.actualPosition()
                 .then(function(position){
+                    scope.actualCity = geoplugin_city();
+                    scope.actualCountry = geoplugin_countryName();
+
                     var map = new google.maps.Map(document.getElementById("map_canvas"), {
                         zoom: 10,
                         center: new google.maps.LatLng(position.latitude, position.longitude),

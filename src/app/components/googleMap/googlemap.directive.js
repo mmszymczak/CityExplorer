@@ -10,7 +10,7 @@
     function ceGoogleMap(GeolocationService) {
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/components/googleMap/googleMap.html',
+            templateUrl: 'app/components/googleMap/googlemap.html',
             scope: {
                 position: '=',
                 name: '@'

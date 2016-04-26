@@ -5,9 +5,9 @@
         .module('project')
         .controller('ElementInfoController', ElementInfoController);
 
-    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FacebookService', 'userService', 'googleMapService'];
+    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FacebookService', 'userService', 'googleMapPositionService'];
 
-    function ElementInfoController(cacheService, $routeParams, FacebookService, userService, googleMapService) {
+    function ElementInfoController(cacheService, $routeParams, FacebookService, userService, googleMapPositionService) {
         var infoVm = this;
 
         infoVm.elemInfo = [];
@@ -37,7 +37,7 @@
         }
 
         function initGoogleMapApi() {
-            googleMapService.onReady().then(function(){
+            googleMapPositionService.onReady().then(function(){
                 infoVm.googleMapApiReady = true;
             });
         }

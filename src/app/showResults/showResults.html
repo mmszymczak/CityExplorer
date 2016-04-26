@@ -1,4 +1,4 @@
-<div class="jumbotron text-center body"  more-pagination>
+<div class="jumbotron text-center" infinite-scroll="resultVm.loadMoreData()" infinite-scroll-disabled="resultVm.busy">
     <div class="filter {{resultVm.actualCategory}}">
         <div class="row">
             <div class="col-sm-6 col-md-4 slide"
@@ -14,8 +14,7 @@
             </div>
         </div>
         <div class="btn-wrapper">
-        <button class="btn btn-info"
-                ng-click="resultVm.loadMoreData()">Load more data</button>
+        <div class="loading" ng-show="resultVm.busy"></div>
             <pre class="preprepre">Elements: {{resultVm.totalItems | json }}</pre>
         </div>
     </div>
