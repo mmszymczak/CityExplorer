@@ -1,6 +1,6 @@
 <div class="jumbotron">
     <div class="filter {{infoVm.actualCategory}}">
-    <div class="item-header"><h1>{{infoVm.elemInfo.name}}</h1></div>
+        <div class="item-header"><h1>{{infoVm.elemInfo.name}}</h1></div>
         <div class="row info-wrapper">
             <div class="col-sm-12 col-md-6 info-block">
                 <div>
@@ -25,21 +25,132 @@
                     <a href="{{infoVm.elemInfo.website}}">Website</a>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-12">
-            <p class="show-comments" ng-click="infoVm.loadComments()">
-                <span class="caret"></span>
-                show last posts
-                <span class="caret"></span>
-            </p>
+            <div class="col-sm-12 col-md-12 via-posts">
+                <p class="show-comments" ng-click="infoVm.showPosts()">
+                    <span class="caret"></span>
+                    show last posts
+                    <span class="caret"></span>
+                </p>
             </div>
-            <div class="col-sm-12 col-md-12">
-                <div ng-repeat="post in infoVm.elemInfo.posts.data"
-                ng-if="infoVm.loadPosts">
-                <p>{{post.message}}</p>
+            <div class="col-sm-12 col-md-12 via-posts">
+                <div class="page-post"
+                     ng-repeat="post in infoVm.elemInfo.posts.data"
+                     ng-if="infoVm.isPosts">
+                    <p>{{post.message}}</p>
                 </div>
             </div>
         </div>
-
+        <div class="row info-wrapper comments-wrapper">
+            <div ng-click="infoVm.showComments()">
+                <h3 class="comments-header">
+                    <span class="caret"></span>
+                    Comments left by users
+                    <span class="caret"></span>
+                </h3>
+            </div>
+            <div class="const-box" ng-if="infoVm.isComments">
+                <div class="line"></div>
+                <div class="col-sm-6 col-md-6 form-wrapper">
+                    <form>
+                        <label class="label label-name">Given Name</label>
+                        <input type="text"
+                               placeholder="Given Name"
+                               ng-value="infoVm.userInfo.first_name"></input>
+                        <label class="label label-surname">Surname</label>
+                        <input type="text"
+                               placeholder="Surname"
+                               ng-value="infoVm.userInfo.last_name"></input>
+                        <div class="stars">
+                            <p class="rate-paragraph">Rate this place</p>
+                            <uib-rating class="main-stars"
+                                 ng-model="infoVm.rate"
+                                 max="5"
+                                 aria-labelledby="default-rating">
+                            </uib-rating>
+                        </div>
+                        <label class="label label-comment">Content of the comment</label>
+                        <textarea placeholder="Write your feelings associated with this place..."></textarea>
+                        <button type="submit">Leave comment</button>
+                    </form>
+                </div>
+                <div class="col-sm-6 col-md-6 comments">
+                    <div class="comment-overflow">
+                        <div class="comment">
+                            <div class="comment-info">
+                                <div class="comment-img">
+                                    <img ng-src="{{infoVm.userInfo.picture}}">
+                                </div>
+                                <div class="comment-stars">
+                                    <uib-rating class="comment-left-stars"
+                                         ng-model="infoVm.commentRate"
+                                         max="5"
+                                         read-only="infoVm.readOnly"
+                                         aria-labelledby="default-rating">
+                                    </uib-rating>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <p>laboreem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="comment-info">
+                                <div class="comment-img">
+                                    <img ng-src="{{infoVm.userInfo.picture}}">
+                                </div>
+                                <div class="comment-stars">
+                                    <uib-rating class="comment-left-stars"
+                                         ng-model="infoVm.commentRate"
+                                         max="5"
+                                         read-only="infoVm.readOnly"
+                                         aria-labelledby="default-rating">
+                                    </uib-rating>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <p>laboreem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="comment-info">
+                                <div class="comment-img">
+                                    <img ng-src="{{infoVm.userInfo.picture}}">
+                                </div>
+                                <div class="comment-stars">
+                                    <uib-rating class="comment-left-stars"
+                                         ng-model="infoVm.commentRate"
+                                         max="5"
+                                         read-only="infoVm.readOnly"
+                                         aria-labelledby="default-rating">
+                                    </uib-rating>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <p>laboreem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="comment-info">
+                                <div class="comment-img">
+                                    <img ng-src="{{infoVm.userInfo.picture}}">
+                                </div>
+                                <div class="comment-stars">
+                                    <uib-rating class="comment-left-stars"
+                                         ng-model="infoVm.commentRate"
+                                         max="5"
+                                         read-only="infoVm.readOnly"
+                                         aria-labelledby="default-rating">
+                                    </uib-rating>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <p>laboreem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

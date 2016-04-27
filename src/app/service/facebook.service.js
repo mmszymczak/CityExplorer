@@ -73,7 +73,7 @@
             FB.api(
                 '/'+id+'/posts',
                 'GET',
-                {"limit":"5"},
+                {"limit":"3"},
                 function(response) {
                     if (!response || response.error) {
                         deferred.reject('Error occured');
@@ -280,7 +280,7 @@
             return deferred.promise;
         }
 
-        function login(){console.log('here');
+        function login(){
             FB.login(function(response){
                 if (response.status === 'connected') {
                     statusChangeCallback(response);

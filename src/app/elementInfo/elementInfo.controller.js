@@ -11,11 +11,21 @@
         var infoVm = this;
 
         infoVm.elemInfo = [];
+
         infoVm.actualCategory = $routeParams.item;
         infoVm.position = {};
         infoVm.googleMapApiReady = false;
-        infoVm.loadPosts = false;
-        infoVm.loadComments = loadComments;
+        infoVm.isPosts = false;
+        infoVm.showPosts = showPosts;
+
+        // do dyrektywy
+        infoVm.userInfo = userService.user;
+        infoVm.showComments = showComments;
+        infoVm.isComments = false;
+        infoVm.rate = 0;
+        infoVm.readOnly = true;
+        infoVm.commentRate = 3;
+        //
 
         activate();
 
@@ -24,16 +34,26 @@
             initGoogleMapApi();
         }
 
-        function loadComments(){
-            if(!infoVm.loadPosts){
-                FacebookService.getComments($routeParams.element)
-                    .then(function(response){
-                        infoVm.elemInfo['posts'] = response;
-                        infoVm.loadPosts = true;
-                    });
-                }else{
-                    infoVm.loadPosts = false;
+        function showComments() {
+            if(!infoVm.isComments){
+                infoVm.isComments = true;
+            }else{
+                infoVm.isComments = false;
+            }
+        }
+
+        function showPosts(){
+            if(!infoVm.isPosts){
+                infoVm.isPosts = true;
+                if(typeof infoVm.elemInfo.posts == 'undefined' || infoVm.elemInfo.posts.lenth == 0){
+                    FacebookService.getComments($routeParams.element)
+                        .then(function(response){
+                            infoVm.elemInfo['posts'] = response;
+                        });
                 }
+            }else{
+                infoVm.isPosts = false;
+            }
         }
 
         function initGoogleMapApi() {
