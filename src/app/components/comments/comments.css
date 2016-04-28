@@ -1,0 +1,72 @@
+/*   .css-form .has-error {
+    border: 1px solid red;
+    background: red;
+  } */
+.css-form {
+    margin-top: 10px;
+}
+
+.form-name, .form-surname, .form-content {
+    position: relative;
+}
+
+.form-stars {
+    height: 35px;
+    width: 100%;
+    position: relative;
+}
+
+.person-name {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 7px;
+}
+
+.persone-date {
+    font-size: 13px;
+}
+
+.form-name p, .form-surname p, .form-stars p, .form-content p{
+    font-size: 14px;
+    color: #E64747;
+}
+
+.help-block-name, .help-block-surname {
+    position: absolute;
+    right: 5px;
+    top: 42px;
+    font-size: 17px;
+}
+
+.help-block-stars {
+    position: absolute;
+    right: 0;
+    top: 30px;
+}
+
+.help-block-content {
+    position: absolute;
+    right: 0;
+}
+
+.form-wrapper .form-stars {
+    margin-top: 8px;
+}
+
+.form-stars p {
+    float: left;
+}
+
+.form-stars .main-stars {
+    float: right;
+}
+
+.form-stars .rate-paragraph {
+    float: left;
+    color: black;
+    font-size: 16px;
+    display: block;
+    text-align: left;
+    padding: 6px 0;
+    font-weight: bold;
+}

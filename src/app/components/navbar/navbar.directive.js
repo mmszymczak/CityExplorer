@@ -13,6 +13,6 @@
             controllerAs: 'navBarVm'
         };
         return directive;
-  }
+    }
 
 })();

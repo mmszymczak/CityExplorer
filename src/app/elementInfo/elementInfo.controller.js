@@ -18,28 +18,11 @@
         infoVm.isPosts = false;
         infoVm.showPosts = showPosts;
 
-        // do dyrektywy
-        infoVm.userInfo = userService.user;
-        infoVm.showComments = showComments;
-        infoVm.isComments = false;
-        infoVm.rate = 0;
-        infoVm.readOnly = true;
-        infoVm.commentRate = 3;
-        //
-
         activate();
 
         function activate() {
             checkFBState();
             initGoogleMapApi();
-        }
-
-        function showComments() {
-            if(!infoVm.isComments){
-                infoVm.isComments = true;
-            }else{
-                infoVm.isComments = false;
-            }
         }
 
         function showPosts(){

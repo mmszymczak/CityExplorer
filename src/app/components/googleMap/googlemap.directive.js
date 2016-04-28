@@ -12,8 +12,7 @@
             restrict: 'E',
             templateUrl: 'app/components/googleMap/googlemap.html',
             scope: {
-                position: '=',
-                name: '@'
+                position: '='
             },
             link: function(scope){
 

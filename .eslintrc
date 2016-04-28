@@ -10,6 +10,7 @@
     "module": true,
     "inject": true,
     "FB": true,
-    "google": true
+    "google": true,
+    "Firebase": true
   }
 }

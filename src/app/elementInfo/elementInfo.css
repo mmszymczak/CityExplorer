@@ -103,28 +103,6 @@
     float: left;
 }
 
-.form-wrapper .stars {
-    margin-top: 8px;
-}
-
-.stars p {
-    float: left;
-}
-
-.stars .main-stars {
-    float: right;
-}
-
-.stars .rate-paragraph {
-    float: left;
-    color: black;
-    font-size: 16px;
-    display: block;
-    text-align: left;
-    padding: 6px 0;
-    font-weight: bold;
-}
-
 .comments-wrapper .comments .comment-overflow {
     height: 500px;
     overflow-y: scroll;
