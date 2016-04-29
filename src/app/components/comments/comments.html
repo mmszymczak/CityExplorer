@@ -13,13 +13,13 @@
                 <div class="form-name">
                     <label class="label label-name">Given Name</label>
                     <input type="text"
-                           ng-class="{'has-error': form.cName.$touched && form.cName.$invalid}"
                            placeholder="{{elemComVm.userInfo.first_name}}"
-                           ng-model="comment.name"
+                           ng-model="elemComVm.comment.name"
                            ng-minlength="3"
                            ng-maxlength="30"
                            name="cName" required=""></input>
                     <div class="help-block-name"
+                         ng-show="elemComVm.submitted"
                          ng-messages="form.cName.$error"
                          ng-if="form.$submitted || form.cName.$touched">
                         <p ng-message="required">Tell us your name.</p>
@@ -30,14 +30,14 @@
                 <div class="form-surname">
                     <label class="label label-surname">Surname</label>
                     <input type="text"
-                           ng-class="{'has-error': form.cSurname.$touched && form.cSurname.$invalid}"
                            placeholder="{{elemComVm.userInfo.last_name}}"
-                           ng-model="comment.surname"
+                           ng-model="elemComVm.comment.surname"
                            ng-minlength="3"
                            ng-maxlength="30"
                            name="cSurname" required=""></input>
                     <div class="help-block-surname"
                          ng-messages="form.cSurname.$error"
+                         ng-show="elemComVm.submitted"
                          ng-if="form.$submitted || form.cSurname.$touched">
                         <p ng-message="required">Tell us your surname.</p>
                         <p ng-message="minlength">Your surname is too short.</p>
@@ -47,7 +47,7 @@
                 <div class="form-stars">
                     <p class="rate-paragraph">Rate this place</p>
                     <uib-rating class="main-stars"
-                         ng-model="comment.rate"
+                         ng-model="elemComVm.comment.rate"
                          max="5"
                          aria-labelledby="default-rating"
                          name="cStars"
@@ -55,6 +55,7 @@
                     </uib-rating>
                     <div class="help-block-stars"
                          ng-messages="form.cStars.$error"
+                         ng-show="elemComVm.submitted"
                          ng-if="form.$submitted || form.cStars.$touched">
                         <p ng-message="required">Please rate with stars.</p>
                     </div>
@@ -64,20 +65,24 @@
                     <textarea placeholder="Write your feelings associated with this place..."
                               ng-minlength="15"
                               ng-maxlength="300"
-                              ng-model="comment.text"
+                              ng-model="elemComVm.comment.text"
                               required=""
                               name="content">
                     </textarea>
                     <div class="help-block-content"
                          ng-messages="form.content.$error"
+                         ng-show="elemComVm.submitted"
                          ng-if="form.$submitted || form.content.$touched">
                         <p ng-message="minlength">Your comment is too short - min is 15 chars.</p>
                         <p ng-message="maxlength">Your comment is too long - max is 300 chars.</p>
                         <p ng-message="required">Your comment is required.</p>
                     </div>
                 </div>
-                <button type="reset" class="btn btn-danger" ng-click="">Reset form</button>
-                <button type="submit" class="btn btn-info" ng-click="elemComVm.sendComment(comment)">Leave comment</button>
+                <button type="reset" class="btn btn-danger"
+                        ng-click="elemComVm.resetForm()">Reset form</button>
+                <button type="submit" class="btn btn-info pull-right"
+                        ng-click="elemComVm.sendComment(elemComVm.comment)"
+                        ng-disabled="!form.$valid">Submit comment</button>
             </form>
         </div>
 
@@ -88,12 +93,12 @@
                     <div class="comment-info">
                         <div class="person">
                             <img class="comment-img" ng-src="{{comment.picture}}">
-                            <span class="person-name">{{comment.name}} {{comment.surname}}</span>
-                            <p class="person-date">{{comment.date}}</p>
+                            <span class="person-name">{{comment.name}} {{comment.surname}}</span><br>
+                            <span class="person-date">{{comment.date}}</span>
                         </div>
                         <div class="comment-stars">
                             <uib-rating class="comment-left-stars"
-                                 ng-model="comment.stars"
+                                 ng-model="comment.rate"
                                  max="5"
                                  data-readonly="elemComVm.readOnly"
                                  aria-labelledby="default-rating">

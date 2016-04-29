@@ -19,11 +19,17 @@
 .person-name {
     font-size: 16px;
     font-weight: bold;
-    padding: 7px;
+    padding: 0 10px;
 }
 
-.persone-date {
+.person {
+    float: left;
+}
+
+.person .person-date {
     font-size: 13px;
+    font-weight: normal;
+    margin: 0 10px;
 }
 
 .form-name p, .form-surname p, .form-stars p, .form-content p{
@@ -69,4 +75,130 @@
     text-align: left;
     padding: 6px 0;
     font-weight: bold;
+}
+.comments-header {
+    text-align: center;
+}
+
+.line {
+    height: 1px;
+    background: black;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.comments, .form-wrapper {
+    padding: 25px;
+}
+
+.const-box {
+    height: 550px;
+}
+
+.comments-header {
+    margin-top: 10px;
+}
+
+.comment .comment-content p{
+    margin: 3px 0;
+}
+
+.comments {
+    padding-right: 0px;
+    border-left: 1px solid black;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.form-wrapper .label {
+    color: black;
+    font-size: 16px;
+    width: 100%;
+    display: block;
+    text-align: left;
+    padding: 6px 0;
+}
+
+.form-wrapper .glyphicon {
+    font-size: 30px;
+    color: #4665A2;
+}
+
+.comment-left-stars {
+    font-size: 22px;
+    color: #4665A2;
+    float: right;
+    pointer-events: none;
+}
+
+.comment-img {
+    float: left;
+}
+
+.comment {
+    position: relative;
+    word-wrap: break-word;
+    background-color: #fff;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    padding: 12px;
+}
+
+.comment-info {
+    width: 100%;
+    display: inline-block;
+}
+
+.form-wrapper input {
+    width: 100%;
+    padding: 7px;
+    margin-bottom: 12px;
+    transition: ease-in-out, all .5s ease-in-out;
+}
+
+.form-wrapper input[type=text]:focus {
+    border: 2px solid #fff;
+    border-bottom: 2px solid #4665A2;
+}
+
+.form-wrapper textarea:focus {
+    border: 1px solid #4665A2;
+}
+
+.form-wrapper textarea {
+    max-width: 100%;
+    width: 100%;
+    min-height: 160px;
+    padding: 7px;
+}
+
+.label-comment {
+    float: left;
+}
+
+.comments-wrapper .comments .comment-overflow {
+    height: 500px;
+    overflow-y: scroll;
+    padding-right: 25px;
+}
+
+.form-wrapper button[type=reset] {
+    border-radius: 0;
+    margin-top: 5px;
+}
+
+.form-wrapper button[type=submit] {
+    border-radius: 0;
+    background: #1B9C0D;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.form-wrapper button[disabled=disabled], .form-wrapper button:disabled {
+    background: #3c763d;
+}
+.form-wrapper button[disabled=disabled]:hover , .form-wrapper button:disabled:hover {
+    background: #3c763d;
 }

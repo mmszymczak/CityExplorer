@@ -16,105 +16,48 @@
     padding: 12px;
 }
 
-.comments-header {
-    text-align: center;
-}
-
-.line {
-    height: 1px;
-    background: black;
-    width: 200px;
-    margin: 0 auto;
-}
-
-.comments, .form-wrapper {
-    padding: 25px;
-}
-
-.const-box {
-    height: 550px;
-}
-
-.comments-header {
-    margin-top: 10px;
-}
-
-.comments {
-    padding-right: 0px;
-    border-left: 1px solid black;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.form-wrapper .label {
-    color: black;
-    font-size: 16px;
-    width: 100%;
-    display: block;
-    text-align: left;
-    padding: 6px 0;
-}
-
-.form-wrapper .glyphicon {
-    font-size: 30px;
-    color: #4665A2;
-}
-
-.comment-left-stars {
-    font-size: 22px;
-    color: black;
-    float: right;
-}
-
-.comment-img {
-    float: left;
-}
-
-.comment {
-    position: relative;
-    word-wrap: break-word;
-    background-color: #fff;
-    border: 1px solid;
-    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-    border-radius: 3px;
-    margin-bottom: 10px;
-    padding: 12px;
-}
-
-.comment-info {
+.post {
     width: 100%;
     display: inline-block;
 }
 
-.form-wrapper input {
-    width: 100%;
-    padding: 7px;
-    margin-bottom: 12px;
+.likes {
+    float: right;
 }
 
-.form-wrapper textarea {
-    max-width: 100%;
-    width: 100%;
-    min-height: 160px;
-    padding: 7px;
+.post-author {
+    position: absolute;
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 10px;
+    color: #4665A2;
 }
 
-.label-comment {
+.post .post-img {
     float: left;
 }
 
-.comments-wrapper .comments .comment-overflow {
-    height: 500px;
-    overflow-y: scroll;
-    padding-right: 25px;
+.post .post-img img{
+    width: 70px;
+    height: auto;
+
+}
+
+.post .post-date {
+    position: absolute;
+    margin-top: 15px;
+    font-size: 13px;
+    font-weight: normal;
+    margin-left: 10px;
+}
+
+.post .post-content {
+
 }
 
 .page-post p {
-    color: #141823;
-    font-size: 16px;
-    font-weight: normal;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin: 0;
 }
 
 .via-posts {
@@ -162,5 +105,4 @@
 }
 .show-comments {
     text-align: center;
-    color: gray;
 }

@@ -6,12 +6,11 @@
                 <div>
                     <img class="pull-right"
                         ng-src="{{infoVm.elemInfo.picture.data.url}}">
+                        <h3 class="likes">{{infoVm.elemInfo.engagement.social_sentence}}</h3>
                     <div class="caption">
                         <h3>{{infoVm.elemInfo.name}}</h3>
                         <h4>{{infoVm.elemInfo.category}}</h4>
                         <p>{{infoVm.elemInfo.about}}</p>
-                        <p>{{infoVm.elemInfo.engagement.social_sentence}}</p>
-
                         <p>Phone number: {{infoVm.elemInfo.phone}}</p>
                         <p>{{infoVm.elemInfo.price_range}}</p>
                     </div>
@@ -26,17 +25,26 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-12 via-posts">
-                <p class="show-comments" ng-click="infoVm.showPosts()">
+                <h3 class="show-comments" ng-click="infoVm.showPosts()">
                     <span class="caret"></span>
-                    show last posts
+                    Show last posts
                     <span class="caret"></span>
-                </p>
+                </h3>
             </div>
             <div class="col-sm-12 col-md-12 via-posts">
                 <div class="page-post"
                      ng-repeat="post in infoVm.elemInfo.posts.data"
                      ng-if="infoVm.isPosts">
-                    <p>{{post.message}}</p>
+                     <div class="post">
+                         <div class="post-img">
+                             <img ng-src="{{infoVm.elemInfo.picture.data.url}}">
+                         </div>
+                         <span class="post-author">{{infoVm.elemInfo.name}}</span><br>
+                         <span class="post-date">{{post.created_time.substring(0,10)}}</span>
+                     </div>
+                     <div class="post-content">
+                        <p>{{post.message}}</p>
+                     </div>
                 </div>
             </div>
         </div>
