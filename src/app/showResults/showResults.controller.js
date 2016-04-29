@@ -74,7 +74,7 @@
             }
         }
 
-        function loadCheckSave(response){ console.log(response);
+        function loadCheckSave(response){
             resultVm.listByCategory[resultVm.actualCategory] = resultVm.listByCategory[resultVm.actualCategory].concat(response.data);
             cacheService.saveCache(resultVm.actualCategory, resultVm.listByCategory[resultVm.actualCategory]);
             resultVm.totalItems = resultVm.listByCategory[resultVm.actualCategory].length;

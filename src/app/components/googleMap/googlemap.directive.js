@@ -39,20 +39,23 @@
                         return [directionsService, directionsDisplay, pointA, pointB];
                     }).then(function(result){
                         calculateAndDisplayRoute(result[0],result[1],result[2],result[3]);
+
+                        document.getElementById('mode').addEventListener('change', function() {
+                            calculateAndDisplayRoute(result[0],result[1],result[2],result[3]);
+                        });
                     });
 
                     function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+                        var selectedMode = document.getElementById('mode').value;
                         directionsService.route({
                             origin: pointA,
                             destination: pointB,
                             avoidTolls: true,
                             avoidHighways: false,
-                            travelMode: google.maps.TravelMode.WALKING
+                            travelMode: google.maps.TravelMode[selectedMode]
                         }, function (response, status) {
                             if (status == google.maps.DirectionsStatus.OK) {
                                 directionsDisplay.setDirections(response);
-                            } else {
-                                console.log('Directions request failed due to ' + status);
                             }
                         });
                     }

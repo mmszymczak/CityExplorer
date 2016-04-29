@@ -18,7 +18,6 @@
         return currentLocation;
 
         function markerPosition(lat, lng) {
-            console.log(lat,lng);
             var position = {};
             position.latitude = lat;
             position.longitude = lng;
@@ -27,8 +26,15 @@
         }
 
         function getCurrentPosition() {
-            var deferred = $q.defer();
-
+            var deferred = $q.defer(),
+                lng = geoplugin_longitude(),
+                lat = geoplugin_latitude(),
+                geoPosition = {
+                    coords: {
+                        latitude: lat,
+                        longitude: lng
+                    }
+                };
             if (!$window.navigator.geolocation) {
                 deferred.reject('Geolocation not supported.');
             } else {
@@ -36,8 +42,8 @@
                     function (position) {
                         deferred.resolve(position);
                     },
-                    function (err) {
-                        deferred.reject(err);
+                    function () {
+                        deferred.resolve(geoPosition);
                     });
             }
             return deferred.promise;

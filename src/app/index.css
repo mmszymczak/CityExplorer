@@ -20,7 +20,7 @@
     float: none !important;
 }
 .museum {
-    background: rgba(244, 67, 54, 0.51) !important;
+    background: rgba(220, 23, 9, 0.51) !important;
 }
 .bar {
     background: rgba(156, 39, 176, 0.52) !important;
@@ -35,7 +35,7 @@
     background: rgba(255, 235, 59, 0.51) !important;
 }
 .restaurant {
-    background: rgba(255, 87, 34, 0.53) !important;
+    background: rgba(255, 96, 0, 0.58) !important;
 }
 
 #mydiv {
@@ -45,5 +45,28 @@
     left: 375px;
 }
 .container {
+    position: relative;
+}
+
+#floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 103px;
+    z-index: 5;
+    background-color: #FFF;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
+}
+
+#mode {
+    padding: 8px;
+    font-size: 11px;
+    border: none;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.map-wrapper {
     position: relative;
 }

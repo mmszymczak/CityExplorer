@@ -30,7 +30,6 @@
 
             commentsArr = $firebaseArray(placeCommentsRef);
             defer.resolve(commentsArr);
-
             return defer.promise;
         }
 
