@@ -5,16 +5,20 @@
         .module('project')
         .controller('CategoryController', CategoryController);
 
-    CategoryController.$inject = ['FacebookService', 'categories', 'cacheService'];
+    CategoryController.$inject = ['FacebookService', 'errorHandling', 'categories', 'cacheService'];
 
-    function CategoryController(FacebookService, categories, cacheService) {
+    function CategoryController(FacebookService, errorHandling, categories, cacheService) {
         var categoryVm = this;
 
         categoryVm.rangeModel = FacebookService.rangeDistance;
         categoryVm.categories = categories;
         categoryVm.setRange = setRange;
+        categoryVm.ready = false;
 
-        FacebookService.checkLoginState();
+        FacebookService.checkLoginState()
+            .then(function(){
+                categoryVm.ready = true;
+            });
 
         function setRange() {
             cacheService.clearCache();

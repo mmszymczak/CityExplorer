@@ -5,9 +5,9 @@
         .module('project')
         .controller('ElementInfoController', ElementInfoController);
 
-    ElementInfoController.$inject = ['cacheService', '$routeParams', 'FacebookService', 'userService', 'googleMapPositionService'];
+    ElementInfoController.$inject = ['cacheService', '$routeParams', 'errorHandling', 'FacebookService', 'userService', 'googleMapPositionService'];
 
-    function ElementInfoController(cacheService, $routeParams, FacebookService, userService, googleMapPositionService) {
+    function ElementInfoController(cacheService, $routeParams, errorHandling, FacebookService, userService, googleMapPositionService) {
         var infoVm = this;
 
         infoVm.elemInfo = [];
@@ -32,6 +32,9 @@
                     FacebookService.getComments($routeParams.element)
                         .then(function(response){
                             infoVm.elemInfo['posts'] = response;
+                        })
+                        .catch(function(err){
+                            errorHandling.errorFunc(err);
                         });
                 }
             }else{
@@ -61,6 +64,9 @@
                 .then(function(data){
                     infoVm.position.lng = data.location.longitude;
                     infoVm.position.lat = data.location.latitude;
+                })
+                .catch(function(err){
+                    errorHandling.errorFunc(err);
                 });
         }
 

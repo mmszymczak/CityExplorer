@@ -5,9 +5,9 @@
         .module('project')
         .factory('GeolocationService', GeolocationService);
 
-    GeolocationService.$inject = ['$q', '$window'];
+    GeolocationService.$inject = ['$q', '$window', 'googleMapPositionService', 'errorHandling'];
 
-    function GeolocationService($q, $window) {
+    function GeolocationService($q, $window, googleMapPositionService, errorHandling) {
         var currentLocation = {
             getCurrentPosition: getCurrentPosition,
             actualPosition: actualPosition,
@@ -26,26 +26,29 @@
         }
 
         function getCurrentPosition() {
-            var deferred = $q.defer(),
-                lng = geoplugin_longitude(),
-                lat = geoplugin_latitude(),
-                geoPosition = {
-                    coords: {
-                        latitude: lat,
-                        longitude: lng
-                    }
-                };
-            if (!$window.navigator.geolocation) {
-                deferred.reject('Geolocation not supported.');
-            } else {
-                $window.navigator.geolocation.getCurrentPosition(
-                    function (position) {
-                        deferred.resolve(position);
-                    },
-                    function () {
-                        deferred.resolve(geoPosition);
-                    });
-            }
+            var deferred = $q.defer();
+            googleMapPositionService.onReady()
+            .then(function(){
+                var lng = geoplugin_longitude(),
+                    lat = geoplugin_latitude(),
+                    geoPosition = {
+                        coords: {
+                            latitude: lat,
+                            longitude: lng
+                        }
+                    };
+                if (!$window.navigator.geolocation) {
+                    deferred.reject('Geolocation not supported.');
+                } else {
+                    $window.navigator.geolocation.getCurrentPosition(
+                        function (position) {
+                            deferred.resolve(position);
+                        },
+                        function () {
+                            deferred.resolve(geoPosition);
+                        });
+                }
+            });
             return deferred.promise;
         }
 
@@ -53,12 +56,16 @@
             var position = {};
             var deferred = $q.defer();
             if(!currentLocation.positionFlag){
-                getCurrentPosition().then(function(geoposition){
+                getCurrentPosition()
+                    .then(function(geoposition){
                     position.latitude = geoposition.coords.latitude;
                     position.longitude = geoposition.coords.longitude;
                     currentLocation['position'] = position;
                     deferred.resolve(position);
-                });
+                    })
+                    .catch(function(err){
+                        errorHandling.errorFunc(err);
+                    });
             }else{
                 deferred.resolve(currentLocation.position);
             }

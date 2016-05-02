@@ -2,14 +2,6 @@
     margin: 0 auto;
 }
 
-.loading {
-    background-image: url('../../assets/images/loader.gif');
-    background-size: cover;
-    width: 64px;
-    height: 64px;
-    margin: 0 auto;
-}
-
 .preprepre {
     width: 150px;
 }

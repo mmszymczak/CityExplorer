@@ -31,7 +31,8 @@
         });
 
         function initGoogleMapApi() {
-            googleMapPositionService.onReady().then(function(){
+            googleMapPositionService.onReady()
+            .then(function(){
                 mainVm.googleMapApiReady = true;
             });
         }

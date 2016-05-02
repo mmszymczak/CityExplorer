@@ -5,16 +5,15 @@
         .module('project')
         .controller('ShowResultsController', ShowResultsController);
 
-    ShowResultsController.$inject = ['$q', 'categories', '$window', 'cacheService', 'FacebookService', '$routeParams'];
+    ShowResultsController.$inject = ['$q', 'categories', '$location', '$window', 'errorHandling', 'cacheService', 'FacebookService', '$routeParams'];
 
-    function ShowResultsController($q, categories, $window, cacheService, FacebookService, $routeParams) {
+    function ShowResultsController($q, categories, $location, $window, errorHandling, cacheService, FacebookService, $routeParams) {
         var resultVm = this;
 
         resultVm.listByCategory = {};
         resultVm.actualCategory = '';
         resultVm.loadMoreData = loadMoreData;
         resultVm.pagingNext = '';
-        resultVm.busy = false;
 
         activate();
 
@@ -30,6 +29,9 @@
                     getCacheService();
                     resultVm.totalItems = resultVm.listByCategory[route].length;
                     checkFBState();
+                })
+                .catch(function(response){
+                    errorHandling.errorFunc(response);
                 });
         }
 
@@ -38,7 +40,8 @@
             if (categories.indexOf(route) > -1) {
                 deferred.resolve(route);
             } else {
-                $window.location.href = '#/category';
+                //$location.path('category'); dlaczemu po tym przekierowaniu robi milion zapytan do FBapi :C idk
+                deferred.reject('Actual category didnt exist in our service, please change category.');
             }
             return deferred.promise;
         }
@@ -59,17 +62,21 @@
                 FacebookService[method]()
                     .then( function(response){
                         loadCheckSave(response);
+                    })
+                    .catch(function(err){
+                        errorHandling.errorFunc(err);
                     });
             }
         }
 
         function loadMoreData() {
             if(typeof resultVm.pagingNext != 'undefined') {
-                resultVm.busy = true;
                 FacebookService.getMoreData(resultVm.pagingNext)
                     .then(function(response){
                         loadCheckSave(response);
-                        resultVm.busy = false;
+                    })
+                    .catch(function(err){
+                        errorHandling.errorFunc(err);
                     });
             }
         }

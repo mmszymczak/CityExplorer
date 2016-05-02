@@ -15,7 +15,8 @@
             first_name: '',
             last_name: '',
             full_name: '',
-            profile_link: ''
+            profile_link: '',
+            happy: false
         };
         return {user: user};
     }

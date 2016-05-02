@@ -5,9 +5,9 @@
         .module('project')
         .factory('FacebookService', FacebookService);
 
-    FacebookService.$inject = ['$window', '$location', '$timeout', 'GeolocationService', '$q', 'userService'];
+    FacebookService.$inject = ['$window', '$location', 'errorHandling', '$timeout', 'GeolocationService', '$q', 'userService'];
 
-    function FacebookService($window, $location, $timeout, GeolocationService, $q, userService) {
+    function FacebookService($window, $location, errorHandling, $timeout, GeolocationService, $q, userService) {
         var service = {
             checkLoginState: checkLoginState,
             login: login,
@@ -38,7 +38,7 @@
             FB.api(request,
                 function(response) {
                     if (!response || response.error) {
-                        deferred.reject('Error occured');
+                        deferred.reject('An error occurred while retrieving data');
                     } else {
                         deferred.resolve(response);
                     }
@@ -59,7 +59,7 @@
                 "general_info","location","link","picture.type(large)"]},
                 function(response) {
                     if (!response || response.error) {
-                        deferred.reject('Error occured');
+                        deferred.reject('An error occurred while retrieving data');
                     } else {
                         deferred.resolve(response);
                     }
@@ -76,7 +76,7 @@
                 {"limit":"3"},
                 function(response) {
                     if (!response || response.error) {
-                        deferred.reject('Error occured');
+                        deferred.reject('An error occurred while retrieving data');
                     } else {
                         deferred.resolve(response);
                     }
@@ -99,7 +99,7 @@
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
-                            deferred.reject('Error occured');
+                            deferred.reject('An error occurred while retrieving data');
                         } else {
                             deferred.resolve(response);
                         }
@@ -123,7 +123,7 @@
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
-                            deferred.reject('Error occured');
+                            deferred.reject('An error occurred while retrieving data');
                         } else {
                             deferred.resolve(response);
                         }
@@ -147,7 +147,7 @@
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
-                            deferred.reject('Error occured');
+                            deferred.reject('An error occurred while retrieving data');
                         } else {
                             deferred.resolve(response);
                         }
@@ -171,7 +171,7 @@
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
-                            deferred.reject('Error occured');
+                            deferred.reject('An error occurred while retrieving data');
                         } else {
                             deferred.resolve(response);
                         }
@@ -195,7 +195,7 @@
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
-                            deferred.reject('Error occured');
+                            deferred.reject('An error occurred while retrieving data');
                         } else {
                             deferred.resolve(response);
                         }
@@ -219,7 +219,7 @@
                     "fields":["hours","category","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
-                            deferred.reject('Error occured');
+                            deferred.reject('An error occurred while retrieving data');
                         } else {
                             deferred.resolve(response);
                         }
@@ -237,7 +237,8 @@
                 {"fields":["name","picture","first_name","last_name","hometown","location","link"]},
                 function(response) {
                     if (!response || response.error) {
-                        deferred.reject('Error occured');
+                        deferred.reject('An error occurred while retrieving data');
+                        errorHandling.error('Something goes wrong...');
                     } else {
                         deferred.resolve(response);
                     }
@@ -250,6 +251,7 @@
                 userService.user.full_name = response.name;
                 userService.user.profile_link = response.link;
                 userService.user.picture = response.picture.data.url;
+                userService.user.happy = true;
             });
         }
 
@@ -259,6 +261,10 @@
                 statusChangeCallback(response)
                 .then(function(){
                     deferred.resolve();
+                })
+                .catch(function(){
+                    errorHandling.warnFunc('Please login to continue.');
+                    deferred.reject();
                 });
             });
             return deferred.promise;
@@ -267,15 +273,16 @@
         function statusChangeCallback(response) {
             var deferred = $q.defer();
             if (response.status === 'connected') {
-                if(!userService.user.first_name){
+                if(!userService.user.happy){
                     getUserData();
-                }   // DOIT: poprawic
+                }
                 $timeout(function(){
                     userService.user.connected = true;
                 },0);
                 deferred.resolve();
             } else {
                 $window.location.href = '#/';
+                deferred.reject();
             }
             return deferred.promise;
         }
@@ -293,6 +300,7 @@
                 $timeout(function(){
                     userService.user.connected = false;
                     $window.location.href = '#/';
+                    errorHandling.infoFunc('You have been logged out.');
                 },0);
             });
         }

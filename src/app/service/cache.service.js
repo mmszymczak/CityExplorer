@@ -25,7 +25,6 @@
 
         function saveCache(category, list){
           self.list[category] = list;
-          console.log('cache: ', self.list);
         }
 
         function getTec() {
