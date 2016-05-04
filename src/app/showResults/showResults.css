@@ -8,12 +8,15 @@
 
 .thumbnail .address {
     font-size: 16px !important;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .thumbnail {
     text-decoration: none !important;
     background: rgba(255, 255, 255, 1);
+    height: 280px;
+    width: 320px;
+    margin: 15px;
 }
 .thumbnail:hover {
     transition: 0.3s ease-in-out all;
@@ -41,3 +44,4 @@
 .slide.ng-leave.ng-leave-active {
   opacity: 0;
 }
+

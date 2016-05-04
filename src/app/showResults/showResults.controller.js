@@ -14,6 +14,7 @@
         resultVm.actualCategory = '';
         resultVm.loadMoreData = loadMoreData;
         resultVm.pagingNext = '';
+        resultVm.addFavorite = addFavorite;
 
         activate();
 
@@ -96,6 +97,10 @@
             angular.forEach(resultVm.listByCategory, function(awesomeThing) {
                 awesomeThing.rank = Math.random();
             });
+        }
+
+        function addFavorite(item) {
+            cacheService.pushFavorite(item);
         }
     }
 })();

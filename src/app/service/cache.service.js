@@ -11,9 +11,14 @@
 
         var self = this;
         self.list = {};
+        self.favorite = [];
+
         self.getCache = getCache;
         self.saveCache = saveCache;
         self.clearCache = clearCache;
+        self.pushFavorite = pushFavorite;
+        self.getFavorite = getFavorite;
+
 
         buildingScaffolding();
 
@@ -33,6 +38,14 @@
 
         function clearCache() {
             buildingScaffolding();
+        }
+
+        function pushFavorite(item) {
+            self.favorite.push(item);
+        }
+
+        function getFavorite() {
+            return self.favorite;
         }
 
     }
