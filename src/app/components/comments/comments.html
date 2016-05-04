@@ -9,7 +9,9 @@
     <div class="const-box" ng-if="elemComVm.isComment">
         <div class="line"></div>
         <div class="col-sm-6 col-md-6 form-wrapper">
-            <form name="form" class="css-form" novalidate>
+            <form name="form" class="css-form"
+            novalidate
+            ng-if="elemComVm.readyToUse">
                 <div class="form-name">
                     <label class="label label-name">Given Name</label>
                     <input type="text"
@@ -79,17 +81,24 @@
                     </div>
                 </div>
                 <button type="reset" class="btn btn-danger"
-                        ng-click="elemComVm.resetForm()">Reset form</button>
+                        ng-click="elemComVm.initForm()">Reset form</button>
                 <button type="submit" class="btn btn-info pull-right"
                         ng-click="elemComVm.sendComment(elemComVm.comment)"
                         ng-disabled="!form.$valid">Submit comment</button>
             </form>
+
+            <div ng-if="!elemComVm.readyToUse">
+                <img class="thanks-img" src="../assets/images/approved.png">
+                <h3 class="thanks-header">Thank you for your comment!</h3>
+            </div>
+
         </div>
 
         <div class="col-sm-6 col-md-6 comments">
             <div class="comment-overflow">
 
-                <div class="comment" ng-repeat="comment in elemComVm.commentsArray">
+                <div class="comment"
+                     ng-repeat="comment in elemComVm.commentsArray | orderBy:'':true">
                     <div class="comment-info">
                         <div class="person">
                             <img class="comment-img" ng-src="{{comment.picture}}">

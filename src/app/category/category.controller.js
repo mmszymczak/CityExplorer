@@ -15,10 +15,14 @@
         categoryVm.setRange = setRange;
         categoryVm.ready = false;
 
-        FacebookService.checkLoginState()
-            .then(function(){
-                categoryVm.ready = true;
-            });
+        activate();
+
+        function activate() {
+            FacebookService.checkLoginState()
+                .then(function(){
+                    categoryVm.ready = true;
+                });
+        }
 
         function setRange() {
             cacheService.clearCache();

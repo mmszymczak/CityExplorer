@@ -202,3 +202,14 @@
 .form-wrapper button[disabled=disabled]:hover , .form-wrapper button:disabled:hover {
     background: #3c763d;
 }
+
+.thanks-img {
+    width: 70%;
+    height: auto;
+    margin: 35px auto;
+    display: block;
+}
+
+.thanks-header {
+    text-align: center;
+}

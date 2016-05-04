@@ -11,7 +11,7 @@
 
         var self = this;
         self.list = {};
-        self.getTec = getTec;
+        self.getCache = getCache;
         self.saveCache = saveCache;
         self.clearCache = clearCache;
 
@@ -24,11 +24,11 @@
         }
 
         function saveCache(category, list){
-          self.list[category] = list;
+            self.list[category] = list;
         }
 
-        function getTec() {
-          return self.list;
+        function getCache() {
+            return self.list;
         }
 
         function clearCache() {

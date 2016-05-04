@@ -91,11 +91,11 @@
         }
 
         function getCacheService() {
-          resultVm.listByCategory = cacheService.getTec();
+            resultVm.listByCategory = cacheService.getCache();
 
-          angular.forEach(resultVm.listByCategory, function(awesomeThing) {
-            awesomeThing.rank = Math.random();
-          });
+            angular.forEach(resultVm.listByCategory, function(awesomeThing) {
+                awesomeThing.rank = Math.random();
+            });
         }
     }
 })();

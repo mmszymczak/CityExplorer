@@ -18,8 +18,7 @@
         mainVm.header = '';
         mainVm.googleMapApiReady = false;
 
-        FacebookService.checkLoginState();
-        initGoogleMapApi();
+        activate();
 
         $scope.$watch(function(){
             return mainVm.user.connected;
@@ -29,6 +28,11 @@
             if(state) mainVm.value = 'Logout';
             else mainVm.value = 'Login';
         });
+
+        function activate() {
+            FacebookService.checkLoginState();
+            initGoogleMapApi();
+        }
 
         function initGoogleMapApi() {
             googleMapPositionService.onReady()
