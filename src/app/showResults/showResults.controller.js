@@ -5,7 +5,7 @@
         .module('project')
         .controller('ShowResultsController', ShowResultsController);
 
-    ShowResultsController.$inject = ['$q', 'categories', '$location', '$window', 'errorHandling', 'cacheService', 'FacebookService', '$routeParams'];
+    ShowResultsController.$inject = ['$q', 'categories', '$location', '$window', 'errorHandling', 'cacheService', 'FacebookService', '$routeParams', '$cookieStore'];
 
     function ShowResultsController($q, categories, $location, $window, errorHandling, cacheService, FacebookService, $routeParams) {
         var resultVm = this;
@@ -15,6 +15,8 @@
         resultVm.loadMoreData = loadMoreData;
         resultVm.pagingNext = '';
         resultVm.addFavorite = addFavorite;
+        resultVm.allFavorite = $cookieStore.get('favorite') || [];
+
 
         activate();
 
@@ -100,7 +102,8 @@
         }
 
         function addFavorite(item) {
-            cacheService.pushFavorite(item);
+            resultVm.allFavorite.push(item);
+            // cacheService.pushFavorite(item);
         }
     }
 })();

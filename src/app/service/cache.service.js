@@ -42,6 +42,7 @@
 
         function pushFavorite(item) {
             self.favorite.push(item);
+            console.log(self.favorite);
         }
 
         function getFavorite() {
