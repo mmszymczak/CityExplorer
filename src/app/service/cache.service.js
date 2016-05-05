@@ -16,8 +16,6 @@
         self.getCache = getCache;
         self.saveCache = saveCache;
         self.clearCache = clearCache;
-        self.pushFavorite = pushFavorite;
-        self.getFavorite = getFavorite;
 
 
         buildingScaffolding();
@@ -38,15 +36,6 @@
 
         function clearCache() {
             buildingScaffolding();
-        }
-
-        function pushFavorite(item) {
-            self.favorite.push(item);
-            console.log(self.favorite);
-        }
-
-        function getFavorite() {
-            return self.favorite;
         }
 
     }

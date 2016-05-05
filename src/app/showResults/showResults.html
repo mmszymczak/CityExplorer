@@ -3,7 +3,10 @@
         <div class="row">
             <div class="col-sm-6 col-md-4 slide thumbnail"
             ng-repeat="item in resultVm.listByCategory[resultVm.route] | orderBy:'rank'">
-                        <label class="checkbox"><input type="checkbox" ng-click="resultVm.addFavorite(item)">Add to favorite!</label>
+                        <button type="button" class="btn btn-success btn-xs" 
+                        ng-click="resultVm.addFavorite(item)" 
+                        ng-show="!item.favorite"
+                        >Add to favorite!</button>
                     <a class="row"
                        href="#/category/{{resultVm.route}}/{{item.id}}">
                         <img class="pull-right" ng-src="{{item.picture.data.url}}">

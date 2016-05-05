@@ -1,9 +1,13 @@
 <div class="jumbotron text-center">
     <div class="filter {{favoriteVm.actualCategory}}">
         <div class="row">
-            <div class="col-sm-6 col-md-4 slide"
+            <div class="col-sm-12 col-md-12 slide"
             ng-repeat="item in favoriteVm.favoriteList | orderBy:'rank'">
-                <a class="thumbnail"
+                <button type="button" class="btn btn-danger btn-xs" 
+                        ng-click="favoriteVm.removeFavorite(item)" 
+                        ng-show="!favoriteVm.showRemove(item.id)"
+                        >Remove from favorite</button> 
+                <a class="thumbnail thumbnail-favorite"
                    href="#/category/{{favoriteVm.route}}/{{item.id}}">
                     <img class="pull-right" ng-src="{{item.picture.data.url}}">
                     <div class="caption">
@@ -12,9 +16,6 @@
                     </div>
                 </a>
             </div>
-        </div>
-        <div class="btn-wrapper">
-            <pre class="preprepre">Elements: {{favoriteVm.totalItems | json }}</pre>
         </div>
     </div>
 </div>
