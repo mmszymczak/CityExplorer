@@ -64,7 +64,6 @@
                 .then(function(data){
                     infoVm.position.lng = data.location.longitude;
                     infoVm.position.lat = data.location.latitude;
-                    console.log(data, infoVm.position)
                 })
                 .catch(function(err){
                     errorHandling.errorFunc(err);

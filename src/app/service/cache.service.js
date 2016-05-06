@@ -11,7 +11,6 @@
 
         var self = this;
         self.list = {};
-        self.favorite = [];
 
         self.getCache = getCache;
         self.saveCache = saveCache;
