@@ -28,7 +28,7 @@
         function showPosts(){
             if(!infoVm.isPosts){
                 infoVm.isPosts = true;
-                if(typeof infoVm.elemInfo.posts == 'undefined' || infoVm.elemInfo.posts.lenth == 0){
+                if(typeof infoVm.elemInfo.posts == 'undefined' || infoVm.elemInfo.posts.length == 0){
                     FacebookService.getComments($routeParams.element)
                         .then(function(response){
                             infoVm.elemInfo['posts'] = response;
@@ -54,7 +54,7 @@
                     detailsRequest();
                 });
         }
-
+        
         function detailsRequest() {
             FacebookService.getDetails($routeParams.element)
                 .then(function(response){
@@ -64,6 +64,7 @@
                 .then(function(data){
                     infoVm.position.lng = data.location.longitude;
                     infoVm.position.lat = data.location.latitude;
+                    console.log(data, infoVm.position)
                 })
                 .catch(function(err){
                     errorHandling.errorFunc(err);
