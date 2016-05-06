@@ -3,18 +3,16 @@
         <div class="row">
             <div class="col-sm-6 col-md-4 slide thumbnail"
             ng-repeat="item in resultVm.listByCategory[resultVm.route] | orderBy:'rank'">
-                        <button type="button" class="btn btn-success btn-xs" 
-                        ng-click="resultVm.addFavorite(item)" 
-                        ng-show="!item.favorite"
-                        >Add to favorite!</button>
-                    <a class="row"
-                       href="#/category/{{resultVm.route}}/{{item.id}}">
+                <button type="button" class="btn btn-success btn-xs" 
+                ng-click="resultVm.addFavorite(item)" 
+                ng-if="!resultVm.hideButtonAddFav(item)"
+                >Add to favorite!</button>
+                    <a class="row" href="#/category/{{resultVm.route}}/{{item.id}}">
                         <img class="pull-right" ng-src="{{item.picture.data.url}}">
                         <div class="caption">
                             <h3 class="header-title">{{ item.name }}</h3>
                             <p class="address">{{ item.location.street }}</p>
                         </div>
-
                     </a>
             </div>
         </div>

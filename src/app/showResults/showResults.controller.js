@@ -11,13 +11,14 @@
         var resultVm = this;
         
         resultVm.addFavorite = addFavorite;
-        resultVm.showRemove = showRemove; // opposite of showAdd favorite
 
         resultVm.listByCategory = {};
         resultVm.actualCategory = '';
         resultVm.loadMoreData = loadMoreData;
         resultVm.pagingNext = '';
         resultVm.$storage = $localStorage;
+        resultVm.$storage.items = resultVm.$storage.items || [];
+        resultVm.hideButtonAddFav = hideButtonAddFav;
 
         activate();
 
@@ -105,30 +106,20 @@
 
 
         function addFavorite(item) {
-            if (!resultVm.$storage.items) {
-                resultVm.$storage.items = [];
-            }
             item.favorite = true;
             resultVm.$storage.items.push(item);
-
-            console.log(resultVm.$storage.items);
         }
 
-        function showRemove(id) {
-            // console.log(id);
-        // if id exist on localStorage return true
+        
 
-            resultVm.$storage.items.every(function(element,index,array) {
-                console.log(element.id === id);
-                if (element.id === id) {
-                    resultVm.checkButtonState = true;
-                    return true;
+        function hideButtonAddFav(item) {
+            var hideButton = false;
+            resultVm.$storage.items.forEach(function(element,index,array) {
+                if (element.id === item.id && element.favorite) {
+                    hideButton = true;
                 }
             });
-        
-           return resultVm.checkButtonState ? true : false;
-
-
+            return hideButton;
         }
 
     }
