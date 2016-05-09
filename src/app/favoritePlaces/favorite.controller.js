@@ -5,11 +5,11 @@
         .module('project')
         .controller('FavoritePlacesController', FavoritePlacesController);
 
-    FavoritePlacesController.$inject = ['$scope', 'FacebookService', 'userService', 'googleMapPositionService', 'cacheService', '$localStorage', '$sessionStorage', 'errorHandling'];
+    FavoritePlacesController.$inject = ['$scope', 'FacebookService', 'userService', 'googleMapPositionService', 'cacheService', '$localStorage', '$sessionStorage', 'errorHandling', '$routeParams'];
 
-    function FavoritePlacesController($scope, FacebookService, userService, googleMapPositionService, cacheService, $localStorage, $sessionStorage, errorHandling) {
+    function FavoritePlacesController($scope, FacebookService, userService, googleMapPositionService, cacheService, $localStorage, $sessionStorage, errorHandling, $routeParams) {
         var favoriteVm = this;
-        
+
         favoriteVm.$storage = $localStorage;
         favoriteVm.favoriteList = favoriteVm.$storage.items;
         favoriteVm.user = userService.user;
@@ -20,6 +20,14 @@
         favoriteVm.onDropComplete = onDropComplete;
         favoriteVm.listOfObjectPlaces = [];
         favoriteVm.position = {};
+        favoriteVm.activate = activate;
+        favoriteVm.addToMap = addToMap;
+        favoriteVm.listClickedFav = [];
+        favoriteVm.$storage.clicked = favoriteVm.$storage.clicked || [];
+        favoriteVm.clickedToMap = favoriteVm.$storage.clicked;
+        favoriteVm.checkIfClicked = checkIfClicked;
+        favoriteVm.limitToCheck = 4;
+        favoriteVm.checkDisable = checkDisable;
 
         activate();
 
@@ -28,7 +36,6 @@
                 .then(function(){
                     favoriteVm.ready = true;
                     initGoogleMapApi();
-                    checkFBState();
                 });
         }
 
@@ -59,36 +66,42 @@
 	    function onDropComplete(index, obj, evt){
 	        var otherObj = favoriteVm.favoriteList[index];
             var otherIndex = favoriteVm.favoriteList.indexOf(obj);
+            console.log(otherObj, otherIndex);
+            console.log(obj, index);
            	favoriteVm.favoriteList[index] = obj;
             favoriteVm.favoriteList[otherIndex] = otherObj;
+            //             console.log(favoriteVm.$storage.clicked);
+            // console.log(favoriteVm.$storage.items);
 	    }
 
-        function checkFBState() {
-            FacebookService.checkLoginState()
-                .then(function(){
-                    detailsRequest();
+        function addToMap(id) {
+            if (favoriteVm.$storage.clicked.includes(id)) {
+                favoriteVm.$storage.clicked = favoriteVm.$storage.clicked.filter(function(element,index,array) {
+                    return (element !== id);
                 });
+            } else {
+                favoriteVm.$storage.clicked.push(id);
+            }
         }
-	    function detailsRequest() {	
-		    favoriteVm.$storage.items.forEach(function(element,index, array) {
-		    	FacebookService.getDetails(element.id)
-	                .then(function(response){
-	                    return response;
-	                })
-	                .then(function(data){
-	                    favoriteVm.position.lng = data.location.longitude;
-	                    favoriteVm.position.lat = data.location.latitude;
-	                	favoriteVm.listOfObjectPlaces.push(data.location);
-	                	//// problem with response ///
-	                })
-	                .catch(function(err){
-	                    errorHandling.errorFunc(err);
-	                	console.log(1);
-	                });
-	    	});
+
+        function checkIfClicked(id){
+            if (favoriteVm.$storage.clicked.includes(id)) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        console.log(favoriteVm.listOfObjectPlaces);
-        /// resolve/resolveAs in index.route, to load this data first
+
+        function checkDisable(id){
+            if (favoriteVm.limitToCheck === favoriteVm.$storage.clicked.length && !favoriteVm.$storage.clicked.includes(id)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+
+
 
 
 

@@ -1,35 +1,35 @@
 <div class="jumbotron text-center">
-    <div class="filter {{favoriteVm.actualCategory}}">
+    <div class="filter">
         <div class="row">
         <div>
             <div class="col-sm-12 col-md-12 slide"
             ng-repeat="item in favoriteVm.favoriteList" ng-drop="true" ng-drop-success="favoriteVm.onDropComplete($index,$data,$event)">
-                
-                <div ng-drag="true" 
+                <div ng-drag="true"
                 ng-drag-data="item">
-
-                            <!-- problem with propagation -->
-                            <button type="button" class="btn btn-danger btn-xs" 
-                            ng-click="favoriteVm.removeFavorite(item)" 
-                            ng-show="!favoriteVm.showRemove(item.id)">Remove from favorite</button> 
-                            <a class="thumbnail thumbnail-favorite"
-                            href="#/category/{{favoriteVm.route}}/{{item.id}}"></a>
-                            <!-- problem with propagation -->
-
+                    <button type="button" class="btn btn-danger btn-xs"
+                    ng-click="favoriteVm.removeFavorite(item)">Remove from favorite</button>
+                    <div class="checkbox">
+                      <label><input type="checkbox" ng-click="favoriteVm.addToMap(item.id)"
+                      ng-checked="favoriteVm.checkIfClicked(item.id)"
+                      ng-disabled="favoriteVm.checkDisable(item.id)">Szukaj na mapie</label>
+                       <!-- <input type="checkbox" ng-model="item.winner" ng-change="checkChanged(item)" ng-disabled="checked==limit && !item.winner"/> -->
+                    </div>
+                    <a class="thumbnail thumbnail-favorite"
+                    href="#/category/{{favoriteVm.route}}/{{item.id}}"></a>
                     <div class="thumbnail thumbnail-favorite">
                         <div class="caption">
                             <img class="pull-right" ng-src="{{item.picture.data.url}}">
                             <h3 class="header-title">{{ item.name }}</h3>
                             <p class="address">{{ item.location.street }}</p>
+                            {{item.id}}
+                            <p>{{favoriteVm.$storage.clicked}}</p>
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <div class="col-md-12 col-sm-12"
-             ng-if="favoriteVm.googleMapApiReady && favoriteVm.state">
-                <ce-google-map-routes="infoVm.position"></google-map-routes>
+            <div class="col-md-12 col-sm-12" ng-if="favoriteVm.googleMapApiReady && favoriteVm.state">
+                <ce-google-map-routes></google-map-routes>
             </div>
         </div>
         </div>
