@@ -59,26 +59,36 @@
                 });
 
                 function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA) {
-                    var destinationsID = $localStorage.clicked;
-                    var destinationPlaces = $localStorage.items;
-                    var destinationForWaypoints = [];
+                    var destinationsID = $localStorage.clicked,
+                        destinationPlaces = $localStorage.items,
+                        destinationForWaypoints = [],
+                        endLocation, PointB,
+                        waypoints = [];
+
                     destinationPlaces.forEach(function(element,index) {
                         if (destinationsID.includes(element.id)) {
                             destinationForWaypoints.push(destinationPlaces[index]);
                         }
                     });
-                    var EndLocation = destinationForWaypoints[destinationForWaypoints.length-1];
-                    console.log(EndLocation);
-                    var PointB = EndLocation.location.latitude + " " + EndLocation.location.longitude;
-                    console.log(destinationForWaypoints);
-                    var waypoints = [];
+
+                    endLocation = destinationForWaypoints[destinationForWaypoints.length-1];
+
+                    if (endLocation) {
+                        PointB = endLocation.location.latitude + " " + endLocation.location.longitude;
+                    } else {
+                        PointB = ''
+                    }
+
                     destinationForWaypoints.forEach(function(element,index) {
                         waypoints.push({
                             location: element.location.latitude + " " + element.location.longitude
                         });
                     });
+
                     waypoints.pop();
+
                     var selectedMode = document.getElementById('mode').value;
+
                     directionsService.route({
                         origin: pointA,
                         destination: PointB,

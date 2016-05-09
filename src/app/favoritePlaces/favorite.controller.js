@@ -5,9 +5,9 @@
         .module('project')
         .controller('FavoritePlacesController', FavoritePlacesController);
 
-    FavoritePlacesController.$inject = ['$scope', 'FacebookService', 'userService', 'googleMapPositionService', 'cacheService', '$localStorage', '$sessionStorage', 'errorHandling', '$routeParams'];
+    FavoritePlacesController.$inject = ['$scope', '$route', 'FacebookService', 'userService', 'googleMapPositionService', 'cacheService', '$localStorage', '$sessionStorage', 'errorHandling'];
 
-    function FavoritePlacesController($scope, FacebookService, userService, googleMapPositionService, cacheService, $localStorage, $sessionStorage, errorHandling, $routeParams) {
+    function FavoritePlacesController($scope, $route, FacebookService, userService, googleMapPositionService, cacheService, $localStorage, errorHandling) {
         var favoriteVm = this;
 
         favoriteVm.$storage = $localStorage;
@@ -18,13 +18,9 @@
         favoriteVm.googleMapApiReady;
         favoriteVm.state;
         favoriteVm.onDropComplete = onDropComplete;
-        favoriteVm.listOfObjectPlaces = [];
-        favoriteVm.position = {};
         favoriteVm.activate = activate;
         favoriteVm.addToMap = addToMap;
-        favoriteVm.listClickedFav = [];
         favoriteVm.$storage.clicked = favoriteVm.$storage.clicked || [];
-        favoriteVm.clickedToMap = favoriteVm.$storage.clicked;
         favoriteVm.checkIfClicked = checkIfClicked;
         favoriteVm.limitToCheck = 4;
         favoriteVm.checkDisable = checkDisable;
@@ -60,18 +56,23 @@
                 }
             });
             favoriteVm.$storage.items.splice(favoriteVm.indexToDelete, 1);
+
+            if (favoriteVm.$storage.clicked.includes(item.id)) {
+                favoriteVm.$storage.clicked.forEach(function(element,index){
+                    if (item.id === element) {
+                        favoriteVm.indexToDelete = index;
+                    }
+                });
+                favoriteVm.$storage.clicked.splice(favoriteVm.indexToDelete, 1);
+            }
         }
 
 
 	    function onDropComplete(index, obj, evt){
 	        var otherObj = favoriteVm.favoriteList[index];
             var otherIndex = favoriteVm.favoriteList.indexOf(obj);
-            console.log(otherObj, otherIndex);
-            console.log(obj, index);
            	favoriteVm.favoriteList[index] = obj;
             favoriteVm.favoriteList[otherIndex] = otherObj;
-            //             console.log(favoriteVm.$storage.clicked);
-            // console.log(favoriteVm.$storage.items);
 	    }
 
         function addToMap(id) {
@@ -85,25 +86,17 @@
         }
 
         function checkIfClicked(id){
-            if (favoriteVm.$storage.clicked.includes(id)) {
-                return true;
-            } else {
-                return false;
-            }
+            return favoriteVm.$storage.clicked.includes(id)
         }
+
 
         function checkDisable(id){
-            if (favoriteVm.limitToCheck === favoriteVm.$storage.clicked.length && !favoriteVm.$storage.clicked.includes(id)) {
-                return true;
-            } else {
-                return false;
-            }
+            var check = favoriteVm.limitToCheck,
+                clickedLength = favoriteVm.$storage.clicked.length,
+                includesId = favoriteVm.$storage.clicked.includes(id);
+
+            return check === clickedLength && !includesId;
         }
-
-
-
-
-
 
     }
 
