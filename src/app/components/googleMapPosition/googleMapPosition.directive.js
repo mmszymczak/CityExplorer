@@ -20,7 +20,7 @@
                     scope.actualCountry = geoplugin_countryName();
 
                     var map = new google.maps.Map(document.getElementById("map_canvas"), {
-                        zoom: 10,
+                        zoom: 12,
                         center: new google.maps.LatLng(position.latitude, position.longitude),
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     });

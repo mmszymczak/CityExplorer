@@ -1,31 +1,296 @@
-<div class="jumbotron text-center">
-    <div class="main-filter">
-        <div id="loginStatus" ng-if="mainVm.user.connected">
+<!-- Carousel -->
+<div id="carousel1" class="carousel slide carousel-fade hoverable">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel1" data-slide-to="0" class="active">
+        </li>
+        <li data-target="#carousel1" data-slide-to="1"></li>
+        <li data-target="#carousel1" data-slide-to="2"></li>
+        <li data-target="#carousel1" data-slide-to="3"></li>
+        <li data-target="#carousel1" data-slide-to="4"></li>
+        <li data-target="#carousel1" data-slide-to="5"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner z-depth-2" role="listbox">
+        <!-- First slide -->
+        <div class="item active">
+            <div class="view overlay hm-blue-slight">
+                <a><img src="http://mdbootstrap.com/images/slides/slide%20(7).jpg" class="img-responsive" alt="slide1">
+                    <div class="mask waves-effect waves-light"></div>
+                </a>
+                <div class="carousel-caption hidden-xs">
+                    <div class="animated fadeInDown">
+                        <h2>MUSEUM</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.item -->
+
+        <!-- Second slide -->
+        <div class="item">
+            <div class="view overlay hm-blue-slight">
+                <a><img src="http://mdbootstrap.com/images/slides/slide%20(23).jpg" class="img-responsive" alt="slide2">
+                    <div class="mask waves-effect waves-light"></div>
+                </a>
+                <div class="carousel-caption hidden-xs">
+                    <div class="animated fadeInDown">
+                        <h2>BAR</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.item -->
+
+        <!-- Third slide -->
+        <div class="item">
+            <div class="view overlay hm-blue-slight">
+                <a><img src="http://mdbootstrap.com/images/slides/slide%20(2).jpg" class="img-responsive" alt="slide3">
+                    <div class="mask waves-effect waves-light"></div>
+                </a>
+                <div class="carousel-caption hidden-xs">
+                    <div class="animated fadeInDown">
+                        <h2>CAFE</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.item -->
+
+        <!-- Fourth slide -->
+        <div class="item">
+            <div class="view overlay hm-blue-slight">
+                <a><img src="http://mdbootstrap.com/images/slides/slide%20(2).jpg" class="img-responsive" alt="slide4">
+                    <div class="mask waves-effect waves-light"></div>
+                </a>
+                <div class="carousel-caption hidden-xs">
+                    <div class="animated fadeInDown">
+                        <h2>CLUB</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.item -->
+
+        <!-- Fifth slide -->
+        <div class="item">
+            <div class="view overlay hm-blue-slight">
+                <a><img src="http://mdbootstrap.com/images/slides/slide%20(2).jpg" class="img-responsive" alt="slide5">
+                    <div class="mask waves-effect waves-light"></div>
+                </a>
+                <div class="carousel-caption hidden-xs">
+                    <div class="animated fadeInDown">
+                        <h2>HOTEL</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.item -->
+
+        <!-- Sixth slide -->
+        <div class="item">
+            <div class="view overlay hm-blue-slight">
+                <a><img src="http://mdbootstrap.com/images/slides/slide%20(2).jpg" class="img-responsive" alt="slide6">
+                    <div class="mask waves-effect waves-light"></div>
+                </a>
+                <div class="carousel-caption hidden-xs">
+                    <div class="animated fadeInDown">
+                        <h2>RESTAURANT</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.item -->
+    </div>
+    <!-- /.carousel-inner -->
+
+    <!-- Controls -->
+    <a class="left carousel-control new-control" href="#carousel1" role="button" data-slide="prev" ng-non-bindable>
+        <span class="fa fa fa-angle-left waves-effect waves-light"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control new-control" href="#carousel1" role="button" data-slide="next" ng-non-bindable>
+        <span class="fa fa fa-angle-right waves-effect waves-light"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!-- /.carousel -->
+
+<div class="container">
+    <div class="main-wrapper">
+        <div id="login-status" ng-if="mainVm.user.connected">
             <p>{{mainVm.fbService.loginResponse}}</p>
         </div>
 
-        <div class="main-info" ng-if="mainVm.state">
+        <div class="main-wrapper--info" ng-if="mainVm.user.connected">
             <h3>Click green button if you want to see places around your actual position.<br>
             If you're curious, drag marker and drop wherever you want!<br>
             then click green butto.</h3>
         </div>
 
-        <section class="login-form-wrap" ng-if="!mainVm.state">
-            <h1>{{mainVm.header}}</h1>
+        <section class="login-form-wrap" ng-if="!mainVm.user.connected">
+            <h1>Sign in with facebook account</h1>
             <form class="login-form">
-                <input type="submit" ng-value="mainVm.value"
-                       ng-click="mainVm.logInOutFB()">
+                <input type="submit" value="Login"
+                       ng-click="mainVm.logInFB()">
             </form>
         </section>
 
-        <div class="col-md-12 col-sm-12"
-             ng-if="mainVm.googleMapApiReady && mainVm.state">
+        <div class="col-md-12 col-sm-12 mapper card-panel hoverable wow fadeInUp"
+             ng-if="mainVm.googleMapApiReady">
             <ce-google-map-position></ce-google-map-position>
         </div>
 
-        <div class="btn btn-success categories-button" ng-if="mainVm.state">
-            <a href="#/category">Checkout categories around you!</a>
-        </div>
     </div>
-</div>
 
+    <div class="col-md-6">
+        <!--Image Card-->
+        <div class="card hoverable">
+            <div class="card-image">
+                <div class="view overlay hm-white-slight z-depth-1">
+                    <img src="http://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive" alt="">
+                    <a href="#">
+                        <div class="mask waves-effect"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="card-content">
+                <h5>Museum</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
+            </div>
+            <!--Buttons-->
+            <div class="card-btn text-center">
+                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                   ng-if="mainVm.user.connected">See now!</a>
+            </div>
+            <!--/.Buttons-->
+        </div>
+        <!--Image Card-->
+    </div>
+
+    <div class="col-md-6">
+        <!--Image Card-->
+        <div class="card hoverable">
+            <div class="card-image">
+                <div class="view overlay hm-white-slight z-depth-1">
+                    <img src="http://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive" alt="">
+                    <a href="#">
+                        <div class="mask waves-effect"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="card-content">
+                <h5>Bar</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
+            </div>
+            <!--Buttons-->
+            <div class="card-btn text-center">
+                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                   ng-if="mainVm.user.connected">See now!</a>
+            </div>
+            <!--/.Buttons-->
+        </div>
+        <!--Image Card-->
+    </div>
+
+    <div class="col-md-6">
+        <!--Image Card-->
+        <div class="card hoverable">
+            <div class="card-image">
+                <div class="view overlay hm-white-slight z-depth-1">
+                    <img src="http://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive" alt="">
+                    <a href="#">
+                        <div class="mask waves-effect"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="card-content">
+                <h5>Cafe</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
+            </div>
+            <!--Buttons-->
+            <div class="card-btn text-center">
+                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                   ng-if="mainVm.user.connected">See now!</a>
+            </div>
+            <!--/.Buttons-->
+        </div>
+        <!--Image Card-->
+    </div>
+
+    <div class="col-md-6">
+        <!--Image Card-->
+        <div class="card hoverable">
+            <div class="card-image">
+                <div class="view overlay hm-white-slight z-depth-1">
+                    <img src="http://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive" alt="">
+                    <a href="#">
+                        <div class="mask waves-effect"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="card-content">
+                <h5>Club</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
+            </div>
+            <!--Buttons-->
+            <div class="card-btn text-center">
+                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                   ng-if="mainVm.user.connected">See now!</a>
+            </div>
+            <!--/.Buttons-->
+        </div>
+        <!--Image Card-->
+    </div>
+
+    <div class="col-md-6">
+        <!--Image Card-->
+        <div class="card hoverable">
+            <div class="card-image">
+                <div class="view overlay hm-white-slight z-depth-1">
+                    <img src="http://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive" alt="">
+                    <a href="#">
+                        <div class="mask waves-effect"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="card-content">
+                <h5>Hotel</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
+            </div>
+            <!--Buttons-->
+            <div class="card-btn text-center">
+                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                   ng-if="mainVm.user.connected">See now!</a>
+            </div>
+            <!--/.Buttons-->
+        </div>
+        <!--Image Card-->
+    </div>
+
+    <div class="col-md-6">
+        <!--Image Card-->
+        <div class="card hoverable">
+            <div class="card-image">
+                <div class="view overlay hm-white-slight z-depth-1">
+                    <img src="http://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive" alt="">
+                    <a href="#">
+                        <div class="mask waves-effect"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="card-content">
+                <h5>Restaurant</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
+            </div>
+            <!--Buttons-->
+            <div class="card-btn text-center">
+                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                   ng-if="mainVm.user.connected">See now!</a>
+            </div>
+            <!--/.Buttons-->
+        </div>
+        <!--Image Card-->
+    </div>
+
+</div>

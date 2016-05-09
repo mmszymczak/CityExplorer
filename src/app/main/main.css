@@ -1,24 +1,3 @@
-.categories-button {
-    width: 360px;
-    padding: 25px;
-    margin: 30px;
-}
-
-.categories-button a {
-    font-size: 21px;
-    color: #fff;
-}
-
-#map_canvas {
-    width: 100%;
-    height: 500px;
-}
-
-.main-info{
-    color: white;
-    padding: 0 15px;
-    width: 100%;
-}
 
 .there-is-more {
    text-align: center;
@@ -32,29 +11,11 @@
    padding: 5px;
 }
 
-
-.main-info h3 {
-    background: rgba(164, 139, 93, 0.72);
-    padding: 3px 0;
-}
-
 #current {
     background-color: #FFF;
     padding: 25px;
 }
 
-div#loginStatus {
-    color: white;
-    font-size: 27px;
-    padding: 10px;
-    margin-bottom: 30px;
-}
-div#loginStatus p {
-    background: rgba(165, 141, 87, 0.76);
-    width: 420px;
-    font-weight: 400;
-    margin: 0 auto;
-}
 .filter {
     background: rgba(97, 137, 138, 0.48);
     min-height: 100vh;
@@ -73,135 +34,5 @@ div#loginStatus p {
     padding-top: 45px;
 }
 
-.container .jumbotron {
-    margin-bottom: 0;
-}
 
-.container .jumbotron, .container-fluid .jumbotron {
-    background-image: url('../../assets/images/main.jpg');
-    border-radius: 0;
-    min-height: 100vh;
-    position: relative;
-    padding: 0;
-}
-
-* {
-    outline: none;
-}
-
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-html {
-  background: #E9EAED;
-}
-
-body {
-  background: #E9EAED;
-  margin: 0;
-  padding: 0;
-  font-family: 'Lato', sans-serif;
-}
-
-.login-form-wrap {
-  background: #5170ad;
-  background: -moz-radial-gradient(center, ellipse cover, #5170ad 0%, #355493 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #5170ad), color-stop(100%, #355493));
-  background: -webkit-radial-gradient(center, ellipse cover, #5170ad 0%, #355493 100%);
-  background: -o-radial-gradient(center, ellipse cover, #5170ad 0%, #355493 100%);
-  background: -ms-radial-gradient(center, ellipse cover, #5170ad 0%, #355493 100%);
-  background: radial-gradient(ellipse at center, #5170ad 0%, #355493 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5170ad', endColorstr='#355493',GradientType=1 );
-  border: 1px solid #2d416d;
-  box-shadow: 0 1px #5670A4 inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  position: relative;
-  max-width: 360px;
-  height: 200px;
-  margin: 240px auto 60px auto;
-  padding: 40px 30px 0 30px;
-  text-align: center;
-}
-
-.thumbnail img.pull-right {
-    width: 100px;
-    height: 100px;
-}
-
-.header-title {
-    margin-top: 5px;
-}
-
-.login-form-wrap > h1 {
-  margin: 0 0 30px 0;
-  padding: 0;
-  font-size: 26px;
-  color: #fff;
-}
-.login-form-wrap > h5 {
-  margin-top: 40px;
-}
-.login-form-wrap > h5 > a {
-  font-size: 14px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 400;
-}
-
-.login-form input[type="submit"] {
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
-  background: #e0e0e0;
-  background: -moz-linear-gradient(top, #e0e0e0 0%, #cecece 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e0e0e0), color-stop(100%, #cecece));
-  background: -webkit-linear-gradient(top, #e0e0e0 0%, #cecece 100%);
-  background: -o-linear-gradient(top, #e0e0e0 0%, #cecece 100%);
-  background: -ms-linear-gradient(top, #e0e0e0 0%, #cecece 100%);
-  background: linear-gradient(to bottom, #e0e0e0 0%, #cecece 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0e0e0', endColorstr='#cecece',GradientType=0 );
-  display: block;
-  margin: 20px auto 0 auto;
-  width: 100%;
-  border: none;
-  border-radius: 3px;
-  padding: 8px;
-  font-size: 17px;
-  color: #636363;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
-  font-weight: 700;
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.17), 0 1px 0 rgba(255, 255, 255, 0.36) inset;
-}
-.login-form input[type="submit"]:hover {
-  background: #DDD;
-}
-.login-form input[type="submit"]:active {
-  padding-top: 9px;
-  padding-bottom: 7px;
-  background: #C9C9C9;
-}
-.footer {
-    width: 100%;
-    background: #4665A2;
-    color: white;
-}
-.footer p {
-    padding: 20px;
-    float: left;
-    margin: 0;
-}
-
-.footer ul {
-    float: right;
-    list-style: none;
-    padding: 20px;
-    margin: 0;
-}
-
-.footer ul li {
-    display: inline;
-    margin: 0 10px;
-}
 

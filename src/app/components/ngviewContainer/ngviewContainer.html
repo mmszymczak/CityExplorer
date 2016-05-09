@@ -1,17 +1,31 @@
-<div class="container">
+<ce-nav-bar></ce-nav-bar>
 
-    <ce-nav-bar></ce-nav-bar>
+<div id="mydiv" spinner><img src="../../assets/images/loading.gif"></div>
 
-    <div id="mydiv" spinner><img src="../../assets/images/loading.gif"></div>
+<div ng-view></div>
 
-    <div ng-view></div>
-
-    <div class="footer col-md-12 col-sm-12">
-        <p>©2016 BLStream. All rights Reserved. Hołdu Pruskiego 9, 70-550 Szczecin, Poland </p>
-        <ul>
-            <li>Contact</li>
-            <li>About</li>
-
-        </ul>
+<footer class="page-footer blue center-on-small-only">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="white-text">Footer Content</h3>
+            </div>
+            <div class="col-md-6">
+                <h5 class="white-text">Categories:</h5>
+                <ul class="footer-list">
+                    <li><a class="grey-text text-lighten-3" href="">Museum</a></li>
+                    <li><a class="grey-text text-lighten-3" href="">Bar</a></li>
+                    <li><a class="grey-text text-lighten-3" href="">Cafe</a></li>
+                    <li><a class="grey-text text-lighten-3" href="">Club</a></li>
+                    <li><a class="grey-text text-lighten-3" href="">Hotel</a></li>
+                    <li><a class="grey-text text-lighten-3" href="">Restaurant</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-</div>
+    <div class="footer-copyright text-center rgba-black-light">
+        <div class="container-fluid">
+            © 2016 Copyright M@lfi
+        </div>
+    </div>
+</footer>
