@@ -10,22 +10,17 @@
     function ceGoogleMapRoutes(GeolocationService, $localStorage) {
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/components/googleMap/googlemap.html',
+            templateUrl: 'app/components/googleMapRoutes/googleMapRoutes.html',
+            scope: {
+                favchanged: '='
+            },
             link: linkFunc
         };
         return directive;
 
-    // execute linkFunc, when $localStorage is changed? idk
-        // function init(scope) {
-        //     scope.$watch(function () { return $localStorage.items; },function(newVal,oldVal){
-        //        if(oldVal!==newVal && newVal === undefined){
-        //       }
-        //     })
-        // }
+        function linkFunc(scope){
 
-        function linkFunc(){
-
-            initMap();
+            scope.$watch('favchanged', initMap, true);
 
             function initMap() {
                 GeolocationService.actualPosition()
@@ -37,7 +32,7 @@
                             center: pointA
                         },
 
-                        map = new google.maps.Map(document.getElementById("map"), myOptions),
+                        map = new google.maps.Map(document.getElementById("map_favorite"), myOptions),
                         directionsService = new google.maps.DirectionsService,
                         directionsDisplay = new google.maps.DirectionsRenderer({
                             map: map
@@ -58,7 +53,6 @@
                         destinationForWaypoints = [],
                         endLocation, PointB,
                         waypoints = [];
-
                     destinationPlaces.forEach(function(element,index) {
                         if (destinationsID.includes(element.id)) {
                             destinationForWaypoints.push(destinationPlaces[index]);

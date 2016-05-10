@@ -1,33 +1,43 @@
-<div class="jumbotron text-center">
-    <div class="filter">
-        <div class="row">
-        <div>
-            <div class="col-sm-12 col-md-12 slide"
-            ng-repeat="item in favoriteVm.favoriteList" ng-drop="true" ng-drop-success="favoriteVm.onDropComplete($index,$data,$event)">
-                <div ng-drag="true"
-                ng-drag-data="item">
-                    <div class="thumbnail thumbnail-favorite">
-                        <div class="caption">
-                            <div class="checkbox">
-                                <button type="button" class="btn btn-danger btn-xs"
-                                ng-click="favoriteVm.removeFavorite(item)">Remove from favorite</button>
-                                <a class="thumbnail-favorite"
-                                href="#/category/{{favoriteVm.route}}/{{item.id}}"><button class="btn btn-classic btn-xs">Check this place!</button></a>
-                              <label><input type="checkbox" ng-click="favoriteVm.addToMap(item.id)"
-                              ng-checked="favoriteVm.checkIfClicked(item.id)"
-                              ng-disabled="favoriteVm.checkDisable(item.id)">Szukaj na mapie</label>
-                            </div>
-                            <img class="pull-right" ng-src="{{item.picture.data.url}}">
-                            <h3 class="header-title">{{ item.name }}</h3>
-                            <p class="address">{{ item.location.street }}</p>
-                        </div>
-                    </div>
+<div class="container trip-planner">
+
+    <div class="trip-planner__description text-center">
+        <h1>Plan your own trip!</h1>
+        <h2>Drag and drop list items to organize stops from start to end</h2>
+    </div>
+
+    <ul class="collection trip-planner__list">
+        <li class="collection-item avatar"
+            ng-repeat="item in favoriteVm.favoriteList"
+            ng-drop="true"
+            ng-drop-success="favoriteVm.onDropComplete($index,$data,$event)">
+            <div class="collection-item__body" ng-drag="true" ng-drag-data="item" draggable="false">
+                <img ng-src="{{item.picture.data.url}}" alt="" class="circle">
+                <div class="title-wrapper">
+                    <span class="title">{{ item.name }}</span><br>
+                    <span>{{ item.location.street }}</span>
+                </div>
+                <div class="secondary-content collection-item__body__buttons">
+                    <a class="btn-floating btn-large waves-effect waves-light red"
+                       ng-click="favoriteVm.removeFavorite(item)">
+                        <i class="material-icons">delete_forever</i>
+                    </a>
+                    <a class="btn-floating btn-large waves-effect waves-light blue"
+                       href="#/category//{{item.id}}">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                    </a>
+                    <label><input type="checkbox"
+                                  ng-click="favoriteVm.addToMap(item.id)"
+                                  ng-checked="favoriteVm.checkIfClicked(item.id)"
+                                  ng-disabled="favoriteVm.checkDisable(item.id)">Show on map</label>
                 </div>
             </div>
-            <div class="col-md-12 col-sm-12" ng-if="favoriteVm.googleMapApiReady && favoriteVm.state">
-                <ce-google-map-routes></google-map-routes>
-            </div>
-        </div>
-        </div>
+        </li>
+    </ul>
+
+    <div class="col-md-12 col-sm-12 mapper card-panel hoverable wow fadeInUp trip-planner__map"
+         ng-if="favoriteVm.googleMapApiReady && favoriteVm.user.connected">
+        <ce-google-map-routes favchanged='favoriteVm.$storage'></ce-google-map-routes>
     </div>
 </div>
+
+

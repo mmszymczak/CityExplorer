@@ -5,24 +5,21 @@
         .module('project')
         .controller('FavoritePlacesController', FavoritePlacesController);
 
-    FavoritePlacesController.$inject = ['$scope', '$route', 'FacebookService', 'userService', 'googleMapPositionService', 'cacheService', '$localStorage', '$sessionStorage'];
+    FavoritePlacesController.$inject = ['FacebookService', 'userService', 'googleMapPositionService', '$localStorage'];
 
-    function FavoritePlacesController($scope, $route, FacebookService, userService, googleMapPositionService, cacheService, $localStorage) {
+    function FavoritePlacesController(FacebookService, userService, googleMapPositionService, $localStorage) {
         var favoriteVm = this;
 
         favoriteVm.$storage = $localStorage;
         favoriteVm.favoriteList = favoriteVm.$storage.items;
         favoriteVm.user = userService.user;
         favoriteVm.removeFavorite = removeFavorite;
-        favoriteVm.ready = false;
-        favoriteVm.googleMapApiReady;
-        favoriteVm.state;
+        favoriteVm.googleMapApiReady = false;
         favoriteVm.onDropComplete = onDropComplete;
-        favoriteVm.activate = activate;
         favoriteVm.addToMap = addToMap;
         favoriteVm.$storage.clicked = favoriteVm.$storage.clicked || [];
         favoriteVm.checkIfClicked = checkIfClicked;
-        favoriteVm.limitToCheck = 4;
+        favoriteVm.limitToCheck = 9;
         favoriteVm.checkDisable = checkDisable;
 
         activate();
@@ -30,7 +27,6 @@
         function activate() {
             FacebookService.checkLoginState()
                 .then(function(){
-                    favoriteVm.ready = true;
                     initGoogleMapApi();
                 });
         }
@@ -41,13 +37,6 @@
                 favoriteVm.googleMapApiReady = true;
             });
         }
-
-        $scope.$watch(function(){
-            return favoriteVm.user.connected;
-        }, function(state){
-            favoriteVm.state = state;
-        });
-
 
         function removeFavorite(item) {
             favoriteVm.$storage.items.forEach(function(element,index){
@@ -68,12 +57,12 @@
         }
 
 
-		function onDropComplete(index, obj){
-		var otherObj = favoriteVm.favoriteList[index],
-			otherIndex = favoriteVm.favoriteList.indexOf(obj);
-		favoriteVm.favoriteList[index] = obj;
-		favoriteVm.favoriteList[otherIndex] = otherObj;
-		}
+        function onDropComplete(index, obj){
+            var otherObj = favoriteVm.favoriteList[index],
+                otherIndex = favoriteVm.favoriteList.indexOf(obj);
+            favoriteVm.favoriteList[index] = obj;
+            favoriteVm.favoriteList[otherIndex] = otherObj;
+        }
 
         function addToMap(id) {
             if (favoriteVm.$storage.clicked.includes(id)) {
