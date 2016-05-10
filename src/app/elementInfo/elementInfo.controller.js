@@ -59,7 +59,6 @@
             FacebookService.getDetails($routeParams.element)
                 .then(function(response){
                     infoVm.elemInfo = response;
-                    console.log(infoVm.elemInfo);
                     return response;
                 })
                 .then(function(data){

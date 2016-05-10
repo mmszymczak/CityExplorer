@@ -5,9 +5,9 @@
         .module('project')
         .controller('ShowResultsController', ShowResultsController);
 
-    ShowResultsController.$inject = ['$q', 'categories', '$location', '$window', 'errorHandling', 'cacheService', 'FacebookService', '$routeParams', '$scope', '$localStorage', '$sessionStorage'];
+    ShowResultsController.$inject = ['$q', 'categories', '$location', '$window', 'errorHandling', 'cacheService', 'FacebookService', '$routeParams', '$scope', '$localStorage'];
 
-    function ShowResultsController($q, categories, $location, $window, errorHandling, cacheService, FacebookService, $routeParams, $scope, $localStorage, $sessionStorage) {
+    function ShowResultsController($q, categories, $location, $window, errorHandling, cacheService, FacebookService, $routeParams, $scope, $localStorage) {
         var resultVm = this;
         
         resultVm.addFavorite = addFavorite;
@@ -114,7 +114,7 @@
 
         function hideButtonAddFav(item) {
             var hideButton = false;
-            resultVm.$storage.items.forEach(function(element,index,array) {
+            resultVm.$storage.items.forEach(function(element,index) {
                 if (element.id === item.id && element.favorite) {
                     hideButton = true;
                 }

@@ -38,7 +38,6 @@
                     map.setCenter(myMarker.position);
                     myMarker.setMap(map);
                 });
-                console.log("tutaj");
             }
         };
         return directive;

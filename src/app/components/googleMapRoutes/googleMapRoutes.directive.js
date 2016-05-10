@@ -23,13 +23,7 @@
         //     })
         // }
 
-        function linkFunc(scope){
-
-            scope.$watch(function(){
-                return $localStorage.items;
-            }, function(state){
-                console.log(state);
-            });
+        function linkFunc(){
 
             initMap();
 
@@ -74,14 +68,14 @@
                     endLocation = destinationForWaypoints[destinationForWaypoints.length-1];
 
                     if (endLocation) {
-                        PointB = endLocation.location.latitude + " " + endLocation.location.longitude;
+                        PointB = new google.maps.LatLng(endLocation.location.latitude, endLocation.location.longitude)
                     } else {
                         PointB = ''
                     }
 
-                    destinationForWaypoints.forEach(function(element,index) {
+                    destinationForWaypoints.forEach(function(element) {
                         waypoints.push({
-                            location: element.location.latitude + " " + element.location.longitude
+                            location: new google.maps.LatLng(element.location.latitude, element.location.longitude)
                         });
                     });
 

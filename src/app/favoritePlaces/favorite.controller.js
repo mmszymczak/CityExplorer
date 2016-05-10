@@ -5,9 +5,9 @@
         .module('project')
         .controller('FavoritePlacesController', FavoritePlacesController);
 
-    FavoritePlacesController.$inject = ['$scope', '$route', 'FacebookService', 'userService', 'googleMapPositionService', 'cacheService', '$localStorage', '$sessionStorage', 'errorHandling'];
+    FavoritePlacesController.$inject = ['$scope', '$route', 'FacebookService', 'userService', 'googleMapPositionService', 'cacheService', '$localStorage', '$sessionStorage'];
 
-    function FavoritePlacesController($scope, $route, FacebookService, userService, googleMapPositionService, cacheService, $localStorage, errorHandling) {
+    function FavoritePlacesController($scope, $route, FacebookService, userService, googleMapPositionService, cacheService, $localStorage) {
         var favoriteVm = this;
 
         favoriteVm.$storage = $localStorage;
@@ -50,7 +50,7 @@
 
 
         function removeFavorite(item) {
-            favoriteVm.$storage.items.forEach(function(element,index,array){
+            favoriteVm.$storage.items.forEach(function(element,index){
                 if (item.id === element.id) {
                     favoriteVm.indexToDelete = index;
                 }
@@ -68,16 +68,16 @@
         }
 
 
-	    function onDropComplete(index, obj, evt){
-	        var otherObj = favoriteVm.favoriteList[index];
-            var otherIndex = favoriteVm.favoriteList.indexOf(obj);
-           	favoriteVm.favoriteList[index] = obj;
-            favoriteVm.favoriteList[otherIndex] = otherObj;
-	    }
+		function onDropComplete(index, obj){
+		var otherObj = favoriteVm.favoriteList[index],
+			otherIndex = favoriteVm.favoriteList.indexOf(obj);
+		favoriteVm.favoriteList[index] = obj;
+		favoriteVm.favoriteList[otherIndex] = otherObj;
+		}
 
         function addToMap(id) {
             if (favoriteVm.$storage.clicked.includes(id)) {
-                favoriteVm.$storage.clicked = favoriteVm.$storage.clicked.filter(function(element,index,array) {
+                favoriteVm.$storage.clicked = favoriteVm.$storage.clicked.filter(function(element) {
                     return (element !== id);
                 });
             } else {
