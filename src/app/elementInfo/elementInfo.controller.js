@@ -28,7 +28,7 @@
         function showPosts(){
             if(!infoVm.isPosts){
                 infoVm.isPosts = true;
-                if(typeof infoVm.elemInfo.posts == 'undefined' || infoVm.elemInfo.posts.lenth == 0){
+                if(typeof infoVm.elemInfo.posts == 'undefined' || infoVm.elemInfo.posts.length == 0){
                     FacebookService.getComments($routeParams.element)
                         .then(function(response){
                             infoVm.elemInfo['posts'] = response;

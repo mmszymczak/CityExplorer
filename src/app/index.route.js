@@ -27,6 +27,11 @@
             controller: 'ElementInfoController',
             controllerAs: 'infoVm'
         })
+        .when('/favorite', {
+            templateUrl: 'app/favoritePlaces/favorite.html',
+            controller: 'FavoritePlacesController',
+            controllerAs: 'favoriteVm'
+        })
         .otherwise({
             redirectTo: '/'
         });
