@@ -11,9 +11,11 @@
 
         var self = this;
         self.list = {};
+
         self.getCache = getCache;
         self.saveCache = saveCache;
         self.clearCache = clearCache;
+
 
         buildingScaffolding();
 

@@ -23,8 +23,8 @@
                     <a id="user-button simple-dropdown" data-toggle="dropdown" role="button" aria-expanded="false">
                         <img ng-src="{{navBarVm.user.picture}}">
                     </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a tabindex="-1" class="dropdown-header">Account info</a></li>
+                    <ul class="dropdown-menu user-dropdown" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                        <li><a tabindex="-1" href="#/favorite/" class="dropdown-header">Favorite places</a></li>
                         <li class="divider"></li>
                         <li><a tabindex="-1" href="#/" ng-click="navBarVm.logoutFB();">Log out</a></li>
                     </ul>
