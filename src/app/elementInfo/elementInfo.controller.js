@@ -5,9 +5,9 @@
         .module('project')
         .controller('ElementInfoController', ElementInfoController);
 
-    ElementInfoController.$inject = ['cacheService', '$routeParams', 'errorHandling', 'FacebookService', 'userService', 'googleMapPositionService'];
+    ElementInfoController.$inject = ['cacheService', '$routeParams', 'errorHandling', 'FacebookService', 'userService', 'googleMapPositionService', '$localStorage'];
 
-    function ElementInfoController(cacheService, $routeParams, errorHandling, FacebookService, userService, googleMapPositionService) {
+    function ElementInfoController(cacheService, $routeParams, errorHandling, FacebookService, userService, googleMapPositionService, $localStorage) {
         var infoVm = this;
 
         infoVm.elemInfo = [];
@@ -17,6 +17,11 @@
         infoVm.googleMapApiReady = false;
         infoVm.isPosts = false;
         infoVm.showPosts = showPosts;
+
+        infoVm.addFavorite = addFavorite;
+        infoVm.$storage = $localStorage;
+        infoVm.$storage.items = infoVm.$storage.items || [];
+        infoVm.hideButtonAddFav = hideButtonAddFav;
 
         activate();
 
@@ -68,6 +73,22 @@
                 .catch(function(err){
                     errorHandling.errorFunc(err);
                 });
+        }
+
+        function addFavorite(item) {
+            console.log(item);
+            item.favorite = true;
+            infoVm.$storage.items.push(item);
+        }
+
+        function hideButtonAddFav(item) {
+            var hideButton = false;
+            infoVm.$storage.items.forEach(function(element) {
+                if (element.id === item.id && element.favorite) {
+                    hideButton = true;
+                }
+            });
+            return hideButton;
         }
 
     }

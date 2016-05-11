@@ -19,6 +19,24 @@ body { padding: 0; font-family: 'Lato', sans-serif; }
         }
     }
     .mapper {
-        #current { text-align: center; }
+        #current { text-align: center; background-color: #FFF; padding: 25px; font-size: 20px; }
     }
+}
+
+.filter {
+    background: rgba(97, 137, 138, 0.48);
+    min-height: 100vh;
+    padding: 45px 60px 45px 60px;
+}
+
+.main-filter {
+    background: rgba(183, 183, 183, 0.49);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding-right: 60px;
+    padding-left: 60px;
+    padding-top: 45px;
 }

@@ -32,6 +32,18 @@
   font-size: 32px;
   line-height: 41px;
 }
+.trip-planner__list .collection-item__body__buttons .location-wrapper {
+  position: relative;
+}
+.trip-planner__list .collection-item__body__buttons .location-wrapper input {
+  display: none;
+}
+.trip-planner__list .collection-item__body__buttons .location-wrapper .location {
+  font-size: 47px;
+  bottom: -24px;
+  position: absolute;
+  right: 135px;
+}
 .trip-planner__map #map_favorite {
   width: 100%;
   height: 550px;

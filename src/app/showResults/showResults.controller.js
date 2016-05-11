@@ -5,19 +5,15 @@
         .module('project')
         .controller('ShowResultsController', ShowResultsController);
 
-    ShowResultsController.$inject = ['$q', 'categories', '$location', '$window', 'errorHandling', 'cacheService', 'FacebookService', '$routeParams', '$localStorage'];
+    ShowResultsController.$inject = ['$q', 'categories', '$location', '$window', 'errorHandling', 'cacheService', 'FacebookService', '$routeParams'];
 
-    function ShowResultsController($q, categories, $location, $window, errorHandling, cacheService, FacebookService, $routeParams, $localStorage) {
+    function ShowResultsController($q, categories, $location, $window, errorHandling, cacheService, FacebookService, $routeParams) {
         var resultVm = this;
 
-        resultVm.addFavorite = addFavorite;
         resultVm.listByCategory = {};
         resultVm.actualCategory = '';
         resultVm.loadMoreData = loadMoreData;
         resultVm.pagingNext = '';
-        resultVm.$storage = $localStorage;
-        resultVm.$storage.items = resultVm.$storage.items || [];
-        resultVm.hideButtonAddFav = hideButtonAddFav;
 
         activate();
 
@@ -100,21 +96,6 @@
             angular.forEach(resultVm.listByCategory, function(awesomeThing) {
                 awesomeThing.rank = Math.random();
             });
-        }
-
-        function addFavorite(item) {
-            item.favorite = true;
-            resultVm.$storage.items.push(item);
-        }
-
-        function hideButtonAddFav(item) {
-            var hideButton = false;
-            resultVm.$storage.items.forEach(function(element) {
-                if (element.id === item.id && element.favorite) {
-                    hideButton = true;
-                }
-            });
-            return hideButton;
         }
 
     }

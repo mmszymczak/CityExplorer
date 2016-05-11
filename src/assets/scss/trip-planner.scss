@@ -15,6 +15,10 @@
                         width: 40px; height: 40px;
                         i { font-size: 32px; line-height: 41px; }
                     }
+                    .location-wrapper { position: relative;
+                        input { display: none; }
+                        .location { font-size: 47px; bottom: -24px; position: absolute; right: 135px; }
+                    }
                 }
             }
         }

@@ -7,6 +7,10 @@
                     <img class="pull-right"
                         ng-src="{{infoVm.elemInfo.picture.data.url}}">
                         <h3 class="likes">{{infoVm.elemInfo.engagement.social_sentence}}</h3>
+                        <button type="button" class="btn btn-success btn-xs"
+                        ng-click="infoVm.addFavorite(infoVm.elemInfo)"
+                        ng-if="!infoVm.hideButtonAddFav(infoVm.elemInfo)"
+                        >Add to favorite!</button>
                     <div class="caption">
                         <h3>{{infoVm.elemInfo.name}}</h3>
                         <h4>{{infoVm.elemInfo.category}}</h4>
