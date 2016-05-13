@@ -11,6 +11,10 @@
     "inject": true,
     "FB": true,
     "google": true,
-    "Firebase": true
+    "Firebase": true,
+    "geoplugin_longitude": true,
+    "geoplugin_latitude": true,
+    "geoplugin_city": true,
+    "geoplugin_countryName" : true
   }
 }

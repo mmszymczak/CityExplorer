@@ -1,10 +1,7 @@
 <div class="row info-wrapper comments-wrapper">
-    <div ng-click="elemComVm.showComments()">
-        <h3 class="comments-header">
-            <span class="caret"></span>
-            Comments left by users
-            <span class="caret"></span>
-        </h3>
+    <div class="comments-header-wrap"
+         ng-click="elemComVm.showComments()">
+        <h3 class="comments-header"><span class="caret"></span>Comments left by users<span class="caret"></span></h3>
     </div>
     <div class="const-box" ng-if="elemComVm.isComment">
         <div class="line"></div>

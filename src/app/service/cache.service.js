@@ -16,14 +16,7 @@
         self.saveCache = saveCache;
         self.clearCache = clearCache;
 
-
-        buildingScaffolding();
-
-        function buildingScaffolding(){
-            categories.forEach(function(item){
-                self.list[item] = [];
-            });
-        }
+        clearCache();
 
         function saveCache(category, list){
             self.list[category] = list;
@@ -34,7 +27,9 @@
         }
 
         function clearCache() {
-            buildingScaffolding();
+            categories.forEach(function(item){
+                self.list[item] = [];
+            });
         }
 
     }

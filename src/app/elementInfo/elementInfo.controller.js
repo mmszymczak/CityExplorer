@@ -5,9 +5,9 @@
         .module('project')
         .controller('ElementInfoController', ElementInfoController);
 
-    ElementInfoController.$inject = ['cacheService', '$routeParams', 'errorHandling', 'FacebookService', 'userService', 'googleMapPositionService', '$localStorage'];
+    ElementInfoController.$inject = ['cacheService', '$routeParams', 'errorHandling', 'FacebookService', 'userService', 'googleMapPositionService', '$localStorage', 'firebaseService'];
 
-    function ElementInfoController(cacheService, $routeParams, errorHandling, FacebookService, userService, googleMapPositionService, $localStorage) {
+    function ElementInfoController(cacheService, $routeParams, errorHandling, FacebookService, userService, googleMapPositionService, $localStorage, firebaseService) {
         var infoVm = this;
 
         infoVm.elemInfo = [];
@@ -76,9 +76,9 @@
         }
 
         function addFavorite(item) {
-            console.log(item);
             item.favorite = true;
             infoVm.$storage.items.push(item);
+            firebaseService.addToFavorite(item);
         }
 
         function hideButtonAddFav(item) {

@@ -10,6 +10,7 @@
     function userService() {
         //  when user logged in whole informations load here
         var user = {
+            id: null,
             connected: false,
             picture: '',
             first_name: '',

@@ -5,9 +5,9 @@
         .module('project')
         .controller('ElementCommentsController', ElementCommentsController);
 
-    ElementCommentsController.$inject = ['$scope', 'userService', '$routeParams', 'firebaseService'];
+    ElementCommentsController.$inject = ['userService', '$routeParams', 'firebaseService'];
 
-    function ElementCommentsController($scope, userService, $routeParams, firebaseService) {
+    function ElementCommentsController(userService, $routeParams, firebaseService) {
         var elemComVm = this;
 
         elemComVm.actualPlace = $routeParams.element;
@@ -20,6 +20,7 @@
         elemComVm.sendComment = sendComment;
         elemComVm.commentsArray = [];
         elemComVm.initForm = initForm;
+        elemComVm.makeDate = makeDate;
         elemComVm.submitted=true;
         elemComVm.readyToUse = true;
 
@@ -35,7 +36,7 @@
                 rate: 0,
                 surname: '',
                 name: ''
-            }
+            };
         }
 
         function makeDate() {

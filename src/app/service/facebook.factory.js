@@ -5,9 +5,9 @@
         .module('project')
         .factory('FacebookService', FacebookService);
 
-    FacebookService.$inject = ['$window', '$location', 'errorHandling', '$timeout', 'GeolocationService', '$q', 'userService'];
+    FacebookService.$inject = ['$window', '$location', 'errorHandling', 'firebaseService', '$timeout', 'GeolocationService', '$q', 'userService'];
 
-    function FacebookService($window, $location, errorHandling, $timeout, GeolocationService, $q, userService) {
+    function FacebookService($window, $location, errorHandling, firebaseService, $timeout, GeolocationService, $q, userService) {
         var service = {
             checkLoginState: checkLoginState,
             login: login,
@@ -23,12 +23,29 @@
             getDetails: getDetails,
             getComments: getComments,
             getMoreData: getMoreData,
+            getUploadedPhotos: getUploadedPhotos,
             loginResponse: ''
         };
 
         return service;
 
-        // service functions to return
+        function getUploadedPhotos(id) {
+            var deferred = $q.defer();
+            FB.api(
+                '/'+id+'/photos',
+                'GET',
+                {"type":"uploaded","fields":"id,name,source"},
+                function(response) {
+                    if (!response || response.error) {
+                        deferred.reject('An error occurred while retrieving data');
+                    } else {
+                        deferred.resolve(response);
+                    }
+                }
+            );
+            return deferred.promise;
+        }
+
         function setRange(range) {
             service.rangeDistance = range;
         }
@@ -157,26 +174,32 @@
             return deferred.promise;
         }
 
-        function getClubs(){
+        function getClubs(){    /// danceing party
+            var queries = ['club', 'disco', 'nightclub', 'dance', 'discotheque', 'party'];
+            var fullArray = [];
             var deferred = $q.defer();
             GeolocationService.actualPosition()
             .then(function(position){
-                FB.api(
-                    '/search',
-                    'GET',
-                    {"q":"club",
-                    "type":"place",
-                    "center": position.latitude+","+position.longitude ,
-                    "distance": service.rangeDistance,
-                    "fields":["hours","category","name", "location", "picture.type(large)"]},
-                    function(response) {
-                        if (!response || response.error) {
-                            deferred.reject('An error occurred while retrieving data');
-                        } else {
-                            deferred.resolve(response);
+                angular.forEach(queries, function(query){
+                    FB.api(
+                        '/search',
+                        'GET', {
+                        "q": query,
+                        "type":"place",
+                        "center": position.latitude+","+position.longitude ,
+                        "distance": service.rangeDistance,
+                        "fields":["hours","category","name", "location", "picture.type(large)"]
+                        },
+                        function(response) {
+                            if (!response || response.error) {
+                                deferred.reject('An error occurred while retrieving data');
+                            } else {
+                                fullArray.push(response);
+                                deferred.resolve(response);
+                            }
                         }
-                    }
-                );
+                    );
+                });
             });
             return deferred.promise;
         }
@@ -234,7 +257,7 @@
             FB.api(
                 '/me',
                 'GET',
-                {"fields":["name","picture","first_name","last_name","hometown","location","link"]},
+                {"fields":["id","name","picture","first_name","last_name","hometown","location","link"]},
                 function(response) {
                     if (!response || response.error) {
                         deferred.reject('An error occurred while retrieving data');
@@ -246,12 +269,17 @@
             );
             deferred.promise.then(function(response){
                 service.loginResponse = 'Thanks for logging in, ' + response.name + '!';
+                userService.user.id = response.id;
                 userService.user.first_name = response.first_name;
                 userService.user.last_name = response.last_name;
                 userService.user.full_name = response.name;
                 userService.user.profile_link = response.link;
                 userService.user.picture = response.picture.data.url;
                 userService.user.happy = true;
+
+                return userService.user;
+            }).then(function(userObj){
+                firebaseService.addUser(userObj);
             });
         }
 

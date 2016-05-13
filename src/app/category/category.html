@@ -2,8 +2,9 @@
     <div class="filter">
         <div class="row">
             <div class="range-slider-wrapper">
-                <h3>This slider change the search area</h3>
-                <input type="range" min="100" max="2000" step="100"
+                <h3>Change the search area:</h3>
+                <input type="range"
+                       min="100" max="3000" step="100"
                        ng-model="categoryVm.rangeModel"
                        ng-change="categoryVm.setRange()" />
                 <h2>{{categoryVm.rangeModel}} meters</h2>
