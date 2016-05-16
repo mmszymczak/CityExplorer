@@ -5,9 +5,9 @@
         .module('project')
         .factory('FacebookService', FacebookService);
 
-    FacebookService.$inject = ['$window', '$location', 'errorHandling', 'firebaseService', '$timeout', 'GeolocationService', '$q', 'userService'];
+    FacebookService.$inject = ['$rootScope', '$window', '$location', 'errorHandling', 'firebaseService', '$timeout', 'GeolocationService', '$q', 'userService', 'cacheService'];
 
-    function FacebookService($window, $location, errorHandling, firebaseService, $timeout, GeolocationService, $q, userService) {
+    function FacebookService($rootScope, $window, $location, errorHandling, firebaseService, $timeout, GeolocationService, $q, userService, cacheService) {
         var service = {
             checkLoginState: checkLoginState,
             login: login,
@@ -268,19 +268,37 @@
                 }
             );
             deferred.promise.then(function(response){
+                var user = saveUserData(response);
                 service.loginResponse = 'Thanks for logging in, ' + response.name + '!';
-                userService.user.id = response.id;
-                userService.user.first_name = response.first_name;
-                userService.user.last_name = response.last_name;
-                userService.user.full_name = response.name;
-                userService.user.profile_link = response.link;
-                userService.user.picture = response.picture.data.url;
-                userService.user.happy = true;
-
-                return userService.user;
+                return user;
             }).then(function(userObj){
                 firebaseService.addUser(userObj);
+                loadUserPlaces(userObj);
             });
+            return deferred.promise;
+        }
+
+        function loadUserPlaces(userObj) {
+            firebaseService.getFavoritePlaces(userObj)
+                .then(function(result){
+                    cacheService.saveFavorite(result);
+                });
+            firebaseService.getExcursionPlaces(userObj)
+                .then(function(result){
+                    cacheService.saveTrip(result);
+                });
+        }
+
+        function saveUserData(data){
+            userService.user.id = data.id;
+            userService.user.first_name = data.first_name;
+            userService.user.last_name = data.last_name;
+            userService.user.full_name = data.name;
+            userService.user.profile_link = data.link;
+            userService.user.picture = data.picture.data.url;
+            userService.user.happy = true;
+
+            return userService.user;
         }
 
         function checkLoginState() {
@@ -302,12 +320,12 @@
             var deferred = $q.defer();
             if (response.status === 'connected') {
                 if(!userService.user.happy){
-                    getUserData();
-                }
-                $timeout(function(){
-                    userService.user.connected = true;
-                },0);
-                deferred.resolve();
+                    getUserData().then(function(){
+                        deferred.resolve();
+                    });
+                }else{ deferred.resolve(); }
+
+                userService.user.connected = true;
             } else {
                 $window.location.href = '#/';
                 deferred.reject();

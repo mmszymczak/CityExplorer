@@ -5,9 +5,9 @@
         .module('project')
         .controller('ElementInfoController', ElementInfoController);
 
-    ElementInfoController.$inject = ['cacheService', '$routeParams', 'errorHandling', 'FacebookService', 'userService', 'googleMapPositionService', '$localStorage', 'firebaseService'];
+    ElementInfoController.$inject = ['cacheService', '$routeParams', 'errorHandling', 'FacebookService', 'userService', 'googleMapPositionService', 'firebaseService'];
 
-    function ElementInfoController(cacheService, $routeParams, errorHandling, FacebookService, userService, googleMapPositionService, $localStorage, firebaseService) {
+    function ElementInfoController(cacheService, $routeParams, errorHandling, FacebookService, userService, googleMapPositionService, firebaseService) {
         var infoVm = this;
 
         infoVm.elemInfo = [];
@@ -19,9 +19,9 @@
         infoVm.showPosts = showPosts;
 
         infoVm.addFavorite = addFavorite;
-        infoVm.$storage = $localStorage;
-        infoVm.$storage.items = infoVm.$storage.items || [];
-        infoVm.hideButtonAddFav = hideButtonAddFav;
+        infoVm.addToTrip = addToTrip;
+        infoVm.favoriteBtnState = false;
+        infoVm.tripBtnState = false;
 
         activate();
 
@@ -57,6 +57,8 @@
             FacebookService.checkLoginState()
                 .then(function(){
                     detailsRequest();
+                    checkFavoriteState($routeParams.element);
+                    checkTripState($routeParams.element);
                 });
         }
 
@@ -75,20 +77,33 @@
                 });
         }
 
+        function addToTrip(item) {
+            item.trip = true;
+            item.showOnMap = false;
+            infoVm.tripBtnState = true;
+            firebaseService.addToTrip(item);
+        }
+
         function addFavorite(item) {
             item.favorite = true;
-            infoVm.$storage.items.push(item);
+            infoVm.favoriteBtnState = true;
             firebaseService.addToFavorite(item);
         }
 
-        function hideButtonAddFav(item) {
-            var hideButton = false;
-            infoVm.$storage.items.forEach(function(element) {
-                if (element.id === item.id && element.favorite) {
-                    hideButton = true;
+        function checkFavoriteState(itemId) {
+            cacheService.favorite.forEach(function(element) {
+                if (element.id === itemId && element.favorite) {
+                    infoVm.favoriteBtnState = true;
                 }
             });
-            return hideButton;
+        }
+
+        function checkTripState(itemId) {
+            cacheService.excursion.forEach(function(element) {
+                if (element.id === itemId && element.trip) {
+                    infoVm.tripBtnState = true;
+                }
+            });
         }
 
     }

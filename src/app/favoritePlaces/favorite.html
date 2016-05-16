@@ -1,20 +1,18 @@
-<div class="container trip-planner">
+<div class="container favorite-places">
 
-    <div class="trip-planner__description text-center">
-        <h1>Plan your own trip!</h1>
-        <h2>Drag and drop list items to organize stops from start to end</h2>
+    <div class="favorite-places__description text-center">
+        <h1>Favorite places!</h1>
+        <h2>This list represents the places that you added in the past to favorites.</h2>
     </div>
 
-    <ul class="collection trip-planner__list">
+    <ul class="collection favorite-places__list">
         <li class="collection-item avatar"
-            ng-repeat="item in favoriteVm.favoriteList"
-            ng-drop="true"
-            ng-drop-success="favoriteVm.onDropComplete($index,$data,$event)">
-            <div class="collection-item__body" ng-drag="true" ng-drag-data="item" draggable="false">
+            ng-repeat="item in favoriteVm.favoriteList">
+            <div class="collection-item__body">
                 <img ng-src="{{item.picture.data.url}}" alt="" class="circle">
                 <div class="title-wrapper">
                     <span class="title">{{ item.name }}</span><br>
-                    <span>{{ item.location.street }}</span>
+                    <span>{{item.location.country}}, {{item.location.city}}, {{item.location.street}}</span>
                 </div>
                 <div class="secondary-content collection-item__body__buttons">
                     <a class="btn-floating btn-large waves-effect waves-light blue"
@@ -25,23 +23,10 @@
                        ng-click="favoriteVm.removeFavorite(item)">
                         <i class="material-icons">delete_forever</i>
                     </a>
-                    <label class="location-wrapper">
-                        <input type="checkbox"
-                               ng-click="favoriteVm.addToMap(item.id)"
-                               ng-disabled="favoriteVm.checkDisable(item.id)">
-                            <i class="material-icons location"
-                               ng-hide="favoriteVm.checkIfClicked(item.id)">location_on</i>
-                            <i class="material-icons location"
-                               ng-show="favoriteVm.checkIfClicked(item.id)">location_off</i>
-                    </label>
                 </div>
             </div>
         </li>
     </ul>
 
-    <div class="col-md-12 col-sm-12 mapper card-panel hoverable wow fadeInUp trip-planner__map"
-         ng-if="favoriteVm.googleMapApiReady && favoriteVm.user.connected">
-        <ce-google-map-routes favchanged='favoriteVm.$storage'></ce-google-map-routes>
-    </div>
 </div>
 

@@ -32,6 +32,11 @@
             controller: 'FavoritePlacesController',
             controllerAs: 'favoriteVm'
         })
+        .when('/trip', {
+            templateUrl: 'app/tripPlanner/tripPlanner.html',
+            controller: 'TripPlannerController',
+            controllerAs: 'tripVm'
+        })
         .otherwise({
             redirectTo: '/'
         });

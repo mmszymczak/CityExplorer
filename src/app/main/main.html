@@ -2,14 +2,22 @@
 <div id="carousel1" class="carousel slide carousel-fade hoverable">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#carousel1" data-slide-to="0" class="active">
-        </li>
+        <li data-target="#carousel1" data-slide-to="0" class="active"></li>
         <li data-target="#carousel1" data-slide-to="1"></li>
         <li data-target="#carousel1" data-slide-to="2"></li>
         <li data-target="#carousel1" data-slide-to="3"></li>
         <li data-target="#carousel1" data-slide-to="4"></li>
         <li data-target="#carousel1" data-slide-to="5"></li>
     </ol>
+
+    <div class="landing-wrapper verticalcenter text-center">
+        <div class="landing-header">
+            <h1 class="h1-responsive">City explorer easily opens up possibilities.</h1><br>
+            <h2 class="h2-responsive">Log in with Facebook and search for places around you!</h2>
+            <div class="ladning-hash"><p>#discover #find #explore #reveal #detect</p></div>
+        </div>
+    </div>
+
     <!-- Wrapper for slides -->
     <div class="carousel-inner z-depth-2" role="listbox">
         <!-- First slide -->
@@ -20,7 +28,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2>MUSEUM</h2>
+                        <h2 class="divider-new">MUSEUM</h2>
                     </div>
                 </div>
             </div>
@@ -35,7 +43,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2>BAR</h2>
+                        <h2 class="divider-new">BAR</h2>
                     </div>
                 </div>
             </div>
@@ -50,7 +58,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2>CAFE</h2>
+                        <h2 class="divider-new">CAFE</h2>
                     </div>
                 </div>
             </div>
@@ -65,7 +73,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2>CLUB</h2>
+                        <h2 class="divider-new">CLUB</h2>
                     </div>
                 </div>
             </div>
@@ -80,7 +88,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2>HOTEL</h2>
+                        <h2 class="divider-new">HOTEL</h2>
                     </div>
                 </div>
             </div>
@@ -95,7 +103,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2>RESTAURANT</h2>
+                        <h2 class="divider-new">RESTAURANT</h2>
                     </div>
                 </div>
             </div>
@@ -122,19 +130,24 @@
             <p>{{mainVm.fbService.loginResponse}}</p>
         </div>
 
-        <div class="main-wrapper--info" ng-if="mainVm.user.connected">
-            <h3>Click green button if you want to see places around your actual position.<br>
-            If you're curious, drag marker and drop wherever you want!<br>
-            then click green butto.</h3>
+        <div ng-if="!mainVm.user.connected">
+            <h1 class="h1-responsive">To get results and see the action you need to log in facebook account</h1>
+            <section class="login-form-wrap">
+                <h1>Sign in with facebook account</h1>
+                <form class="login-form">
+                    <input type="submit" value="Login"
+                           ng-click="mainVm.logInFB()">
+                </form>
+            </section>
         </div>
 
-        <section class="login-form-wrap" ng-if="!mainVm.user.connected">
-            <h1>Sign in with facebook account</h1>
-            <form class="login-form">
-                <input type="submit" value="Login"
-                       ng-click="mainVm.logInFB()">
-            </form>
-        </section>
+        <div class="main-wrapper--info text-center" ng-if="mainVm.user.connected">
+            <h2 class="h2-responsive">Now you can start exploring bunch of places around!</h2>
+            <h3 class="h3-responsive">1. If your current position agrees with a point on the map, select any of the tabs category below to get the results of your area</h3>
+            <h3 class="h3-responsive">2. If necessary, or you want to see the results from another location in the world, simply <b>drag and drop</b> the marker at any place that you interested in.</h3>
+        </div>
+
+
 
         <div class="col-md-12 col-sm-12 mapper card-panel hoverable wow fadeInUp"
              ng-if="mainVm.googleMapApiReady">
@@ -155,12 +168,12 @@
                 </div>
             </div>
             <div class="card-content">
-                <h3>Museum</h3>
+                <h1 class="h1-responsive divider-new">Museum</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
             </div>
             <!--Buttons-->
             <div class="card-btn text-center">
-                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                <a href="#" class="museum btn btn-primary btn-md waves-effect waves-light"
                    ng-if="mainVm.user.connected">See now!</a>
             </div>
             <!--/.Buttons-->
@@ -180,12 +193,12 @@
                 </div>
             </div>
             <div class="card-content">
-                <h3>Bar</h3>
+                <h1 class="h1-responsive divider-new">Bar</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
             </div>
             <!--Buttons-->
             <div class="card-btn text-center">
-                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                <a href="#" class="bar btn btn-primary btn-md waves-effect waves-light"
                    ng-if="mainVm.user.connected">See now!</a>
             </div>
             <!--/.Buttons-->
@@ -205,12 +218,12 @@
                 </div>
             </div>
             <div class="card-content">
-                <h3>Cafe</h3>
+                <h1 class="h1-responsive divider-new">Cafe</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
             </div>
             <!--Buttons-->
             <div class="card-btn text-center">
-                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                <a href="#" class="cafe btn btn-primary btn-md waves-effect waves-light"
                    ng-if="mainVm.user.connected">See now!</a>
             </div>
             <!--/.Buttons-->
@@ -230,12 +243,12 @@
                 </div>
             </div>
             <div class="card-content">
-                <h3>Club</h3>
+                <h1 class="h1-responsive divider-new">Club</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
             </div>
             <!--Buttons-->
             <div class="card-btn text-center">
-                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                <a href="#" class="club btn btn-primary btn-md waves-effect waves-light"
                    ng-if="mainVm.user.connected">See now!</a>
             </div>
             <!--/.Buttons-->
@@ -255,12 +268,12 @@
                 </div>
             </div>
             <div class="card-content">
-                <h3>Hotel</h3>
+                <h1 class="h1-responsive divider-new">Hotel</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
             </div>
             <!--Buttons-->
             <div class="card-btn text-center">
-                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                <a href="#" class="hotel btn btn-primary btn-md waves-effect waves-light"
                    ng-if="mainVm.user.connected">See now!</a>
             </div>
             <!--/.Buttons-->
@@ -280,12 +293,12 @@
                 </div>
             </div>
             <div class="card-content">
-                <h3>Restaurant</h3>
+                <h1 class="h1-responsive divider-new">Restaurant</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis architecto. Ullam voluptatum, facere nihil quidem.</p>
             </div>
             <!--Buttons-->
             <div class="card-btn text-center">
-                <a href="#" class="btn btn-primary btn-md waves-effect waves-light"
+                <a href="#" class="restaurant btn btn-primary btn-md waves-effect waves-light"
                    ng-if="mainVm.user.connected">See now!</a>
             </div>
             <!--/.Buttons-->

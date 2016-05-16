@@ -9,8 +9,12 @@
                         <h3 class="likes">{{infoVm.elemInfo.engagement.social_sentence}}</h3>
                         <button type="button" class="btn btn-success btn-xs"
                         ng-click="infoVm.addFavorite(infoVm.elemInfo)"
-                        ng-if="!infoVm.hideButtonAddFav(infoVm.elemInfo)"
+                        ng-if="!infoVm.favoriteBtnState"
                         >Add to favorite!</button>
+                        <button type="button" class="btn btn-success btn-xs"
+                        ng-click="infoVm.addToTrip(infoVm.elemInfo)"
+                        ng-if="!infoVm.tripBtnState"
+                        >Add to trip!</button>
                     <div class="caption">
                         <h3>{{infoVm.elemInfo.name}}</h3>
                         <h4>{{infoVm.elemInfo.category}}</h4>

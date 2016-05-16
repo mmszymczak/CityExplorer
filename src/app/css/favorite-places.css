@@ -1,0 +1,49 @@
+.favorite-places__description {
+  margin: 50px 0;
+}
+.favorite-places__list .collection-item__body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.82);
+}
+.favorite-places__list .collection-item__body .circle {
+  left: 0 !important;
+  width: 83px !important;
+  height: 83px !important;
+}
+.favorite-places__list .collection-item__body .title-wrapper {
+  position: absolute;
+  left: 95px;
+  top: 15px;
+}
+.favorite-places__list .collection-item__body .title-wrapper .title {
+  font-size: 19px;
+  line-height: 30px;
+}
+.favorite-places__list .collection-item__body__buttons a {
+  width: 40px;
+  height: 40px;
+}
+.favorite-places__list .collection-item__body__buttons a i {
+  font-size: 32px;
+  line-height: 41px;
+}
+.favorite-places__list .collection-item__body__buttons .location-wrapper {
+  position: relative;
+}
+.favorite-places__list .collection-item__body__buttons .location-wrapper input {
+  display: none;
+}
+.favorite-places__list .collection-item__body__buttons .location-wrapper .location {
+  font-size: 47px;
+  bottom: -24px;
+  position: absolute;
+  right: 135px;
+}
+.favorite-places__map #map_favorite {
+  width: 100%;
+  height: 550px;
+}

@@ -1,0 +1,47 @@
+<div class="container trip-planner">
+
+    <div class="trip-planner__description text-center">
+        <h1>Plan your own trip!</h1>
+        <h2>Drag and drop list items to organize stops from start to end</h2>
+    </div>
+
+    <ul class="collection trip-planner__list">
+        <li class="collection-item avatar"
+            ng-repeat="item in tripVm.excursion"
+            ng-drop="true"
+            ng-drop-success="tripVm.onDropComplete($index,$data,$event)">
+            <div class="collection-item__body" ng-drag="true" ng-drag-data="item" draggable="false">
+                <img ng-src="{{item.picture.data.url}}" alt="" class="circle">
+                <div class="title-wrapper">
+                    <span class="title">{{ item.name }}</span><br>
+                    <span>{{ item.location.street }}</span>
+                </div>
+                <div class="secondary-content collection-item__body__buttons">
+                    <a class="btn-floating btn-large waves-effect waves-light blue"
+                       href="#/category//{{item.id}}">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn-floating btn-large waves-effect waves-light red"
+                       ng-click="tripVm.removeFromTrip(item)">
+                        <i class="material-icons">delete_forever</i>
+                    </a>
+                    <label class="location-wrapper">
+                        <input type="checkbox"
+                               ng-click="tripVm.addToMap(item.id)"
+                               ng-disabled="tripVm.checkDisable(item.id)">
+                            <i class="material-icons location"
+                               ng-hide="item.showOnMap">location_on</i>
+                            <i class="material-icons location"
+                               ng-hide="!item.showOnMap">location_off</i>
+                    </label>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="col-md-12 col-sm-12 mapper card-panel hoverable wow fadeInUp trip-planner__map"
+         ng-if="tripVm.googleMapApiReady && tripVm.user.connected">
+        <ce-google-map-routes favchanged='tripVm.excursion'></ce-google-map-routes>
+    </div>
+</div>
+

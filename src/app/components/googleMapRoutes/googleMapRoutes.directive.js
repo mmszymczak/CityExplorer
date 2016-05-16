@@ -5,9 +5,9 @@
         .module('project')
         .directive('ceGoogleMapRoutes', ceGoogleMapRoutes);
 
-    ceGoogleMapRoutes.$inject = ['GeolocationService', '$localStorage'];
+    ceGoogleMapRoutes.$inject = ['GeolocationService', '$localStorage', 'cacheService'];
 
-    function ceGoogleMapRoutes(GeolocationService, $localStorage) {
+    function ceGoogleMapRoutes(GeolocationService, $localStorage, cacheService) {
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/googleMapRoutes/googleMapRoutes.html',
@@ -40,26 +40,26 @@
 
                     return [directionsService, directionsDisplay, pointA];
                 }).then(function(result){
-                    calculateAndDisplayRoute(result[0],result[1],result[2],result[3]);
+                    calculateAndDisplayRoute(result[0],result[1],result[2]);
 
                     document.getElementById('mode').addEventListener('change', function() {
-                        calculateAndDisplayRoute(result[0],result[1],result[2],result[3]);
+                        calculateAndDisplayRoute(result[0],result[1],result[2]);
                     });
                 });
 
                 function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA) {
-                    var destinationsID = $localStorage.clicked,
-                        destinationPlaces = $localStorage.items,
-                        destinationForWaypoints = [],
+                    var selectedMode = document.getElementById('mode').value;
+                    var approvedToShow = [],
                         endLocation, PointB,
                         waypoints = [];
-                    destinationPlaces.forEach(function(element,index) {
-                        if (destinationsID.includes(element.id)) {
-                            destinationForWaypoints.push(destinationPlaces[index]);
+
+                    cacheService.excursion.forEach(function(element){
+                        if(element.showOnMap) {
+                            approvedToShow.push(element);
                         }
                     });
 
-                    endLocation = destinationForWaypoints[destinationForWaypoints.length-1];
+                    endLocation = approvedToShow[approvedToShow.length-1];
 
                     if (endLocation) {
                         PointB = new google.maps.LatLng(endLocation.location.latitude, endLocation.location.longitude)
@@ -67,15 +67,13 @@
                         PointB = ''
                     }
 
-                    destinationForWaypoints.forEach(function(element) {
+                    approvedToShow.forEach(function(element) {
                         waypoints.push({
                             location: new google.maps.LatLng(element.location.latitude, element.location.longitude)
                         });
                     });
 
                     waypoints.pop();
-
-                    var selectedMode = document.getElementById('mode').value;
 
                     directionsService.route({
                         origin: pointA,

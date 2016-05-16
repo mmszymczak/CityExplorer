@@ -26,6 +26,9 @@ body {
   height: 500px;
 }
 
+.main-wrapper--info {
+  margin-bottom: 60px;
+}
 .main-wrapper #login-status {
   text-align: center;
 }
@@ -56,4 +59,61 @@ body {
   padding-right: 60px;
   padding-left: 60px;
   padding-top: 45px;
+}
+
+.carousel .landing-wrapper {
+  position: absolute !important;
+  z-index: 1;
+  right: 0;
+  left: 0;
+  padding-bottom: 150px;
+}
+.carousel .landing-wrapper .landing-header h1, .carousel .landing-wrapper .landing-header h2 {
+  display: inline;
+  background: #2196F3;
+  font-weight: lighter;
+  color: #fff;
+  padding: 0px 20px 3px 20px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  line-height: 47px;
+}
+.carousel .landing-wrapper .landing-header .ladning-hash p {
+  display: inline;
+  background: #fff;
+  font-weight: lighter;
+  color: #2196F3;
+  padding: 0px 17px 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  font-size: 27px;
+}
+.carousel .carousel-inner img.img-responsive {
+  max-height: 100vh;
+}
+
+.carousel-caption .divider-new::before, .carousel-caption .divider-new::after {
+  background: white !important;
+}
+
+.card {
+  margin: 30px 0;
+}
+.card .card-content h1 {
+  margin: 20px 0;
+}
+.card .card-content p {
+  font-size: 18px;
+}
+.card .card-btn {
+  padding-top: 0px;
+  margin-bottom: 0px;
+}
+.card .card-btn a {
+  margin: 0;
+  border-radius: 0;
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border: 0;
 }

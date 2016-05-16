@@ -9,6 +9,12 @@
                        ng-change="categoryVm.setRange()" />
                 <h2>{{categoryVm.rangeModel}} meters</h2>
             </div>
+
+            <div class="md-form">
+                <input type="text" id="form1" class="form-control" ng-model="categoryVm.query">
+                <label for="form1" class="">Type query to find your results</label>
+            </div>
+
             <div class="category-wrapper">
                 <div class="col-sm-6 col-md-4"
                      ng-if="categoryVm.ready"
