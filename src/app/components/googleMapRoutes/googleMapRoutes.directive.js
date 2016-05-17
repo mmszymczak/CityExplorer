@@ -21,6 +21,7 @@
         function linkFunc(scope){
 
             scope.$watch('favchanged', initMap, true);
+            scope.distance = {};
 
             function initMap() {
                 GeolocationService.actualPosition()
@@ -84,10 +85,21 @@
                         travelMode: google.maps.TravelMode[selectedMode]
                     }, function (response, status) {
                         if (status == google.maps.DirectionsStatus.OK) {
+                            calculateDistance(response.routes[0].legs);
                             directionsDisplay.setDirections(response);
                         }
                     });
                 }
+            }
+
+            function calculateDistance(response) {
+                var tempDist = null, tempDur = null;
+                response.forEach(function(element) {
+                    tempDist += element.distance.value;
+                    tempDur += element.duration.value;
+                });
+                scope.distance.value = Math.round((tempDist/1000) * 100) / 100 + " km";
+                scope.distance.duration = Math.round((tempDur/60) * 100) / 100 + "min";
             }
         }
     }

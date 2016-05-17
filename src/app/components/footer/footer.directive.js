@@ -10,7 +10,12 @@
     function ceFooter() {
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/components/footer/footer.html'
+            templateUrl: 'app/components/footer/footer.html',
+            controller: ['$scope', '$anchorScroll', function($scope, $anchorScroll) {
+                $scope.moveToTop = function() {
+                    $anchorScroll();
+                };
+            }]
         }
         return directive;
     }

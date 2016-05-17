@@ -37,6 +37,11 @@
             controller: 'TripPlannerController',
             controllerAs: 'tripVm'
         })
+        .when('/query', {
+            templateUrl: 'app/findQuery/findQuery.html',
+            controller: 'findQueryController',
+            controllerAs: 'queryVm'
+        })
         .otherwise({
             redirectTo: '/'
         });

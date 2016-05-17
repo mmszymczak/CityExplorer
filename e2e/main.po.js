@@ -6,10 +6,13 @@
 'use strict';
 
 var MainPage = function() {
-  this.jumbEl = element(by.css('.jumbotron'));
-  this.h1El = this.jumbEl.element(by.css('h1'));
-  this.imgEl = this.jumbEl.element(by.css('img'));
-  this.thumbnailEls = element(by.css('body')).all(by.repeater('awesomeThing in main.awesomeThings'));
+    this.navbar = element(by.css('.navbar'));
+    this.navbarUl = element(by.css('.navbar-collapse'));
+    this.h1El = element(by.css('.logout-status-header'));
+    this.footer = element(by.css('page-footer'));
+    this.categoryCard = element.all(by.css('.card'));
+    this.loginForm = element(by.css('.login-form-wrap'));
+    //this.thumbnailEls = element(by.css('card')).all(by.repeater('awesomeThing in main.awesomeThings'));
 };
 
 module.exports = new MainPage();

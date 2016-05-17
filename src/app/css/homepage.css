@@ -8,9 +8,27 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+.page-footer {
+  position: relative;
+}
+.page-footer .row .footer-list {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 .page-footer .row .footer-list li {
   display: inline-block;
   padding-right: 20px;
+}
+.page-footer .row .button-top {
+  position: absolute;
+  bottom: 55px;
+  right: 10px;
+  font-size: 70px;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+.page-footer .row .button-top:hover {
+  bottom: 65px;
 }
 
 .carousel .item img {
@@ -27,7 +45,7 @@ body {
 }
 
 .main-wrapper--info {
-  margin-bottom: 60px;
+  margin: 60px 0;
 }
 .main-wrapper #login-status {
   text-align: center;
@@ -73,12 +91,11 @@ body {
   background: #2196F3;
   font-weight: lighter;
   color: #fff;
-  padding: 0px 20px 3px 20px;
+  padding: 0px 20px 0px 20px;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  line-height: 47px;
 }
-.carousel .landing-wrapper .landing-header .ladning-hash p {
+.carousel .landing-wrapper .landing-header .ladning-hash h3 {
   display: inline;
   background: #fff;
   font-weight: lighter;
@@ -86,12 +103,21 @@ body {
   padding: 0px 17px 3px;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  font-size: 27px;
 }
 .carousel .carousel-inner img.img-responsive {
   max-height: 100vh;
 }
 
+@media (max-width: 600px) {
+  .carousel .landing-wrapper {
+    padding-bottom: 90px;
+  }
+}
+@media (max-width: 500px) {
+  .carousel .landing-wrapper {
+    padding-bottom: 20px;
+  }
+}
 .carousel-caption .divider-new::before, .carousel-caption .divider-new::after {
   background: white !important;
 }
@@ -114,6 +140,7 @@ body {
   border-radius: 0;
   width: 100%;
   padding: 12px;
-  font-size: 18px;
+  font-size: 19px;
   border: 0;
+  color: white;
 }

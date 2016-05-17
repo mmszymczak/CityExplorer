@@ -22,6 +22,8 @@
 
             scope.$watch('position', initMap, true);
 
+            scope.distance = {};
+
             function initMap(position) {
                 GeolocationService.actualPosition()
                 .then(function(actualPos){
@@ -59,6 +61,8 @@
                         travelMode: google.maps.TravelMode[selectedMode]
                     }, function (response, status) {
                         if (status == google.maps.DirectionsStatus.OK) {
+                            scope.distance.value = response.routes[0].legs[0].distance.text;
+                            scope.distance.duration = response.routes[0].legs[0].duration.text;
                             directionsDisplay.setDirections(response);
                         }
                     });

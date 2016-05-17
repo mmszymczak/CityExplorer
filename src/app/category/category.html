@@ -1,33 +1,48 @@
-<div class="jumbotron text-center">
-    <div class="filter">
-        <div class="row">
-            <div class="range-slider-wrapper">
-                <h3>Change the search area:</h3>
-                <input type="range"
-                       min="100" max="3000" step="100"
-                       ng-model="categoryVm.rangeModel"
-                       ng-change="categoryVm.setRange()" />
-                <h2>{{categoryVm.rangeModel}} meters</h2>
-            </div>
+<div class="container category-wrapper">
+    <div class="row">
 
-            <div class="md-form">
-                <input type="text" id="form1" class="form-control" ng-model="categoryVm.query">
-                <label for="form1" class="">Type query to find your results</label>
-            </div>
+    <div class="category-info text-center">
+        <h1 class="h1-resposive">Select a category to see the results, <br>you can change the search area if necessary.</h1>
+    </div>
 
-            <div class="category-wrapper">
-                <div class="col-sm-6 col-md-4"
-                     ng-if="categoryVm.ready"
-                     ng-repeat="item in categoryVm.categories">
-                    <div class="category-item-wrapper">
-                        <div class="title-wrapper">
-                            <h3 class="title">
-                            <a href="#/category/{{item}}" class="thumbnail {{item}}"><p>{{item}}</p></a>
-                            </h3>
+        <div class="category-wrapper__items">
+            <div class="col-sm-6 col-md-4"
+                 ng-if="categoryVm.ready"
+                 ng-repeat="item in categoryVm.categories">
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <img ng-src="../../assets/images/{{item}}.jpg" class="img-responsive" alt="">
+                            <a ng-href="#/category/{{item}}">
+                                <div class="mask waves-effect"></div>
+                            </a>
                         </div>
-                    </div>
+                    </div><a ng-href="#/category/{{item}}">
+                    <div class="card__content">
+                        <h1 class="h1-responsive vartical-align">{{item}}</h1>
+                    </div></a>
                 </div>
             </div>
         </div>
+
+        <div class="range-slider-wrapper card col-md-12">
+            <h1 class="h1-responsive">Change the search area</h1>
+            <input type="range"
+                   min="100" max="3000" step="100"
+                   ng-model="categoryVm.rangeModel"
+                   ng-change="categoryVm.setRange()" />
+            <h2 class="h2-responsive">{{categoryVm.rangeModel}} meters</h2>
+        </div>
+
+        <div class="query-wrapper md-form card col-md-12">
+            <h1 class="h1-responsive">Type query to find your results</h1>
+            <form ng-submit="categoryVm.findQuery()">
+                <input type="text" id="form1" class="form-control"
+                       ng-model="categoryVm.query">
+                <button type="submit" class="btn btn-primary btn-sm">Find</button>
+            </form>
+        </div>
+
     </div>
 </div>
+

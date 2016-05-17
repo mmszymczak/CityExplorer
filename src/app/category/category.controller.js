@@ -14,6 +14,7 @@
         categoryVm.categories = categories;
         categoryVm.setRange = setRange;
         categoryVm.ready = false;
+        categoryVm.findQuery = findQuery;
 
         activate();
 
@@ -27,6 +28,10 @@
         function setRange() {
             cacheService.clearCache();
             FacebookService.setRange(categoryVm.rangeModel);
+        }
+
+        function findQuery() {
+
         }
     }
 

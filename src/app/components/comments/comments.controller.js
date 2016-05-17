@@ -20,6 +20,7 @@
         elemComVm.sendComment = sendComment;
         elemComVm.commentsArray = [];
         elemComVm.initForm = initForm;
+        elemComVm.resetForm = resetForm;
         elemComVm.makeDate = makeDate;
         elemComVm.submitted=true;
         elemComVm.readyToUse = true;
@@ -28,6 +29,11 @@
 
         function activate() {
            initForm();
+        }
+
+        function resetForm(form) {
+            form.$setPristine();
+            form.$setUntouched();
         }
 
         function initForm() {

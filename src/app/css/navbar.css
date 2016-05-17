@@ -1,3 +1,8 @@
+@media (max-width: 767px) {
+  .navbar .navbar-nav .open .dropdown-menu > li > a {
+    color: #2196F3 !important;
+  }
+}
 @media (max-width: 1023px) {
   .navbar-header {
     float: none;
@@ -19,7 +24,15 @@
   .navbar-nav {
     float: none !important;
     margin: 7.5px -15px;
+    margin-right: 0;
+    margin-bottom: 0;
     text-align: center;
+  }
+  .navbar-nav .category {
+    background: white;
+  }
+  .navbar-nav .category a {
+    color: #2196F3 !important;
   }
 
   .navbar-nav > li {
@@ -36,13 +49,40 @@
     margin: 15px 0;
   }
 
-  /* since 3.1.0 */
   .navbar-collapse.collapse.in {
     display: block !important;
   }
 
   .collapsing {
     overflow: hidden !important;
+  }
+
+  li.user-interface.dropdown {
+    background: white;
+  }
+
+  .navbar-nav .open .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    text-align: center;
+    background: white;
+    border-radius: 0;
+  }
+  .navbar-nav .open .dropdown-menu li {
+    text-align: center;
+    color: #2196F3;
+  }
+  .navbar-nav .open .dropdown-menu li a {
+    color: #2196F3;
+  }
+
+  .glyphicon-menu-hamburger:before {
+    color: white;
   }
 }
 .navbar {
