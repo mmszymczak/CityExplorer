@@ -2,11 +2,16 @@
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="#/">
-        <span class="glyphicon glyphicon-home"></span>  CityExplorer
+        <span class=""></span>  CityExplorer
       </a>
     </div>
 
-    <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
+    <div class="navigation-bar" ng-if="navBarVm.user.connected">
+        <input id="navigation-checkbox" class="navigation-checkbox" type="checkbox" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <label class="navigation-toggle" for="navigation-checkbox">
+            <span class="navigation-toggle-icon"></span>
+        </label>
+    </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
          ng-if="navBarVm.user.connected">

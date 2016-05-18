@@ -16,34 +16,15 @@
 }
 .load-bar__bar:nth-child(1) {
   background-color: #2BBF49;
-  -webkit-animation: loading 3s linear infinite;
-          animation: loading 3s linear infinite;
+  animation: loading 3s linear infinite;
 }
 .load-bar__bar:nth-child(2) {
   background-color: #da4733;
-  -webkit-animation: loading 3s linear 1s infinite;
-          animation: loading 3s linear 1s infinite;
+  animation: loading 3s linear 1s infinite;
 }
 .load-bar__bar:nth-child(3) {
   background-color: #fdba2c;
-  -webkit-animation: loading 3s linear 2s infinite;
-          animation: loading 3s linear 2s infinite;
-}
-@-webkit-keyframes loading {
-  from {
-    left: 50%;
-    width: 0;
-    z-index: 100;
-  }
-  33.3333% {
-    left: 0;
-    width: 100%;
-    z-index: 10;
-  }
-  to {
-    left: 0;
-    width: 100%;
-  }
+  animation: loading 3s linear 2s infinite;
 }
 @keyframes loading {
   from {

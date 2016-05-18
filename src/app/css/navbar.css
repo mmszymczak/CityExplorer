@@ -134,3 +134,85 @@
 .navbar .navbar-collapse .navbar-nav .user-interface .dropdown-menu li a {
   font-size: 18px;
 }
+
+.navigation-bar {
+  display: block;
+  height: 45px;
+  padding: 3px 10px;
+  text-align: right;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+.navigation-bar .navigation-checkbox {
+  display: none;
+}
+.navigation-bar .navigation-toggle {
+  width: 35px;
+  height: 40px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.navigation-bar .navigation-toggle .navigation-toggle-icon {
+  border-bottom: 6px solid white;
+  padding-top: 17px;
+  display: block;
+}
+
+.navigation-toggle-icon:before,
+.navigation-toggle-icon:after {
+  border-top: 6px solid white;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.navigation-toggle-icon:before {
+  top: 4px;
+}
+
+.navigation-toggle-icon:after {
+  bottom: 4px;
+}
+
+.navigation-toggle-icon,
+.navigation-toggle-icon:before,
+.navigation-toggle-icon:after {
+  transition-property: transform, border-color;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.5, -0.5, 0.5, 1.5);
+}
+
+.navigation-toggle-icon {
+  transition-delay: 0.125s;
+}
+
+.navigation-toggle-icon:before,
+.navigation-toggle-icon:after {
+  transition-delay: 0s;
+  transform-origin: center;
+}
+
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon {
+  transition-delay: 0s;
+}
+
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:before,
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:after {
+  transition-delay: 0.125s;
+}
+
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:before {
+  transform: translateY(13px) rotate(135deg);
+}
+
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon {
+  border-color: transparent;
+}
+
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:after {
+  transform: translateY(-13px) rotate(-135deg);
+}

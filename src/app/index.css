@@ -16,9 +16,9 @@
 .thumbnail img.pull-right {
     width: 70px;
 }
-.pull-right {
+/* .pull-right {
     float: none !important;
-}
+} */
 .museum {
     background: rgba(220, 23, 9, 0.51) !important;
 }

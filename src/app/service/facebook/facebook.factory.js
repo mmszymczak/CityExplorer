@@ -113,7 +113,7 @@
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
                     "distance": service.rangeDistance,
-                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    "fields":["hours","description","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
                             deferred.reject('An error occurred while retrieving data');
@@ -137,7 +137,7 @@
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
                     "distance": service.rangeDistance,
-                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    "fields":["hours","description","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
                             deferred.reject('An error occurred while retrieving data');
@@ -161,7 +161,7 @@
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
                     "distance": service.rangeDistance,
-                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    "fields":["hours","description","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
                             deferred.reject('An error occurred while retrieving data');
@@ -188,7 +188,7 @@
                         "type":"place",
                         "center": position.latitude+","+position.longitude ,
                         "distance": service.rangeDistance,
-                        "fields":["hours","category","name", "location", "picture.type(large)"]
+                        "fields":["hours","description","name", "location", "picture.type(large)"]
                         },
                         function(response) {
                             if (!response || response.error) {
@@ -215,7 +215,7 @@
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
                     "distance": service.rangeDistance,
-                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    "fields":["hours","description","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
                             deferred.reject('An error occurred while retrieving data');
@@ -239,7 +239,7 @@
                     "type":"place",
                     "center": position.latitude+","+position.longitude ,
                     "distance": service.rangeDistance,
-                    "fields":["hours","category","name", "location", "picture.type(large)"]},
+                    "fields":["hours","description","name", "location", "picture.type(large)"]},
                     function(response) {
                         if (!response || response.error) {
                             deferred.reject('An error occurred while retrieving data');
@@ -261,6 +261,7 @@
                 function(response) {
                     if (!response || response.error) {
                         deferred.reject('An error occurred while retrieving data');
+                        logout(response.error.message);
                         errorHandling.error('Something goes wrong...');
                     } else {
                         deferred.resolve(response);
@@ -341,12 +342,13 @@
             });
         }
 
-        function logout() {
+        function logout(feed) {
+            var feedback = feed || 'You have been logged out.';
             FB.logout(function() {
                 $timeout(function(){
                     userService.user.connected = false;
                     $window.location.href = '#/';
-                    errorHandling.infoFunc('You have been logged out.');
+                    errorHandling.infoFunc(feedback);
                 },0);
             });
         }

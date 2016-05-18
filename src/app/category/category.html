@@ -2,8 +2,17 @@
     <div class="row">
 
     <div class="category-info text-center">
-        <h1 class="h1-resposive">Select a category to see the results, <br>you can change the search area if necessary.</h1>
+        <h1 class="h1-responsive">Select a category to see the results, <br>you can change the search area if necessary.</h1>
     </div>
+
+        <div class="range-slider-wrapper card col-md-12">
+            <h1 class="h1-responsive">Change the search area</h1>
+            <input type="range"
+                   min="100" max="2000" step="100"
+                   ng-model="categoryVm.rangeModel"
+                   ng-change="categoryVm.setRange()" />
+            <h2 class="h2-responsive">{{categoryVm.rangeModel}} meters</h2>
+        </div>
 
         <div class="category-wrapper__items">
             <div class="col-sm-6 col-md-4"
@@ -23,15 +32,6 @@
                     </div></a>
                 </div>
             </div>
-        </div>
-
-        <div class="range-slider-wrapper card col-md-12">
-            <h1 class="h1-responsive">Change the search area</h1>
-            <input type="range"
-                   min="100" max="3000" step="100"
-                   ng-model="categoryVm.rangeModel"
-                   ng-change="categoryVm.setRange()" />
-            <h2 class="h2-responsive">{{categoryVm.rangeModel}} meters</h2>
         </div>
 
         <div class="query-wrapper md-form card col-md-12">
