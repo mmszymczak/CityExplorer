@@ -52,15 +52,39 @@
 
         function getMoreData(request) {
             var deferred = $q.defer();
-            FB.api(request,
-                function(response) {
-                    if (!response || response.error) {
-                        deferred.reject('An error occurred while retrieving data');
-                    } else {
-                        deferred.resolve(response);
+            var promises = [];
+            angular.forEach(request, function(query) {
+                var deferred = $q.defer();
+
+                FB.api(query,
+                    function(response) {
+                        if (!response || response.error) {
+                            deferred.reject('An error occurred while retrieving data');
+                        } else {
+                            deferred.resolve(response);
+                        }
                     }
-                }
-            );
+                );
+
+                promises.push(deferred.promise);
+            });
+
+            $q.all(promises)
+            .then(function(resp) {
+                var allObj = {
+                    data: [],
+                    paging: []
+                };
+                angular.forEach(resp, function(item){
+                    if(item.paging){
+                        allObj.paging.push(item.paging.next);
+                    }
+                    for(var i=0; i<item.data.length; i++){
+                        allObj.data.push(item.data[i]);
+                    }
+                });
+                deferred.resolve(allObj);
+            });
             return deferred.promise;
         }
 
@@ -104,83 +128,13 @@
 
         function getMuseums() {
             var deferred = $q.defer();
-            GeolocationService.actualPosition()
-            .then(function(position){
-                FB.api(
-                    '/search',
-                    'GET',
-                    {"q":"muzeum",
-                    "type":"place",
-                    "center": position.latitude+","+position.longitude ,
-                    "distance": service.rangeDistance,
-                    "fields":["hours","description","name", "location", "picture.type(large)"]},
-                    function(response) {
-                        if (!response || response.error) {
-                            deferred.reject('An error occurred while retrieving data');
-                        } else {
-                            deferred.resolve(response);
-                        }
-                    }
-                );
-            });
-            return deferred.promise;
-        }
+            var promises = [];
+            var queryArr = ['muzeum', 'museum', 'gallery', 'exhibition'];
 
-        function getBars() {
-            var deferred = $q.defer();
-            GeolocationService.actualPosition()
-            .then(function(position){
-                FB.api(
-                    '/search',
-                    'GET',
-                    {"q":"bar",
-                    "type":"place",
-                    "center": position.latitude+","+position.longitude ,
-                    "distance": service.rangeDistance,
-                    "fields":["hours","description","name", "location", "picture.type(large)"]},
-                    function(response) {
-                        if (!response || response.error) {
-                            deferred.reject('An error occurred while retrieving data');
-                        } else {
-                            deferred.resolve(response);
-                        }
-                    }
-                );
-            });
-            return deferred.promise;
-        }
-
-        function getCafes() {
-            var deferred = $q.defer();
-            GeolocationService.actualPosition()
-            .then(function(position){
-                FB.api(
-                    '/search',
-                    'GET',
-                    {"q":"cafe",
-                    "type":"place",
-                    "center": position.latitude+","+position.longitude ,
-                    "distance": service.rangeDistance,
-                    "fields":["hours","description","name", "location", "picture.type(large)"]},
-                    function(response) {
-                        if (!response || response.error) {
-                            deferred.reject('An error occurred while retrieving data');
-                        } else {
-                            deferred.resolve(response);
-                        }
-                    }
-                );
-            });
-            return deferred.promise;
-        }
-
-        function getClubs(){    /// danceing party
-            var queries = ['club', 'disco', 'nightclub', 'dance', 'discotheque', 'party'];
-            var fullArray = [];
-            var deferred = $q.defer();
-            GeolocationService.actualPosition()
-            .then(function(position){
-                angular.forEach(queries, function(query){
+            angular.forEach(queryArr, function(query) {
+                var deferred = $q.defer();
+                GeolocationService.actualPosition()
+                .then(function(position){
                     FB.api(
                         '/search',
                         'GET', {
@@ -194,60 +148,274 @@
                             if (!response || response.error) {
                                 deferred.reject('An error occurred while retrieving data');
                             } else {
-                                fullArray.push(response);
                                 deferred.resolve(response);
                             }
                         }
                     );
                 });
+                promises.push(deferred.promise);
+            });
+
+            $q.all(promises)
+            .then(function(resp) {
+                var allObj = {
+                    data: [],
+                    paging: []
+                };
+                angular.forEach(resp, function(item){
+                    if(item.paging){
+                        allObj.paging.push(item.paging.next);
+                    }
+                    for(var i=0; i<item.data.length; i++){
+                        allObj.data.push(item.data[i]);
+                    }
+                });
+                deferred.resolve(allObj);
+            });
+            return deferred.promise;
+        }
+
+        function getBars() {
+            var deferred = $q.defer();
+            var promises = [];
+            var queryArr = ['bar', 'pub', 'tavern'];
+
+            angular.forEach(queryArr, function(query) {
+                var deferred = $q.defer();
+                GeolocationService.actualPosition()
+                .then(function(position){
+                    FB.api(
+                        '/search',
+                        'GET', {
+                        "q": query,
+                        "type":"place",
+                        "center": position.latitude+","+position.longitude ,
+                        "distance": service.rangeDistance,
+                        "fields":["hours","description","name", "location", "picture.type(large)"]
+                        },
+                        function(response) {
+                            if (!response || response.error) {
+                                deferred.reject('An error occurred while retrieving data');
+                            } else {
+                                deferred.resolve(response);
+                            }
+                        }
+                    );
+                });
+                promises.push(deferred.promise);
+            });
+
+            $q.all(promises)
+            .then(function(resp) {
+                var allObj = {
+                    data: [],
+                    paging: []
+                };
+                angular.forEach(resp, function(item){
+                    if(item.paging){
+                        allObj.paging.push(item.paging.next);
+                    }
+                    for(var i=0; i<item.data.length; i++){
+                        allObj.data.push(item.data[i]);
+                    }
+                });
+                deferred.resolve(allObj);
+            });
+            return deferred.promise;
+        }
+
+        function getCafes() {
+            var deferred = $q.defer();
+            var promises = [];
+            var queryArr = ['cafe', 'coffee', 'cafeteria'];
+
+            angular.forEach(queryArr, function(query) {
+                var deferred = $q.defer();
+                GeolocationService.actualPosition()
+                .then(function(position){
+                    FB.api(
+                        '/search',
+                        'GET', {
+                        "q": query,
+                        "type":"place",
+                        "center": position.latitude+","+position.longitude ,
+                        "distance": service.rangeDistance,
+                        "fields":["hours","description","name", "location", "picture.type(large)"]
+                        },
+                        function(response) {
+                            if (!response || response.error) {
+                                deferred.reject('An error occurred while retrieving data');
+                            } else {
+                                deferred.resolve(response);
+                            }
+                        }
+                    );
+                });
+                promises.push(deferred.promise);
+            });
+
+            $q.all(promises)
+            .then(function(resp) {
+                var allObj = {
+                    data: [],
+                    paging: []
+                };
+                angular.forEach(resp, function(item){
+                    if(item.paging){
+                        allObj.paging.push(item.paging.next);
+                    }
+                    for(var i=0; i<item.data.length; i++){
+                        allObj.data.push(item.data[i]);
+                    }
+                });
+                deferred.resolve(allObj);
+            });
+            return deferred.promise;
+        }
+
+        function getClubs(){
+            var deferred = $q.defer();
+            var promises = [];
+            var queryArr = ['club', 'disco', 'dance', 'party'];
+
+            angular.forEach(queryArr, function(query) {
+                var deferred = $q.defer();
+                GeolocationService.actualPosition()
+                .then(function(position){
+                    FB.api(
+                        '/search',
+                        'GET', {
+                        "q": query,
+                        "type":"place",
+                        "center": position.latitude+","+position.longitude ,
+                        "distance": service.rangeDistance,
+                        "fields":["hours","description","name", "location", "picture.type(large)"]
+                        },
+                        function(response) {
+                            if (!response || response.error) {
+                                deferred.reject('An error occurred while retrieving data');
+                            } else {
+                                deferred.resolve(response);
+                            }
+                        }
+                    );
+                });
+                promises.push(deferred.promise);
+            });
+
+            $q.all(promises)
+            .then(function(resp) {
+                var allObj = {
+                    data: [],
+                    paging: []
+                };
+                angular.forEach(resp, function(item){
+                    if(item.paging){
+                        allObj.paging.push(item.paging.next);
+                    }
+                    for(var i=0; i<item.data.length; i++){
+                        allObj.data.push(item.data[i]);
+                    }
+                });
+                deferred.resolve(allObj);
             });
             return deferred.promise;
         }
 
         function getHotels(){
             var deferred = $q.defer();
-            GeolocationService.actualPosition()
-            .then(function(position){
-                FB.api(
-                    '/search',
-                    'GET',
-                    {"q":"hotel",
-                    "type":"place",
-                    "center": position.latitude+","+position.longitude ,
-                    "distance": service.rangeDistance,
-                    "fields":["hours","description","name", "location", "picture.type(large)"]},
-                    function(response) {
-                        if (!response || response.error) {
-                            deferred.reject('An error occurred while retrieving data');
-                        } else {
-                            deferred.resolve(response);
+            var promises = [];
+            var queryArr = ['hotel', 'hostel', 'apartment'];
+
+            angular.forEach(queryArr, function(query) {
+                var deferred = $q.defer();
+                GeolocationService.actualPosition()
+                .then(function(position){
+                    FB.api(
+                        '/search',
+                        'GET', {
+                        "q": query,
+                        "type":"place",
+                        "center": position.latitude+","+position.longitude ,
+                        "distance": service.rangeDistance,
+                        "fields":["hours","description","name", "location", "picture.type(large)"]
+                        },
+                        function(response) {
+                            if (!response || response.error) {
+                                deferred.reject('An error occurred while retrieving data');
+                            } else {
+                                deferred.resolve(response);
+                            }
                         }
+                    );
+                });
+                promises.push(deferred.promise);
+            });
+
+            $q.all(promises)
+            .then(function(resp) {
+                var allObj = {
+                    data: [],
+                    paging: []
+                };
+                angular.forEach(resp, function(item){
+                    if(item.paging){
+                        allObj.paging.push(item.paging.next);
                     }
-                );
+                    for(var i=0; i<item.data.length; i++){
+                        allObj.data.push(item.data[i]);
+                    }
+                });
+                deferred.resolve(allObj);
             });
             return deferred.promise;
         }
 
         function getRestaurants(){
             var deferred = $q.defer();
-            GeolocationService.actualPosition()
-            .then(function(position){
-                FB.api(
-                    '/search',
-                    'GET',
-                    {"q":"restaurant",
-                    "type":"place",
-                    "center": position.latitude+","+position.longitude ,
-                    "distance": service.rangeDistance,
-                    "fields":["hours","description","name", "location", "picture.type(large)"]},
-                    function(response) {
-                        if (!response || response.error) {
-                            deferred.reject('An error occurred while retrieving data');
-                        } else {
-                            deferred.resolve(response);
+            var promises = [];
+            var queryArr = ['restaurant', 'food', 'grill', 'pizzeria'];
+
+            angular.forEach(queryArr, function(query) {
+                var deferred = $q.defer();
+                GeolocationService.actualPosition()
+                .then(function(position){
+                    FB.api(
+                        '/search',
+                        'GET', {
+                        "q": query,
+                        "type":"place",
+                        "center": position.latitude+","+position.longitude ,
+                        "distance": service.rangeDistance,
+                        "fields":["hours","description","name", "location", "picture.type(large)"]
+                        },
+                        function(response) {
+                            if (!response || response.error) {
+                                deferred.reject('An error occurred while retrieving data');
+                            } else {
+                                deferred.resolve(response);
+                            }
                         }
+                    );
+                });
+                promises.push(deferred.promise);
+            });
+
+            $q.all(promises)
+            .then(function(resp) {
+                var allObj = {
+                    data: [],
+                    paging: []
+                };
+                angular.forEach(resp, function(item){
+                    if(item.paging){
+                        allObj.paging.push(item.paging.next);
                     }
-                );
+                    for(var i=0; i<item.data.length; i++){
+                        allObj.data.push(item.data[i]);
+                    }
+                });
+                deferred.resolve(allObj);
             });
             return deferred.promise;
         }

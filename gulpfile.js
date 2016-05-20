@@ -52,12 +52,12 @@ gulp.task('styles', function() {
     return gulp.src(['src/assets/scss/**/*.scss'])
         .pipe(plumber(plumberErrorHandler))
         .pipe(compass({
-            css: 'src/app/css',
+            css: '.tmp/css',
             sass: 'src/assets/scss',
             image: 'src/assets/images'
         }))
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(gulp.dest('src/app/css'))
+        // .pipe(gulp.dest('.tmp/css'))
         .pipe(rename({ suffix: '.min' }))
         .pipe(minifycss())
         .pipe(gulp.dest('src/app/css'));

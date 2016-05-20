@@ -1,19 +1,20 @@
 <div class="container">
-    <div class="cards-wrapper" infinite-scroll="resultVm.loadMoreData()" infinite-scroll-disabled="resultVm.busy">
-
-            <div class="card-columns container">
-                <div class="card slide"
-                ng-repeat="item in resultVm.listByCategory[resultVm.route] | orderBy:'rank'">
-                    <a href="#/category/{{resultVm.route}}/{{item.id}}">
-                        <img class="img-fluid" ng-src="{{item.picture.data.url}}">
-                        <div class="card-block">
-                            <h4 class="card-title">{{ item.name }}</h4>
-                            <p class="card-text">{{ item.location.street}}</p>
-                            <p class="card-text">{{ item.description | cut:true:150:' ...'}}</p>
-                        </div>
-                    </a>
-                </div>
+    <div class="cards-wrapper">
+        <div class="card-columns container">
+            <div class="card slide hoverable"
+            ng-repeat="item in resultVm.listByCategory[resultVm.route] | orderBy:'rank'">
+                <a href="#/category/{{resultVm.route}}/{{item.id}}">
+                    <img class="img-fluid" ng-src="{{item.picture.data.url}}">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ item.name }}</h4>
+                        <p class="card-text">{{ item.location.street}}</p>
+                        <p class="card-text">{{ item.description | cut:true:150:' ...'}}</p>
+                    </div>
+                </a>
             </div>
-
+        </div>
+    </div>
+    <div class="load-more-button" ng-show="resultVm.pagingNext.length">
+        <p class="text-fluid" ng-click="resultVm.loadMoreData()">Load more data</p>
     </div>
 </div>

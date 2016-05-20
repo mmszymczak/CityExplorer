@@ -12,10 +12,10 @@
 
     <div class="landing-wrapper verticalcenter text-center">
         <div class="landing-header">
-            <h1 class="h1-responsive">City explorer easily opens up possibilities.</h1><br>
-            <h2 class="h2-responsive">Log in with Facebook and search for places around you!</h2>
+            <h2 class="h2-responsive">City explorer easily opens up possibilities.</h2><br>
+            <h3 class="h3-responsive">Log in with Facebook and search for places around you!</h3>
             <div class="ladning-hash">
-                <h3 class="h3-responsive">#discover #find #explore #reveal #detect</h3>
+                <h4 class="h4-responsive">#discover #find #explore #reveal #detect</h4>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2 class="divider-new">MUSEUM</h2>
+                        <h1 class="h1-responsive divider-new">MUSEUM</h1>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2 class="divider-new">BAR</h2>
+                        <h1 class="h1-responsive divider-new">BAR</h1>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2 class="divider-new">CAFE</h2>
+                        <h1 class="h1-responsive divider-new">CAFE</h1>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2 class="divider-new">CLUB</h2>
+                        <h1 class="h1-responsive divider-new">CLUB</h1>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2 class="divider-new">HOTEL</h2>
+                        <h1 class="h1-responsive divider-new">HOTEL</h1>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                 </a>
                 <div class="carousel-caption hidden-xs">
                     <div class="animated fadeInDown">
-                        <h2 class="divider-new">RESTAURANT</h2>
+                        <h1 class="h1-responsive divider-new">RESTAURANT</h1>
                     </div>
                 </div>
             </div>
@@ -129,24 +129,24 @@
 <div class="container">
     <div class="main-wrapper">
         <div id="login-status" ng-if="mainVm.user.connected">
-            <h1 class="h1-responsive">{{mainVm.fbService.loginResponse}}</h1>
+            <h2 class="login-status__header h2-responsive">{{mainVm.fbService.loginResponse}}</h2>
         </div>
 
         <div class="logout-status text-center" ng-if="!mainVm.user.connected">
-            <h1 class="logout-status-header h1-responsive">To get results and see the action you need to log in facebook account</h1>
+            <h2 class="logout-status-header h2-responsive">To get results and see the action you need to log in facebook account</h2>
             <section class="login-form-wrap">
-                <h1>Sign in with facebook account</h1>
+                <h2 class="h2-responsive">Sign in with facebook account</h2>
                 <form class="login-form">
-                    <input type="submit" value="Login"
+                    <input class="login-form-input" type="submit" value="Login"
                            ng-click="mainVm.logInFB()">
                 </form>
             </section>
         </div>
 
         <div class="main-wrapper--info text-center" ng-if="mainVm.user.connected">
-            <h2 class="h2-responsive">Now you can start exploring bunch of places around!</h2>
-            <h3 class="h3-responsive">1. If your current position agrees with a point on the map, select any of the tabs category below to get the results of your area</h3>
-            <h3 class="h3-responsive">2. If necessary, or you want to see the results from another location in the world, simply <b>drag and drop</b> the marker at any place that you interested in.</h3>
+            <h3 class="h3-responsive">Now you can start exploring bunch of places around!</h3>
+            <h4 class="h4-responsive">1. If your current position agrees with a point on the map, select any of the tabs category below to get the results of your area</h4>
+            <h4 class="h4-responsive">2. If necessary, or you want to see the results from another location in the world, simply <b>drag and drop</b> the marker at any place that you're interested in.</h4>
         </div>
 
 

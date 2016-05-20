@@ -4,6 +4,10 @@ var paths = require('./.yo-rc.json')['generator-gulp-angular'].props.paths;
 
 // An example configuration file.
 exports.config = {
+
+  onPrepare: function() {
+    browser.manage().window().setSize(1900, 1000);
+  },
   // The address of a running selenium server.
   //seleniumAddress: 'http://localhost:4444/wd/hub',
   //seleniumServerJar: deprecated, this should be set on node_modules/protractor/config.json

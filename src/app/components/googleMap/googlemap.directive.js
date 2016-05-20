@@ -5,9 +5,9 @@
         .module('project')
         .directive('ceGoogleMap', ceGoogleMap);
 
-    ceGoogleMap.$inject = ['GeolocationService'];
+    ceGoogleMap.$inject = ['GeolocationService', '$timeout'];
 
-    function ceGoogleMap(GeolocationService) {
+    function ceGoogleMap(GeolocationService, $timeout) {
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/googleMap/googlemap.html',
@@ -61,9 +61,11 @@
                         travelMode: google.maps.TravelMode[selectedMode]
                     }, function (response, status) {
                         if (status == google.maps.DirectionsStatus.OK) {
-                            scope.distance.value = response.routes[0].legs[0].distance.text;
-                            scope.distance.duration = response.routes[0].legs[0].duration.text;
                             directionsDisplay.setDirections(response);
+                            $timeout(function(){
+                                scope.distance.value = response.routes[0].legs[0].distance.text;
+                                scope.distance.duration = response.routes[0].legs[0].duration.text;
+                            },0);
                         }
                     });
                 }

@@ -1,0 +1,13 @@
+.element-info {
+    .item-header {
+        position: relative;
+        margin: 50px 0;
+        .title {}
+        // .likes { position: absolute; bottom: -10px; right: 0; }
+        .fav-button, .trip-button { width: 45px; height: 45px;
+            i { font-size: 32px; line-height: 45px; }
+        }
+        .fav-button { position: absolute; top: -20px; right: 0px; }
+        .trip-button { position: absolute; top: -20px; right: 65px; }
+    }
+}

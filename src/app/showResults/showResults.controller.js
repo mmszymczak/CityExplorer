@@ -13,13 +13,13 @@
         resultVm.listByCategory = {};
         resultVm.actualCategory = '';
         resultVm.loadMoreData = loadMoreData;
-        resultVm.pagingNext = '';
+        resultVm.pagingNext = [];
+        resultVm.pagingState = false;
 
         activate();
 
         resultVm.numberPerPage = 9;
         resultVm.maxSize = 5;
-        resultVm.totalItems = null;
         resultVm.currentPage = 1;
 
         function activate() {
@@ -27,7 +27,6 @@
                 .then(function(route){
                     resultVm.actualCategory = route;
                     getCacheService();
-                    resultVm.totalItems = resultVm.listByCategory[route].length;
                     checkFBState();
                 })
                 .catch(function(response){
@@ -70,7 +69,7 @@
         }
 
         function loadMoreData() {
-            if(typeof resultVm.pagingNext != 'undefined') {
+            if(resultVm.pagingNext.length > 0) {
                 FacebookService.getMoreData(resultVm.pagingNext)
                     .then(function(response){
                         loadCheckSave(response);
@@ -82,20 +81,47 @@
         }
 
         function loadCheckSave(response){
+            resultVm.pagingNext = [];
+            //deleteMultipleItems(response);
             resultVm.listByCategory[resultVm.actualCategory] = resultVm.listByCategory[resultVm.actualCategory].concat(response.data);
             cacheService.saveCache(resultVm.actualCategory, resultVm.listByCategory[resultVm.actualCategory]);
-            resultVm.totalItems = resultVm.listByCategory[resultVm.actualCategory].length;
-            if(response.paging){
-                resultVm.pagingNext = response.paging.next;
-            }else{ resultVm.pagingNext = undefined; }
+            if(response.paging.length > 0){
+                angular.forEach(response.paging, function(item){
+                    if(item) resultVm.pagingNext.push(item)
+                });
+            }else{ resultVm.pagingNext = []; }
         }
+        //  reemove multiple elements
+        // function deleteMultipleItems(response) {
+        //     var promises = new Array();
+        //     var newArr = [];
+
+        //     angular.forEach(response.data, function(item){
+        //         var deferred = $q.defer();
+        //         for(var i=0;i<response.data.length;i++){
+        //             if(response.data[i].id === item.id){
+        //                 console.log(response.data[i].id, item.id, i);
+
+        //                 for(var j=0;j<newArr.length;j++){
+        //                     if(newArr[j].id !== item.id){
+        //                         newArr.push(response.data[i]);
+        //                         deferred.resolve(response.data[i]);
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         promises.push(deferred.promise);
+        //     });
+
+        //     $q.all(promises)
+        //     .then(function(myarray){
+        //         console.log(myarray);
+        //     });
+
+        // }
 
         function getCacheService() {
             resultVm.listByCategory = cacheService.getCache();
-
-            angular.forEach(resultVm.listByCategory, function(awesomeThing) {
-                awesomeThing.rank = Math.random();
-            });
         }
 
     }

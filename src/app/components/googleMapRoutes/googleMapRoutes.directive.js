@@ -5,9 +5,9 @@
         .module('project')
         .directive('ceGoogleMapRoutes', ceGoogleMapRoutes);
 
-    ceGoogleMapRoutes.$inject = ['GeolocationService', '$localStorage', 'cacheService'];
+    ceGoogleMapRoutes.$inject = ['GeolocationService', '$localStorage', 'cacheService', '$timeout'];
 
-    function ceGoogleMapRoutes(GeolocationService, $localStorage, cacheService) {
+    function ceGoogleMapRoutes(GeolocationService, $localStorage, cacheService, $timeout) {
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/googleMapRoutes/googleMapRoutes.html',
@@ -85,8 +85,8 @@
                         travelMode: google.maps.TravelMode[selectedMode]
                     }, function (response, status) {
                         if (status == google.maps.DirectionsStatus.OK) {
-                            calculateDistance(response.routes[0].legs);
                             directionsDisplay.setDirections(response);
+                            calculateDistance(response.routes[0].legs);
                         }
                     });
                 }
@@ -98,8 +98,10 @@
                     tempDist += element.distance.value;
                     tempDur += element.duration.value;
                 });
-                scope.distance.value = Math.round((tempDist/1000) * 100) / 100 + " km";
-                scope.distance.duration = Math.round((tempDur/60) * 100) / 100 + "min";
+                $timeout(function(){
+                    scope.distance.value = Math.round((tempDist/1000) * 100) / 100 + " km";
+                    scope.distance.duration = Math.round((tempDur/60) * 100) / 100 + "min";
+                },0);
             }
         }
     }

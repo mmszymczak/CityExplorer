@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('project', ['ngAnimate', 'ngCookies', 'infinite-scroll', 'firebase', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngRoute', 'toastr', 'ngStorage', 'ngDraggable']);
+        .module('project', ['ngAnimate', 'ngCookies', 'firebase', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngRoute', 'toastr', 'ngStorage', 'ngDraggable']);
 })();

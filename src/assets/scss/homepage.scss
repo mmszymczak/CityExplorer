@@ -2,24 +2,6 @@
 
 body { padding: 0; font-family: 'Lato', sans-serif; }
 
-.page-footer { position: relative;
-    .row {
-        .footer-list { margin-top: 15px; margin-bottom: 15px;
-            li{ display: inline-block; padding-right: 20px; }
-        }
-        .button-top {
-            position: absolute;
-            bottom: 55px;
-            right: 10px;
-            font-size: 70px;
-            color: white;
-            -webkit-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;
-        }
-        .button-top:hover { bottom: 65px; }
-    }
-}
-
 .carousel .item img { width: 100%; }
 
 .jumbotron { background: #fff; }
@@ -66,7 +48,7 @@ body { padding: 0; font-family: 'Lato', sans-serif; }
         left: 0;
         padding-bottom: 150px;
         .landing-header {
-            h1, h2 {
+            h2, h3 {
                 display: inline;
                 background: #2196F3;
                 font-weight: lighter;
@@ -75,7 +57,7 @@ body { padding: 0; font-family: 'Lato', sans-serif; }
                 -webkit-box-decoration-break: clone;
                 box-decoration-break: clone;
             }
-            .ladning-hash h3 {
+            .ladning-hash h4 {
                 display: inline;
                 background: #fff;
                 font-weight: lighter;

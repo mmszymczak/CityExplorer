@@ -11,6 +11,7 @@
         var infoVm = this;
 
         infoVm.elemInfo = [];
+        infoVm.uploadedPhotos = [];
 
         infoVm.actualCategory = $routeParams.item;
         infoVm.position = {};
@@ -57,8 +58,17 @@
             FacebookService.checkLoginState()
                 .then(function(){
                     detailsRequest();
+                    getPhotos();
                     checkFavoriteState($routeParams.element);
                     checkTripState($routeParams.element);
+                });
+        }
+
+        function getPhotos() {
+            FacebookService.getUploadedPhotos($routeParams.element)
+                .then(function(response) {
+                    infoVm.uploadedPhotos = response.data;
+                    console.log(response);
                 });
         }
 

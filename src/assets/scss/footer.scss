@@ -1,0 +1,17 @@
+.page-footer { position: relative;
+    .row {
+        .footer-list { margin-top: 25px; margin-bottom: 15px;
+            li{ display: inline-block; padding-right: 20px; }
+        }
+        .button-top {
+            position: absolute;
+            bottom: 55px;
+            right: 10px;
+            font-size: 70px;
+            color: white;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        .button-top:hover { bottom: 65px; }
+    }
+}

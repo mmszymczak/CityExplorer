@@ -2,20 +2,20 @@
     <div class="row">
 
     <div class="category-info text-center">
-        <h1 class="h1-responsive">Select a category to see the results, <br>you can change the search area if necessary.</h1>
+        <h2 class="h2-responsive">Select a category to see the results, <br>you can change the search area if necessary.</h2>
     </div>
 
         <div class="range-slider-wrapper card col-md-12">
-            <h1 class="h1-responsive">Change the search area</h1>
+            <h3 class="h3-responsive">Change the search area</h3>
             <input type="range"
                    min="100" max="2000" step="100"
                    ng-model="categoryVm.rangeModel"
                    ng-change="categoryVm.setRange()" />
-            <h2 class="h2-responsive">{{categoryVm.rangeModel}} meters</h2>
+            <h3 class="h3-responsive">{{categoryVm.rangeModel}} meters</h3>
         </div>
 
         <div class="category-wrapper__items">
-            <div class="col-sm-6 col-md-4"
+            <div class="category-element col-sm-6 col-md-4"
                  ng-if="categoryVm.ready"
                  ng-repeat="item in categoryVm.categories">
                 <div class="card hoverable">
@@ -35,7 +35,7 @@
         </div>
 
         <div class="query-wrapper md-form card col-md-12">
-            <h1 class="h1-responsive">Type query to find your results</h1>
+            <h3 class="h3-responsive">Type query to find your results</h3>
             <form ng-submit="categoryVm.findQuery()">
                 <input type="text" id="form1" class="form-control"
                        ng-model="categoryVm.query">
