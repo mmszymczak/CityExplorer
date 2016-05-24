@@ -149,7 +149,8 @@
             <h4 class="h4-responsive">2. If necessary, or you want to see the results from another location in the world, simply <b>drag and drop</b> the marker at any place that you're interested in.</h4>
         </div>
 
-
+        <a type="button" href="#/category" class="btn btn-primary btn-lg btn-block"
+                ng-if="mainVm.user.connected">See all categories</a>
 
         <div class="col-md-12 col-sm-12 mapper card-panel hoverable wow fadeInUp"
              ng-if="mainVm.googleMapApiReady">

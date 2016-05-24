@@ -1,7 +1,7 @@
 <div class="row info-wrapper comments-wrapper">
     <div class="comments-header-wrap"
          ng-click="elemComVm.showComments()">
-        <h3 class="comments-header"><span class="caret"></span>Comments left by users<span class="caret"></span></h3>
+        <h3 class="comments-header h3-responsive"><span class="caret"></span>Comments left by users<span class="caret"></span></h3>
     </div>
     <div class="const-box" ng-if="elemComVm.isComment">
         <div class="line"></div>
@@ -79,7 +79,7 @@
                 </div>
                 <button type="reset" class="btn btn-danger"
                         ng-click="elemComVm.resetForm(form)">Reset form</button>
-                <button type="submit" class="btn btn-info pull-right"
+                <button type="submit" class="btn btn-info"
                         ng-click="elemComVm.sendComment(elemComVm.comment)"
                         ng-disabled="!form.$valid">Submit comment</button>
             </form>

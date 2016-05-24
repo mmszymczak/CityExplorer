@@ -11,7 +11,21 @@
             color: white;
             -webkit-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
+            &:hover { bottom: 65px; }
         }
-        .button-top:hover { bottom: 65px; }
+    }
+}
+
+@media (max-width: 500px) {
+    .page-footer .row .button-top {
+        position: fixed;
+        bottom: 0px;
+        right: 0;
+        font-size: 50px;
+        color: #fff;
+        transition: all .3s ease-in-out;
+        background: #2196F3;
+        z-index: 999;
+        &:hover { bottom: 0px !important; }
     }
 }

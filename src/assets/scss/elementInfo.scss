@@ -2,12 +2,141 @@
     .item-header {
         position: relative;
         margin: 50px 0;
-        .title {}
-        // .likes { position: absolute; bottom: -10px; right: 0; }
+        .item-image { margin: 0 auto; text-align: center;
+            img { width: 225px; height: auto; }
+        }
+        .title { text-align: center; }
+        .likes { position: absolute; top: 0; right: 0; margin: 0; }
         .fav-button, .trip-button { width: 45px; height: 45px;
             i { font-size: 32px; line-height: 45px; }
         }
-        .fav-button { position: absolute; top: -20px; right: 0px; }
-        .trip-button { position: absolute; top: -20px; right: 65px; }
+        .fav-button { position: absolute; top: 55px; right: 0px; }
+        .trip-button { position: absolute; top: 55px; right: 65px; }
+        &:after {
+            content: "";
+            width: 100%;
+            margin: 0 auto;
+            height: 1px;
+            background: black;
+            display: block;
+        }
+    }
+    .info-wrapper { margin: 20px 0 60px 0;
+        .gallery { padding: 0;
+            &__info { padding-left: 15px; padding-right: 15px; }
+        }
+        .slider { overflow: hidden; height: 380px; position: relative; margin-top: 10px;
+            .photo-container {
+                height: 400px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+            }
+            .new-control .fa { width: 40px; height: 40px; }
+            .carousel-control .fa { font-size: 34px; }
+            .carousel-control .fa-angle-right { right: 25%; }
+            .carousel-control .fa-angle-left { left: 25%; }
+            .carousel-control.left, .carousel-control.right {
+                background-image: none !important;
+            }
+        }
+        .info-block {
+            .telephone { font-size: 17px; color: #333; font-weight: normal; }
+            .links { float: right;
+                a {
+                    color: white;
+                    background: #2196F3;
+                    padding: 3px 5px;
+                    font-size: 17px;
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+    .via-posts {
+        padding: 0 25px;
+        h3 {
+            color: #fff;
+            background: #2196F3;
+            padding: 3px 5px;
+            border-radius: 3px;
+        }
+    }
+    .page-post {
+        position: relative;
+        word-wrap: break-word;
+        background-color: #fff;
+        border: 1px solid;
+        border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+        border-radius: 3px;
+        margin-bottom: 10px;
+        padding: 12px;
+        p { margin: 0; }
+        .post {
+            width: 100%;
+            display: inline-block;
+            .post-author {
+                position: absolute;
+                margin-top: 7px;
+                font-size: 16px;
+                font-weight: bold;
+                padding: 0 10px;
+                color: #4665A2;
+            }
+            .post-img {
+                float: left;
+            }
+            .post-img img{
+                width: 70px;
+                height: auto;
+            }
+            .post-date {
+                position: absolute;
+                font-size: 13px;
+                font-weight: normal;
+                margin-left: 10px;
+            }
+        }
     }
 }
+
+.slide.ng-move, .slide.ng-enter, .slide.ng-leave {
+    -webkit-transition: 1s ease all;
+    transition: 1s ease all;
+}
+
+.slide.ng-move,
+.slide.ng-enter,
+.slide.ng-leave.ng-leave-active{
+    margin-left: -1100px;
+}
+.slide.ng-enter,
+.slide.ng-leave,
+.slide.ng-move.ng-move-active {
+    margin-left: 0px;
+}
+
+@media (max-width: 768px) {
+    .item-header .item-image { text-align: left !important; }
+}
+
+@media (max-width: 499px) {
+    .info-block {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .element-info .info-wrapper {
+        margin: 0 0 90px;
+    }
+    .element-info .item-header {
+        margin-bottom: 0;
+    }
+    .item-header {
+        .item-image { text-align: center !important; padding-top: 110px; }
+        .fav-button { top: 30px !important; right: 0px !important; }
+        .trip-button { top: 30px !important; right: 65px !important; }
+    }
+    .element-info .item-header .likes { right: 0; }
+}
+
+

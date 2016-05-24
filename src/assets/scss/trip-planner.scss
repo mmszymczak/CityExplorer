@@ -1,8 +1,5 @@
 .trip-planner {
-    &__description { margin: 50px 0;
-        h1 {  }
-        h2 {  }
-    }
+    &__description { margin: 50px 0; }
     &__list {
         .collection-item {
             &__body { position: absolute; top: 0; left: 0; right: 0; bottom: 0; cursor: move; background: rgba(255, 255, 255, 0.82);
@@ -26,4 +23,65 @@
     &__map {
         #map_favorite { width: 100%; height: 550px; }
     }
+    .collection .collection-item.avatar .secondary-content { right: 0; }
+}
+
+@media (max-width: 599px) {
+    .trip-planner__list .collection-item.avatar {
+        min-height: 110px;
+    }
+
+    .trip-planner__list .collection-item__body {
+        .circle {
+            left: 0!important;
+            width: 105px!important;
+            height: 110px!important;
+        }
+        .title-wrapper { width: 65%; top: 10px; left: 110px;
+            .title { font-size: 18px; line-height: 22px; }
+        }
+        &__buttons {
+            a { width: 25px; height: 25px;
+                i { font-size: 22px; line-height: 22px; }
+            }
+            a.red { position: absolute; top: 35px; right: 3px; }
+            .location-wrapper .location {
+                font-size: 35px;
+                bottom: -90px;
+                position: absolute;
+                right: 9px;
+            }
+        }
+    }
+    .collection .collection-item.avatar .secondary-content { top: 0; right: 0; }
+}
+
+@media (max-width: 449px) {
+    .trip-planner__list .collection-item.avatar {
+        min-height: 110px;
+    }
+
+    .trip-planner__list .collection-item__body {
+        .circle {
+            left: 0!important;
+            width: 105px!important;
+            height: 110px!important;
+        }
+        .title-wrapper { width: 55%; top: 10px; left: 110px;
+            .title { font-size: 16px; line-height: 20px; }
+        }
+        &__buttons {
+            a { width: 25px; height: 25px;
+                i { font-size: 22px; line-height: 22px; }
+            }
+            a.red { position: absolute; top: 35px; right: 3px; }
+            .location-wrapper .location {
+                font-size: 35px;
+                bottom: -90px;
+                position: absolute;
+                right: 9px;
+            }
+        }
+    }
+    .collection .collection-item.avatar .secondary-content { top: 0; right: 0; }
 }

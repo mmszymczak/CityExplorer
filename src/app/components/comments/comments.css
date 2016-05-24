@@ -1,7 +1,3 @@
-/*   .css-form .has-error {
-    border: 1px solid red;
-    background: red;
-  } */
 .css-form {
     margin-top: 10px;
 }
@@ -52,7 +48,8 @@
 
 .help-block-content {
     position: absolute;
-    right: 0;
+    right: 10px;
+    bottom: 0;
 }
 
 .form-wrapper .form-stars {
@@ -76,8 +73,17 @@
     padding: 6px 0;
     font-weight: bold;
 }
+
+.comments-header-wrap {
+    margin: 0 25px;
+}
+
 .comments-header {
     text-align: center;
+    color: #fff;
+    background: #2196F3;
+    padding: 3px 5px;
+    border-radius: 3px;
 }
 
 .line {
@@ -93,6 +99,25 @@
 
 .const-box {
     height: 550px;
+    display: inline-block;
+}
+@media (max-width: 768px) {
+    .const-box {
+        width: 100%;
+    }
+    .const-box .comments {
+        border-left: 0;
+    }
+    .css-form button {
+        font-size: 12px;
+        padding: 3px 5px;
+    }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+    .css-form button {
+        font-size: 12px;
+        padding: 3px 5px;
+    }
 }
 
 .comments-header {
@@ -162,15 +187,14 @@
 
 .form-wrapper input {
     width: 100%;
-    padding: 7px;
     margin-bottom: 12px;
     font-size: 16px;
     transition: ease-in-out, all .5s ease-in-out;
 }
 
 .form-wrapper input[type=text]:focus {
-    border: 2px solid #fff;
-    border-bottom: 2px solid #4665A2;
+    border: 0;
+    border-bottom: 1px solid #4665A2;
 }
 
 .form-wrapper textarea:focus {
@@ -198,6 +222,7 @@
 .form-wrapper button[type=reset] {
     border-radius: 0;
     margin-top: 5px;
+    margin-left: 0;
 }
 
 .form-wrapper button[type=submit] {

@@ -20,14 +20,15 @@
                     scope.actualCountry = geoplugin_countryName();
 
                     var map = new google.maps.Map(document.getElementById("map_canvas"), {
-                        zoom: 12,
+                        zoom: 13,
                         center: new google.maps.LatLng(position.latitude, position.longitude),
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     });
 
                     var myMarker = new google.maps.Marker({
                         position: new google.maps.LatLng(position.latitude, position.longitude),
-                        draggable: true
+                        draggable: true,
+                        title: "Drag me!"
                     });
 
                     google.maps.event.addListener(myMarker, 'dragend', function (evt) {

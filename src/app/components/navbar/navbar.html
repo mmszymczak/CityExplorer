@@ -16,23 +16,23 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
          ng-if="navBarVm.user.connected">
         <ul class="nav navbar-nav" role="menu">
-            <li class="category"><a class="nav-category" href="#/category" >Category</a></li>
-            <li class="museum"><a href="#/category/museum" >Museum</a></li>
-            <li class="bar"><a href="#/category/bar" >Bar</a></li>
-            <li class="cafe"><a href="#/category/cafe" >Cafe</a></li>
-            <li class="club"><a href="#/category/club" >Club</a></li>
-            <li class="hotel"><a href="#/category/hotel" >Hotel</a></li>
-            <li class="restaurant"><a href="#/category/restaurant" >Restaurant</a></li>
+            <li data-toggle="collapse" data-target=".navbar-collapse" class="category"><a class="nav-category" href="#/category" >Category</a></li>
+            <li data-toggle="collapse" data-target=".navbar-collapse" class="museum"><a href="#/category/museum" >Museum</a></li>
+            <li data-toggle="collapse" data-target=".navbar-collapse" class="bar"><a href="#/category/bar" >Bar</a></li>
+            <li data-toggle="collapse" data-target=".navbar-collapse" class="cafe"><a href="#/category/cafe" >Cafe</a></li>
+            <li data-toggle="collapse" data-target=".navbar-collapse" class="club"><a href="#/category/club" >Club</a></li>
+            <li data-toggle="collapse" data-target=".navbar-collapse" class="hotel"><a href="#/category/hotel" >Hotel</a></li>
+            <li data-toggle="collapse" data-target=".navbar-collapse" class="restaurant"><a href="#/category/restaurant" >Restaurant</a></li>
             <li class="user-interface dropdown">
                 <span uib-dropdown on-toggle="toggled(open)">
                     <a id="user-button simple-dropdown" data-toggle="dropdown" role="button" aria-expanded="false">
                         <img ng-src="{{navBarVm.user.picture}}">
                     </a>
                     <ul class="dropdown-menu user-dropdown" uib-dropdown-menu aria-labelledby="simple-dropdown">
-                        <li><a tabindex="-1" href="#/favorite" class="dropdown-header">Favorite places</a></li>
-                        <li><a tabindex="-1" href="#/trip" class="dropdown-header">Plan a trip</a></li>
+                        <li data-toggle="collapse" data-target=".navbar-collapse"><a tabindex="-1" href="#/favorite" class="dropdown-header">Favorite places</a></li>
+                        <li data-toggle="collapse" data-target=".navbar-collapse"><a tabindex="-1" href="#/trip" class="dropdown-header">Plan a trip</a></li>
                         <li class="divider"></li>
-                        <li><a tabindex="-1" href="#/" ng-click="navBarVm.logoutFB();">Log out</a></li>
+                        <li data-toggle="collapse" data-target=".navbar-collapse"><a tabindex="-1" href="#/" ng-click="navBarVm.logoutFB();">Log out</a></li>
                     </ul>
                 </span>
             </li>
@@ -40,3 +40,4 @@
     </div>
   </div>
 </nav>
+<script></script>

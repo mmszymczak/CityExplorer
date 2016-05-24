@@ -2,6 +2,9 @@
     .navbar .navbar-nav .open .dropdown-menu > li > a {
         color: #2196F3 !important;
     }
+    .navbar .navbar-nav .open .dropdown-menu .divider {
+        background-color: rgb(33, 150, 243);
+    }
 }
 
 
@@ -141,66 +144,3 @@
 .navigation-toggle-icon:after {
   bottom: 4px;
 }
-
-.navigation-toggle-icon,
-.navigation-toggle-icon:before,
-.navigation-toggle-icon:after {
-  -webkit-transition-property: -webkit-transform, border-color;
-  -moz-transition-property: -moz-transform, border-color;
-  transition-property: transform, border-color;
-  -webkit-transition-duration: 0.25s;
-  -moz-transition-duration: 0.25s;
-  transition-duration: 0.25s;
-  -webkit-transition-timing-function: cubic-bezier(0.5, -0.5, 0.5, 1.5);
-  -moz-transition-timing-function: cubic-bezier(0.5, -0.5, 0.5, 1.5);
-  transition-timing-function: cubic-bezier(0.5, -0.5, 0.5, 1.5);
-}
-
-.navigation-toggle-icon {
-  -webkit-transition-delay: 0.125s;
-  -moz-transition-delay: 0.125s;
-  transition-delay: 0.125s;
-}
-
-.navigation-toggle-icon:before,
-.navigation-toggle-icon:after {
-  -webkit-transition-delay: 0s;
-  -moz-transition-delay: 0s;
-  transition-delay: 0s;
-  -webkit-transform-origin: center;
-  -moz-transform-origin: center;
-  -ms-transform-origin: center;
-  -o-transform-origin: center;
-  transform-origin: center;
-}
-
-.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon {
-  -webkit-transition-delay: 0s;
-  -moz-transition-delay: 0s;
-  transition-delay: 0s;
-}
-.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:before,
-.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:after {
-  -webkit-transition-delay: 0.125s;
-  -moz-transition-delay: 0.125s;
-  transition-delay: 0.125s;
-}
-.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:before {
-  -webkit-transform: translateY(13px) rotate(135deg);
-  -moz-transform: translateY(13px) rotate(135deg);
-  -ms-transform: translateY(13px) rotate(135deg);
-  -o-transform: translateY(13px) rotate(135deg);
-  transform: translateY(13px) rotate(135deg);
-}
-.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon {
-  border-color: transparent;
-}
-.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:after {
-  -webkit-transform: translateY(-13px) rotate(-135deg);
-  -moz-transform: translateY(-13px) rotate(-135deg);
-  -ms-transform: translateY(-13px) rotate(-135deg);
-  -o-transform: translateY(-13px) rotate(-135deg);
-  transform: translateY(-13px) rotate(-135deg);
-}
-
-

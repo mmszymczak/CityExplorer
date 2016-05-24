@@ -1,0 +1,29 @@
+.favorite-places {
+    &__description { margin: 50px 0;
+        h1 {  }
+        h2 {  }
+    }
+    &__list {
+        .collection-item {
+            &__body { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.82);
+                .circle { left: 0 !important; width: 83px !important; height: 83px !important; }
+                .title-wrapper { position: absolute; left: 95px; top: 15px;
+                    .title { font-size: 19px; line-height: 30px; }
+                }
+                &__buttons {
+                    a {
+                        width: 40px; height: 40px;
+                        i { font-size: 32px; line-height: 41px; }
+                    }
+                    .location-wrapper { position: relative;
+                        input { display: none; }
+                        .location { font-size: 47px; bottom: -24px; position: absolute; right: 135px; }
+                    }
+                }
+            }
+        }
+    }
+    &__map {
+        #map_favorite { width: 100%; height: 550px; }
+    }
+}

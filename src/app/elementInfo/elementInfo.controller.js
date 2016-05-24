@@ -18,6 +18,7 @@
         infoVm.googleMapApiReady = false;
         infoVm.isPosts = false;
         infoVm.showPosts = showPosts;
+        infoVm.slider = slider;
 
         infoVm.addFavorite = addFavorite;
         infoVm.addToTrip = addToTrip;
@@ -68,8 +69,21 @@
             FacebookService.getUploadedPhotos($routeParams.element)
                 .then(function(response) {
                     infoVm.uploadedPhotos = response.data;
-                    console.log(response);
                 });
+        }
+
+        function slider(direction){
+            var photoArr = infoVm.uploadedPhotos,
+                vehicle = {},
+                firstItem;
+            if (direction === 'left') {
+                firstItem = photoArr[0];
+                photoArr.shift();
+                photoArr.push(firstItem);
+            } else {
+                vehicle = photoArr.pop();
+                photoArr.unshift(vehicle);
+            }
         }
 
         function detailsRequest() {

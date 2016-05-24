@@ -1,53 +1,70 @@
 <div class="element-info container">
 
-        <div class="item-header col-md-12">
-            <img class="pull-left"
-                 ng-src="{{infoVm.elemInfo.picture.data.url}}">
-            <h1 class="title h1-responsive">{{infoVm.elemInfo.name}}</h1>
-            <h3 class="likes h3-responsive pull-right">{{infoVm.elemInfo.engagement.social_sentence}}</h3>
-            <a class="fav-button btn-floating btn-large waves-effect waves-light blue"
-            ng-click="infoVm.addFavorite(infoVm.elemInfo)"
-            ng-if="!infoVm.favoriteBtnState"
-            ><i class="material-icons">add</i></a>
+        <div class="col-md-12">
+            <div class="item-header ">
+                <div class="item-image">
+                    <img class=""
+                         ng-src="{{infoVm.elemInfo.picture.data.url}}">
+                </div>
+                <h1 class="title h1-responsive">{{infoVm.elemInfo.name}}</h1>
+                <h3 class="likes h3-responsive pull-right">{{infoVm.elemInfo.engagement.social_sentence}}</h3>
+                <a class="fav-button btn-floating btn-large waves-effect waves-light blue"
+                ng-click="infoVm.addFavorite(infoVm.elemInfo)"
+                ng-if="!infoVm.favoriteBtnState"
+                ><i class="material-icons">add</i></a>
 
-            <a class="trip-button btn-floating btn-large waves-effect waves-light green"
-            ng-click="infoVm.addToTrip(infoVm.elemInfo)"
-            ng-if="!infoVm.tripBtnState"
-            ><i class="material-icons">add_location</i></a>
+                <a class="trip-button btn-floating btn-large waves-effect waves-light green"
+                ng-click="infoVm.addToTrip(infoVm.elemInfo)"
+                ng-if="!infoVm.tripBtnState"
+                ><i class="material-icons">add_location</i></a>
+            </div>
         </div>
 
         <div class="col-sm-12 col-md-12 info-wrapper">
-            <div class="col-sm-12 col-md-6 info-block">
-                <div>
-                    <div class="caption">
-                        <h4>{{infoVm.elemInfo.category}}</h4>
-                        <p>{{infoVm.elemInfo.about}}</p>
-                        <p>Phone number: {{infoVm.elemInfo.phone}}</p>
-                        <p>{{infoVm.elemInfo.price_range}}</p>
+
+            <div class="col-sm-12 col-md-6 gallery">
+                <div class="slider" ng-if="infoVm.uploadedPhotos.length > 0">
+                    <div class="slide slide-animation"
+                    ng-repeat="photo in infoVm.uploadedPhotos">
+                        <div class="photo-container" ng-style="{'background-image':'url( {{photo.source}} )'}"></div>
                     </div>
+                <a class="left carousel-control new-control"
+                role="button" ng-click="infoVm.slider('left')">
+                    <span class="fa fa fa-angle-left waves-effect waves-light"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control new-control"
+                role="button" ng-click="infoVm.slider('right')">
+                    <span class="fa fa fa-angle-right waves-effect waves-light"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                </div>
+                <h3 ng-if="!infoVm.uploadedPhotos.length > 0" class="h3-responsive gallery__info">Sorry no photos to display...</h3>
+            </div>
+
+            <div class="col-sm-12 col-md-6 info-block">
+                <div class="caption">
+                    <h4 ng-if="infoVm.elemInfo.category">Category: {{infoVm.elemInfo.category}}</h4>
+                    <p ng-if="infoVm.elemInfo.about">About: {{infoVm.elemInfo.about}}</p>
+                    <p ng-if="infoVm.elemInfo.description">Description: {{infoVm.elemInfo.description}}</p>
+                    <p ng-if="infoVm.elemInfo.general_info">General info: {{infoVm.elemInfo.general_info}}</p>
+                    <p ng-if="infoVm.elemInfo.price_range">Prace range: {{infoVm.elemInfo.price_range}}</p>
+                    <p ng-if="infoVm.elemInfo.restaurant_specialties">Restaurant specialties: <span ng-repeat="(key, value) in infoVm.elemInfo.restaurant_specialties"><span ng-if="value == 1">{{key}} </span></span></p>
+                    <p ng-if="infoVm.elemInfo.restaurant_services">Restaurant services: <span ng-repeat="(key, value) in infoVm.elemInfo.restaurant_services"><span ng-if="value == 1">{{key}} </span></span></p>
+                    <p ng-if="infoVm.elemInfo.payment_options">Payment options: <span ng-repeat="(key, value) in infoVm.elemInfo.payment_options"><span ng-if="value == 1">{{key}} </span></span></p>
+                    <p ng-if="infoVm.elemInfo.food_styles">Food styles: <span ng-repeat="style in infoVm.elemInfo.food_styles">{{style}} </span></p>
+                    <p ng-if="infoVm.elemInfo.phone">Phone number: <a class="telephone" ng-href="tel:{{infoVm.elemInfo.phone}}">{{infoVm.elemInfo.phone}}</a></p>
                 </div>
                 <div class="links">
-                    <a ng-href="{{infoVm.elemInfo.link}}">Facebook page</a><br>
-                    <a href="{{infoVm.elemInfo.website}}">Website</a>
+                    <a ng-if="infoVm.elemInfo.link" ng-href="{{infoVm.elemInfo.link}}" target="_blank">Facebook page</a>
+                    <a ng-if="infoVm.elemInfo.website" href="{{infoVm.elemInfo.website}}" target="_blank">Website</a>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-6 gallery">
- <!--                <div ng-repeat="photo in infoVm.uploadedPhotos">
-                    <img ng-src="{{photo.source}}">
-                    <p>{{photo.name}}</p>
-                </div> -->
-                <img style="width: 100%" ng-src="{{infoVm.uploadedPhotos[0].source}}">
-                <p>{{infoVm.uploadedPhotos[0].name}}</p>
-            </div>
+
         </div>
 
-        <div class="col-md-12 col-sm-12 mapper card-panel hoverable wow fadeInUp ng-scope"
-             ng-if="infoVm.googleMapApiReady">
-            <ce-google-map position="infoVm.position"></ce-google-map>
-        </div>
-
-        <div class="col-sm-12 col-md-12 via-posts">
-            <h3 class="show-comments" ng-click="infoVm.showPosts()">
+        <div class="col-sm-12 col-md-12 via-posts text-center">
+            <h3 class="show-comments h3-responsive" ng-click="infoVm.showPosts()">
                 <span class="caret"></span>
                 Show last posts
                 <span class="caret"></span>
@@ -62,8 +79,8 @@
                      <div class="post-img">
                          <img ng-src="{{infoVm.elemInfo.picture.data.url}}">
                      </div>
-                     <span class="post-author">{{infoVm.elemInfo.name}}</span><br>
-                     <span class="post-date">{{post.created_time.substring(0,10)}}</span>
+                     <span class="post-date">{{post.created_time.substring(0,10)}}</span><br>
+                     <span class="post-author">{{infoVm.elemInfo.name}}</span>
                  </div>
                  <div class="post-content">
                     <p>{{post.message}}</p>
@@ -71,8 +88,12 @@
             </div>
         </div>
 
-
         <ce-element-comments></ce-element-comments>
+
+        <div class="col-md-12 col-sm-12 mapper card-panel hoverable wow fadeInUp ng-scope"
+             ng-if="infoVm.googleMapApiReady">
+            <ce-google-map position="infoVm.position"></ce-google-map>
+        </div>
 
 </div>
 

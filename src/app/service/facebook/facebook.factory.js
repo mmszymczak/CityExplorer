@@ -34,7 +34,7 @@
             FB.api(
                 '/'+id+'/photos',
                 'GET',
-                {"type":"uploaded","fields":"id,name,source"},
+                {"type":"uploaded","fields":"id,name,source,width,height"},
                 function(response) {
                     if (!response || response.error) {
                         deferred.reject('An error occurred while retrieving data');
