@@ -26,6 +26,6 @@
         transition: all .3s ease-in-out;
         background: #2196F3;
         z-index: 999;
-        &:hover { bottom: 0px; }
+        &:hover { bottom: 0px !important; }
     }
 }

@@ -26,4 +26,17 @@
     #map_canvas {
         height: 270px;
     }
+    .trip-planner__map #map_favorite {
+        height: 300px !important;
+    }
+    #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: inherit;
+        right: 0px;
+        z-index: 5;
+        background-color: #FFF;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+    }
 }

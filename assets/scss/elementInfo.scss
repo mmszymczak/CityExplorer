@@ -22,7 +22,9 @@
         }
     }
     .info-wrapper { margin: 20px 0 60px 0;
-        .gallery { padding: 0; }
+        .gallery { padding: 0;
+            &__info { padding-left: 15px; padding-right: 15px; }
+        }
         .slider { overflow: hidden; height: 380px; position: relative; margin-top: 10px;
             .photo-container {
                 height: 400px;
@@ -51,7 +53,14 @@
             }
         }
     }
-    .via-posts { padding: 0 25px; }
+    .via-posts {
+        h3 {
+            color: #fff;
+            background: #2196F3;
+            padding: 3px 5px;
+            border-radius: 3px;
+        }
+    }
     .page-post {
         position: relative;
         word-wrap: break-word;
@@ -106,6 +115,10 @@
     margin-left: 0px;
 }
 
+@media (max-width: 768px) {
+    .item-header .item-image { text-align: left !important; }
+}
+
 @media (max-width: 499px) {
     .info-block {
         padding-left: 0;
@@ -119,13 +132,10 @@
     }
     .item-header {
         .item-image { text-align: center !important; padding-top: 110px; }
-        .fav-button { top: 30px !important; left: 65px !important; }
-        .trip-button { top: 30px !important; left: 0px !important; }
+        .fav-button { top: 30px !important; right: 0px !important; }
+        .trip-button { top: 30px !important; right: 65px !important; }
     }
-    .element-info .item-header .likes { left: 0; }
+    .element-info .item-header .likes { right: 0; }
 }
 
-@media (max-width: 768px) {
-    .item-header .item-image { text-align: left !important; }
-}
 
