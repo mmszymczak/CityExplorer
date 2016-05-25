@@ -5,9 +5,9 @@
         .module('project')
         .controller('ElementCommentsController', ElementCommentsController);
 
-    ElementCommentsController.$inject = ['userService', '$routeParams', 'firebaseService'];
+    ElementCommentsController.$inject = ['userService', '$routeParams', '$scope', 'firebaseService'];
 
-    function ElementCommentsController(userService, $routeParams, firebaseService) {
+    function ElementCommentsController(userService, $routeParams, $scope, firebaseService) {
         var elemComVm = this;
 
         elemComVm.actualPlace = $routeParams.element;
@@ -24,6 +24,11 @@
         elemComVm.makeDate = makeDate;
         elemComVm.submitted=true;
         elemComVm.readyToUse = true;
+
+        $scope.starRating = 0;
+        $scope.click = click;
+        $scope.mouseHover = mouseHover;
+        $scope.mouseLeave = mouseLeave;
 
         activate();
 
@@ -76,6 +81,19 @@
                 elemComVm.isComment = false;
             }
         }
+
+        function click(param) {
+            elemComVm.comment.rate = param;
+        }
+
+        function mouseHover(param) {
+            $scope.hoverRating3 = param;
+        }
+
+        function mouseLeave(param) {
+            $scope.hoverRating3 = param + '*';
+        }
+
     }
 
 })();

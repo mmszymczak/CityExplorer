@@ -74,9 +74,6 @@
     font-weight: bold;
 }
 
-.comments-header-wrap {
-    margin: 0 25px;
-}
 
 .comments-header {
     text-align: center;
@@ -98,6 +95,7 @@
 }
 
 .const-box {
+    width: 100%;
     height: 550px;
     display: inline-block;
 }
@@ -248,4 +246,7 @@
 
 .thanks-header {
     text-align: center;
+}
+.stars {
+    float: right;
 }

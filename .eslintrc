@@ -15,6 +15,13 @@
     "geoplugin_longitude": true,
     "geoplugin_latitude": true,
     "geoplugin_city": true,
-    "geoplugin_countryName" : true
+    "geoplugin_countryName" : true,
+    "angular/controller-as-vm": false
+  },
+  "rules": {
+    "angular/controller-as-vm": 0,
+    "angular/window-service": 0,
+    "angular/document-service": 0,
+    "angular/controller-as": 0
   }
 }

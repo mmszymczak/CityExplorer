@@ -44,16 +44,16 @@
 
             <div class="col-sm-12 col-md-6 info-block">
                 <div class="caption">
-                    <h4 ng-if="infoVm.elemInfo.category">Category: {{infoVm.elemInfo.category}}</h4>
-                    <p ng-if="infoVm.elemInfo.about">About: {{infoVm.elemInfo.about}}</p>
-                    <p ng-if="infoVm.elemInfo.description">Description: {{infoVm.elemInfo.description}}</p>
-                    <p ng-if="infoVm.elemInfo.general_info">General info: {{infoVm.elemInfo.general_info}}</p>
-                    <p ng-if="infoVm.elemInfo.price_range">Prace range: {{infoVm.elemInfo.price_range}}</p>
-                    <p ng-if="infoVm.elemInfo.restaurant_specialties">Restaurant specialties: <span ng-repeat="(key, value) in infoVm.elemInfo.restaurant_specialties"><span ng-if="value == 1">{{key}} </span></span></p>
-                    <p ng-if="infoVm.elemInfo.restaurant_services">Restaurant services: <span ng-repeat="(key, value) in infoVm.elemInfo.restaurant_services"><span ng-if="value == 1">{{key}} </span></span></p>
-                    <p ng-if="infoVm.elemInfo.payment_options">Payment options: <span ng-repeat="(key, value) in infoVm.elemInfo.payment_options"><span ng-if="value == 1">{{key}} </span></span></p>
-                    <p ng-if="infoVm.elemInfo.food_styles">Food styles: <span ng-repeat="style in infoVm.elemInfo.food_styles">{{style}} </span></p>
-                    <p ng-if="infoVm.elemInfo.phone">Phone number: <a class="telephone" ng-href="tel:{{infoVm.elemInfo.phone}}">{{infoVm.elemInfo.phone}}</a></p>
+                    <h4 ng-if="infoVm.elemInfo.category"><b>Category:</b> {{infoVm.elemInfo.category}}</h4>
+                    <p ng-if="infoVm.elemInfo.about"><b>About:</b> {{infoVm.elemInfo.about}}</p>
+                    <p ng-if="infoVm.elemInfo.description"><b>Description:</b> {{infoVm.elemInfo.description}}</p>
+                    <p ng-if="infoVm.elemInfo.general_info"><b>General info:</b> {{infoVm.elemInfo.general_info}}</p>
+                    <p ng-if="infoVm.elemInfo.price_range"><b>Prace range:</b> {{infoVm.elemInfo.price_range}}</p>
+                    <p ng-if="infoVm.elemInfo.restaurant_specialties"><b>Restaurant specialties:</b> <span ng-repeat="(key, value) in infoVm.elemInfo.restaurant_specialties"><span ng-if="value == 1">{{key}} </span></span></p>
+                    <p ng-if="infoVm.elemInfo.restaurant_services"><b>Restaurant services:</b> <span ng-repeat="(key, value) in infoVm.elemInfo.restaurant_services"><span ng-if="value == 1">{{key}} </span></span></p>
+                    <p ng-if="infoVm.elemInfo.payment_options"><b>Payment options:</b> <span ng-repeat="(key, value) in infoVm.elemInfo.payment_options"><span ng-if="value == 1">{{key}} </span></span></p>
+                    <p ng-if="infoVm.elemInfo.food_styles"><b>Food styles:</b> <span ng-repeat="style in infoVm.elemInfo.food_styles">{{style}} </span></p>
+                    <p ng-if="infoVm.elemInfo.phone"><b>Phone number:</b> <a class="telephone" ng-href="tel:{{infoVm.elemInfo.phone}}">{{infoVm.elemInfo.phone}}</a></p>
                 </div>
                 <div class="links">
                     <a ng-if="infoVm.elemInfo.link" ng-href="{{infoVm.elemInfo.link}}" target="_blank">Facebook page</a>
@@ -64,7 +64,7 @@
         </div>
 
         <div class="col-sm-12 col-md-12 via-posts text-center">
-            <h3 class="show-comments h3-responsive" ng-click="infoVm.showPosts()">
+            <h3 class="show-comments h3-responsive hoverable" ng-click="infoVm.showPosts()">
                 <span class="caret"></span>
                 Show last posts
                 <span class="caret"></span>
@@ -88,7 +88,9 @@
             </div>
         </div>
 
-        <ce-element-comments></ce-element-comments>
+        <div class="col-sm-12 col-md-12">
+            <ce-element-comments></ce-element-comments>
+        </div>
 
         <div class="col-md-12 col-sm-12 mapper card-panel hoverable wow fadeInUp ng-scope"
              ng-if="infoVm.googleMapApiReady">

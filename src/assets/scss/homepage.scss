@@ -15,6 +15,12 @@ body { padding: 0; font-family: 'Lato', sans-serif; }
             margin: 30px;
         }
     }
+    .logout-status {
+        .login-form-wrap {
+            padding-top: 10px;
+            h4 { color: white; }
+        }
+    }
     .mapper {
         #current { text-align: center; background-color: #FFF; padding: 25px; font-size: 20px; }
     }

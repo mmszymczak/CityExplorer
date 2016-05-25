@@ -1,5 +1,5 @@
 <div class="row info-wrapper comments-wrapper">
-    <div class="comments-header-wrap"
+    <div class="comments-header-wrap hoverable"
          ng-click="elemComVm.showComments()">
         <h3 class="comments-header h3-responsive"><span class="caret"></span>Comments left by users<span class="caret"></span></h3>
     </div>
@@ -44,15 +44,10 @@
                     </div>
                 </div>
                 <div class="form-stars">
+
                     <p class="rate-paragraph">Rate this place</p>
-                    <uib-rating class="main-stars"
-                         ng-model="elemComVm.comment.rate"
-                         max="5"
-                         aria-labelledby="default-rating"
-                         name="cStars"
-                         required="">
-                    </uib-rating>
-                    <div class="help-block-stars"
+                    <div class="stars" star-rating rating="starRating" click="click(param)" mouse-hover="mouseHover(param)" mouse-leave="mouseLeave(param)"></div>
+                        <div class="help-block-stars"
                          ng-messages="form.cStars.$error"
                          ng-show="elemComVm.submitted"
                          ng-if="form.$submitted || form.cStars.$touched">
@@ -108,12 +103,7 @@
                             <span class="person-date">{{comment.date}}</span>
                         </div>
                         <div class="comment-stars">
-                            <uib-rating class="comment-left-stars"
-                                 ng-model="comment.rate"
-                                 max="5"
-                                 data-readonly="elemComVm.readOnly"
-                                 aria-labelledby="default-rating">
-                            </uib-rating>
+                            <div class="stars" star-rating rating="comment.rate"></div>
                         </div>
                     </div>
                     <div class="comment-content">
